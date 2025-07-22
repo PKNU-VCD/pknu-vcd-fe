@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "dotenv -e .env -- npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -31,6 +32,8 @@
     "@types/react-dom": "^19",
     "@vitest/browser": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
+    "chromatic": "^13.1.2",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^9.31.0",
     "eslint-config-next": "15.4.2",
     "eslint-plugin-storybook": "^9.0.18",
