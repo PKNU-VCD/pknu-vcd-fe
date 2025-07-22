@@ -1,7 +1,13 @@
 export const theme = {
   colors: {
-    stroke: '#E0E0E0',
-    //TODO: 편집권한 얻으면 색 추가하기
+    stroke: '#222222',
+    pink: '#F299C1',
+    lightPink: '#FFD6E8',
+    yellow: '#FFF200',
+    lightYellow: '#FFFA9C',
+    green: '#34CD8C',
+    lightGreen: '#C8E7E7',
+    white: '#F2F2F2',
   },
   typography: {
     regular: {
