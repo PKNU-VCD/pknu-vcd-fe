@@ -26,4 +26,9 @@ export const theme = {
       lineHeight: '130%',
     },
   },
+  breakpoints: {
+    desktop: '1920px',
+    tablet: '860px',
+    mobile: '375px',
+  },
 };
