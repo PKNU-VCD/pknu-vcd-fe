@@ -5,12 +5,14 @@ interface GuestbookCardProps {
     /** 작성한 방명록 텍스트 */
     text: string;
     /** 배경 색상 */
-    $backgroundColor?: keyof Theme['colors'];
+    $backgroundColor?: keyof Theme['colors']['guestbook'];
 }
-export const GuestbookCard = ({text, $backgroundColor = "green"} : GuestbookCardProps) => {
+const GuestbookCard = ({text, $backgroundColor = "green"} : GuestbookCardProps) => {
     return (
-        <S.GuestbookCard $backgroundColor={$backgroundColor}>
+        <S.Wrapper $backgroundColor={$backgroundColor}>
             {text}
-        </S.GuestbookCard>
+        </S.Wrapper>
     );
 }
+
+export default GuestbookCard;
