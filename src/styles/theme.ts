@@ -9,10 +9,11 @@ export const theme = {
     lightGreen: '#C8E7E7',
     white: '#F2F2F2',
     guestbook: {
-      green: "#D2F1E3",
-      pink: "#FFE8F9",
-      yellow: "#FFFFBD"
-    }
+      green: '#D2F1E3',
+      pink: '#FFE8F9',
+      yellow: '#FFFFBD',
+    },
+    input: '#A4A4A4',
   },
   typography: {
     regular: {
@@ -27,6 +28,11 @@ export const theme = {
     },
     bold: {
       fontWeight: 700,
+      fontSize: '20px',
+      lineHeight: '130%',
+    },
+    extraBold: {
+      fontWeight: 800,
       fontSize: '20px',
       lineHeight: '130%',
     },

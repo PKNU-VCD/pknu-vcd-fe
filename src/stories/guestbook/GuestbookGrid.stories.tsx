@@ -1,4 +1,4 @@
-import { GuestbookGrid } from '@/components/guestbook/guestbookGrid/guestbookGrid';
+import { GuestbookGrid } from '@/components/guestbook/guestbookGrid/GuestbookGrid';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const meta: Meta<typeof GuestbookGrid> = {
