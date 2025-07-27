@@ -1,4 +1,4 @@
-import GuestbookCard from '@/components/guestbook/guestbookCard/GuestbookCard';
+import { GuestbookCard } from '@/components/guestbook/guestbookCard/GuestbookCard';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const meta: Meta<typeof GuestbookCard> = {

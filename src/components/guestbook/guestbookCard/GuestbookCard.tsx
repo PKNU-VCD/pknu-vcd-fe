@@ -7,12 +7,10 @@ interface GuestbookCardProps {
     /** 배경 색상 */
     $backgroundColor?: keyof Theme['colors']['guestbook'];
 }
-const GuestbookCard = ({text, $backgroundColor = "green"} : GuestbookCardProps) => {
+export const GuestbookCard = ({text, $backgroundColor = "green"} : GuestbookCardProps) => {
     return (
         <S.Wrapper $backgroundColor={$backgroundColor}>
             {text}
         </S.Wrapper>
     );
 }
-
-export default GuestbookCard;

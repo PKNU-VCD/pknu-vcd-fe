@@ -1,5 +1,5 @@
 import { getRandomThemeColor } from "@/utils/randomColor";
-import GuestbookCard from "../guestbookCard/GuestbookCard";
+import { GuestbookCard } from "../guestbookCard/GuestbookCard";
 import * as S from "./GuestbookGrid.styles";
 
 interface GuestbookGridProps {
