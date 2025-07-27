@@ -26,14 +26,21 @@ const variantStyles = {
     color: #FFF;
   }
 `,
+  secondary: css`
+    width: 245px;
+    padding: 14px 0;
+    gap: 10px;
+    border-radius: 1000px;
+    border: 1px solid #F3A;
     background: #FFF;
     color: #F3A;
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.025rem;
+    font-size: ${theme.typography.regular.fontSize};
+    font-weight: ${theme.typography.regular.fontWeight};
+    line-height: ${theme.typography.regular.lineHeight};
+    letter-spacing: ${theme.typography.regular.letterSpacing};
 
     &:active {
-      border-color: #FFADEB;
+      border: 1px solid #FFE8F9;
       background: #F3A;
       color: #FFF;
     }
