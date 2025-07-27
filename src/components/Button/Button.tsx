@@ -1,9 +1,9 @@
-// Button.tsx
+import { theme } from '@/styles/theme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'exhibition' | 'login' | 'header';
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'login';
   label?: string;
   width?: string | number;
   height?: string | number;
@@ -13,11 +13,19 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const variantStyles = {
-  exhibition: css`
-    height: 2.3125rem;
-    padding: 0.375rem 1.25rem;
-    gap: 0.625rem;
-    border: 2px solid #F3A;
+  primary: css`
+  padding: 12px 20px;
+  gap: 10px;
+  border: 2px solid #F3A;
+  background: #FFF;
+  color: #F3A;
+
+  &:active {
+    border-color: #FFF;
+    background: #F3A;
+    color: #FFF;
+  }
+`,
     background: #FFF;
     color: #F3A;
     font-size: 1.25rem;
@@ -30,33 +38,27 @@ const variantStyles = {
       color: #FFF;
     }
   `,
-  login: css`
-    width: 29rem;
-    height: 3rem;
-    padding: 0.875rem 6.25rem;
-    gap: 0.625rem;
-    background: #34CD8C;
-    border-radius: 0;
-    color: #FFF;
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.025rem;
-  `,
-  header: css`
-    padding: 0.75rem 1.25rem;
-    gap: 0.625rem;
+  tertiary: css`
+    padding: 12px 20px;
+    gap: 10px;
     border: 2px solid #F3A;
     background: #FFF;
     color: #F3A;
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: -0.025rem;
 
     &:active {
-      border-color: #FFF;
+      border-color: #FFADEB;
       background: #F3A;
       color: #FFF;
     }
+  `,
+  login: css`
+    width: 464px;
+    height: 48px;
+    padding: 14px 100px;
+    gap: 10px;
+    background: #34CD8C;
+    border-radius: 0;
+    color: #FFF;
   `,
 };
 
@@ -65,11 +67,11 @@ const BaseButton = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-family: SUITE;
-  font-style: normal;
-  line-height: 130%;
   border-radius: 625rem;
-  border: none;
+  font-size: ${theme.typography.medium.fontSize};
+  font-weight: ${theme.typography.medium.fontWeight};
+  line-height: ${theme.typography.medium.lineHeight};
+  letter-spacing: ${theme.typography.medium.letterSpacing};
 
   ${({ variant }) => variant && variantStyles[variant]}
   ${({ width }) =>
@@ -88,7 +90,7 @@ const BaseButton = styled.button<ButtonProps>`
 export function Button({
   label,
   children,
-  variant = 'exhibition',
+  variant = 'tertiary',
   ...props
 }: ButtonProps) {
   return (
