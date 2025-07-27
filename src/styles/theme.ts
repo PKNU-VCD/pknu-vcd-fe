@@ -8,6 +8,12 @@ export const theme = {
     green: '#34CD8C',
     lightGreen: '#C8E7E7',
     white: '#F2F2F2',
+    guestbook: {
+      green: '#D2F1E3',
+      pink: '#FFE8F9',
+      yellow: '#FFFFBD',
+    },
+    input: '#A4A4A4',
   },
   typography: {
     regular: {
@@ -25,5 +31,15 @@ export const theme = {
       fontSize: '20px',
       lineHeight: '130%',
     },
+    extraBold: {
+      fontWeight: 800,
+      fontSize: '20px',
+      lineHeight: '130%',
+    },
+  },
+  breakpoints: {
+    desktop: '1920px',
+    tablet: '860px',
+    mobile: '375px',
   },
 };

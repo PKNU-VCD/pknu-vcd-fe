@@ -1,8 +1,8 @@
 'use client';
 
-import { ThemeProvider } from '@emotion/react';
-import { theme } from '@/styles/theme';
 import GlobalStyle from '@/styles/globalStyles';
+import { theme } from '@/styles/theme';
+import { ThemeProvider } from '@emotion/react';
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
   return (

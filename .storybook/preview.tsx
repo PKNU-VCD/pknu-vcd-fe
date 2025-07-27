@@ -6,7 +6,7 @@ import { theme } from '../src/styles/theme';
 
 const preview: Preview = {
   decorators: [
-    (Story) => (
+    Story => (
       <ThemeProvider theme={theme}>
         <>
           <GlobalStyle />

@@ -16,9 +16,9 @@ export const global = css`
   html {
     scroll-behavior: smooth;
   }
-  input {
+  textarea {
+    resize: none;
     &:focus {
-      border: none;
       outline: none;
     }
   }
