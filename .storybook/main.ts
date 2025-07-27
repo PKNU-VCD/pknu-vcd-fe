@@ -12,16 +12,16 @@ const config: StorybookConfig = {
     name: '@storybook/nextjs',
     options: {},
   },
-  staticDirs: ["../public"],
+  staticDirs: ['../public'],
   // webpackFinal을 통해 Webpack 설정을 변경
-  webpackFinal: async (config) => {
+  webpackFinal: async config => {
     if (!config.module || !config.module.rules) {
       return config;
     }
 
     config.module.rules = [
-      ...config.module.rules.map((rule) => {
-        if (!rule || rule === "...") {
+      ...config.module.rules.map(rule => {
+        if (!rule || rule === '...') {
           return rule;
         }
 
@@ -32,7 +32,7 @@ const config: StorybookConfig = {
       }),
       {
         test: /\.svg$/,
-        use: ["@svgr/webpack"],
+        use: ['@svgr/webpack'],
       },
     ];
 

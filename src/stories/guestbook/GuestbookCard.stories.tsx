@@ -12,7 +12,6 @@ type Story = StoryObj<typeof GuestbookCard>;
 export const Default: Story = {
   args: {
     text: '방문해 주셔서 감사합니다! 😊',
-
   },
 };
 

@@ -29,7 +29,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/**/*",
-    "src/types/emotion.d.ts",
+    "src/types/emotion.d.ts"
   ],
   "exclude": ["node_modules"]
 }

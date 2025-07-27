@@ -47,7 +47,9 @@ export const GuestbookInput = ({ maxLength = 100, onSubmit }: GuestbookInputProp
       <S.TextLengthContainer
         $isOverLimit={isOverLimit}
       >{`${text.length}/100`}</S.TextLengthContainer>
-      <S.ButtonContainer><InputUpload/></S.ButtonContainer>
+      <S.ButtonContainer>
+        <InputUpload />
+      </S.ButtonContainer>
     </S.Wrapper>
   );
 };

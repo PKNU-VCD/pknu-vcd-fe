@@ -26,7 +26,7 @@ export const TextLengthContainer = styled.div<{ $isOverLimit: boolean }>`
 
 export const ButtonContainer = styled.button`
   border-radius: 1000px;
-  border: 1px solid #F2F2F2;
+  border: 1px solid #f2f2f2;
   display: inline-flex;
   padding: 10px;
 `;

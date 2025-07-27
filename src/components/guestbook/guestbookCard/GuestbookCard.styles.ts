@@ -1,5 +1,5 @@
-import { Theme } from "@emotion/react";
-import styled from "@emotion/styled";
+import { Theme } from '@emotion/react';
+import styled from '@emotion/styled';
 
 export const Wrapper = styled.div<{ $backgroundColor: keyof Theme['colors']['guestbook'] }>`
   width: 100%;
@@ -12,8 +12,7 @@ export const Wrapper = styled.div<{ $backgroundColor: keyof Theme['colors']['gue
   }
   border-radius: 96px;
   ${({ theme }) => ({ ...theme.typography.medium })}
-  background-color: ${({ theme, $backgroundColor }) =>
-    theme.colors.guestbook[$backgroundColor]};
+  background-color: ${({ theme, $backgroundColor }) => theme.colors.guestbook[$backgroundColor]};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     height: 75px;

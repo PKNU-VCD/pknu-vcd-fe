@@ -11,7 +11,7 @@ export default function HomePage() {
       <S.Container>
         <S.Title>Hello, world!</S.Title>
         <S.Description>Emotion 스타일 테스트입니다.</S.Description>
-        <GuestbookInput onSubmit={() => {}}/>
+        <GuestbookInput onSubmit={() => {}} />
       </S.Container>
     </>
   );
