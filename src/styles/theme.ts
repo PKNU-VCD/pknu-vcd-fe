@@ -14,16 +14,18 @@ export const theme = {
       fontWeight: 400,
       fontSize: '16px',
       lineHeight: '130%',
+      letterSpacing: '-0.32px',
     },
     medium: {
       fontWeight: 500,
       fontSize: '20px',
       lineHeight: '130%',
+      letterSpacing: '-0.4px',
     },
     bold: {
       fontWeight: 700,
       fontSize: '20px',
-      lineHeight: '130%',
+      lineHeight: '130%',   
     },
   },
 };
