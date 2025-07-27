@@ -10,23 +10,30 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const 전시소개: Story = {
+export const primary: Story = {
   args: {
-    variant: 'exhibition',
-    children: '전시 소개',
+    variant: 'primary',
+    children: '소개 합니다.',
   },
 };
 
-export const 로그인: Story = {
+export const secondary: Story = {
+  args: {
+    variant: 'secondary',
+    children: 'branding',
+  },
+};
+
+export const tertiary: Story = {
+  args: {
+    variant: 'tertiary',
+    children: '전시소개',
+  },
+};
+
+export const login: Story = {
   args: {
     variant: 'login',
     children: '로그인',
-  },
-};
-
-export const 헤더버튼: Story = {
-  args: {
-    variant: 'header',
-    children: '소개 합니다.',
   },
 };
