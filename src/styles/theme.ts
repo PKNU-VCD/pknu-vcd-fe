@@ -31,7 +31,7 @@ export const theme = {
     bold: {
       fontWeight: 700,
       fontSize: '20px',
-      lineHeight: '130%',   
+      lineHeight: '130%',
     },
     extraBold: {
       fontWeight: 800,
@@ -43,5 +43,6 @@ export const theme = {
     desktop: '1920px',
     tablet: '860px',
     mobile: '375px',
+    mobileLarge: '500px',
   },
 };
