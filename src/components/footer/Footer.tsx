@@ -1,3 +1,7 @@
+import FootLogo from '@/assets/icons/FootLogo.svg';
+import InstaIcon from '@/assets/icons/InstaIcon.svg';
+import YoutubeIcon from '@/assets/icons/YoutubeIcon.svg';
+
 import styled from '@emotion/styled';
 
 const FooterContainer = styled.footer`
@@ -60,12 +64,18 @@ export const ExhibitionText = styled.div`
   letter-spacing: ${({ theme }) => theme.typography.regular.letterSpacing};
 `;
 
+export const FooterSocialWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+
 export default function Footer() {
   return (
     <FooterContainer>
       <FooterWrapper>
         <ExhibitionWrapper>
-          <ExhibitionText>_합니다.</ExhibitionText>
+          <FootLogo />
           <ExhibitionText>
             <p>국립부경대학교 핵심역량도서관 1층 갤러리라운지 (부산광역시 남구 용소로45)</p>
             <p>2025.10.24.Fri, 2025.10.27.Mon. - 2025.10.28.Tue (10AM~8PM)</p>
@@ -73,6 +83,10 @@ export default function Footer() {
             <p>copyright 2025. PKVCD All Right Reserved</p>
           </ExhibitionText>
         </ExhibitionWrapper>
+        <FooterSocialWrapper>
+          <InstaIcon />
+          <YoutubeIcon />
+        </FooterSocialWrapper>
       </FooterWrapper>
     </FooterContainer>
   );
