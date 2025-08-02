@@ -77,4 +77,8 @@ export const FooterSocialWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+
+  > svg {
+    cursor: pointer;
+  }
 `;
