@@ -17,8 +17,22 @@ export default function Footer() {
           </S.ExhibitionText>
         </S.ExhibitionWrapper>
         <S.FooterSocialWrapper>
-          <InstaIcon />
-          <YoutubeIcon />
+          <a
+            href="https://www.instagram.com/pkvcd1234/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="instagram"
+          >
+            <InstaIcon />
+          </a>
+          <a
+            href="https://www.youtube.com/@pkvcd1234"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="youtube"
+          >
+            <YoutubeIcon />
+          </a>
         </S.FooterSocialWrapper>
       </S.FooterWrapper>
     </S.FooterContainer>
