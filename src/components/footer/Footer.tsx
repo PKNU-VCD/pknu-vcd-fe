@@ -14,18 +14,18 @@ const FooterWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding: 50px 100px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding: 50px 80px;
-  }
-
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
     padding: 60px 28px;
     gap: 50px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 50px 80px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 50px 100px;
   }
 `;
 
@@ -35,16 +35,16 @@ export const ExhibitionWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    gap: 100px;
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     gap: 30px;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: none;
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    gap: 100px;
   }
 `;
 
