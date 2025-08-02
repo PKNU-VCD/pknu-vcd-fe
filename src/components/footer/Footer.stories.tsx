@@ -4,7 +4,6 @@ import Footer from './Footer';
 const meta: Meta<typeof Footer> = {
   title: 'Components/Footer',
   component: Footer,
-  tags: ['autodocs'],
   parameters: {
     viewport: {
       defaultViewport: 'responsive',
@@ -15,7 +14,7 @@ const meta: Meta<typeof Footer> = {
 export default meta;
 type Story = StoryObj<typeof Footer>;
 
-export const 데스크탑: Story = {
+export const Default: Story = {
   parameters: {
     viewport: {
       defaultViewport: 'desktop',
