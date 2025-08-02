@@ -21,33 +21,21 @@ export const GuestbookInput = ({ maxLength = 100, onSubmit }: GuestbookInputProp
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      const trimmed = text.trim();
-      if (trimmed) {
-        setText('');
-        onSubmit();
-      }
-    }
-  };
-
   return (
     <S.Wrapper>
       <S.TextAreaContainer
         value={text}
         onChange={handleChange}
         placeholder="누구를 축하하고 누가 축하하고 있는지 함께 작성해주세요."
-        onKeyDown={handleKeyDown}
         maxLength={maxLength}
         autoComplete="off"
         autoCorrect="off"
-        onSubmit={onSubmit}
+        $isOverLimit={isOverLimit}
       />
       <S.TextLengthContainer
         $isOverLimit={isOverLimit}
       >{`${text.length}/100`}</S.TextLengthContainer>
-      <S.ButtonContainer>
+      <S.ButtonContainer onClick={onSubmit}>
         <InputUpload />
       </S.ButtonContainer>
     </S.Wrapper>
