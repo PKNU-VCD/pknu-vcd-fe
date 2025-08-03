@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+interface ExhibitionTextProps {
+  footerType?: 'main' | 'sub';
+}
+
 export const FooterContainer = styled.footer`
   position: fixed;
   bottom: 0;
@@ -53,12 +57,12 @@ export const ExhibitionWrapper = styled.div`
   }
 `;
 
-export const ExhibitionText = styled.div`
+export const ExhibitionText = styled.div<ExhibitionTextProps>`
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  color: #666;
+  color: ${({ footerType }) => (footerType === 'main' ? '#F3A' : '#666')};
   font-size: ${({ theme }) => theme.typography.regular.fontSize};
   font-weight: ${({ theme }) => theme.typography.regular.fontWeight};
   line-height: ${({ theme }) => theme.typography.regular.lineHeight};
