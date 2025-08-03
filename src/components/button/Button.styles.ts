@@ -33,6 +33,27 @@ export const variantStyles = {
       background: #f3a;
       color: #fff;
     }
+
+    @media (max-width: 500px) {
+      width: 100%;
+      padding: 16px 20px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex: 1 0 0;
+      border: 2px solid #f3a;
+
+      font-size: ${theme.typography.medium.fontSize};
+      font-weight: ${theme.typography.medium.fontWeight};
+      line-height: ${theme.typography.medium.lineHeight};
+      letter-spacing: ${theme.typography.medium.letterSpacing};
+
+      &:active {
+        border: 2px solid #ffadeb;
+        background: #f3a;
+        color: #fff;
+      }
+    }
   `,
   tertiary: css`
     padding: 12px 20px;
@@ -46,15 +67,29 @@ export const variantStyles = {
       background: #f3a;
       color: #fff;
     }
+
+    @media (max-width: 500px) {
+      width: 100%;
+      padding: 16px 20px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+    }
   `,
   login: css`
     width: 464px;
     height: 48px;
     padding: 14px 100px;
     gap: 10px;
-    background: #34cd8c;
+    background: var(--color-5-blue, #34cd8c);
     border-radius: 0;
     color: #fff;
+
+    @media (max-width: 500px) {
+      // 상수로 변경예정
+      width: 100%;
+    }
   `,
 };
 
