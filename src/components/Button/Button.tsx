@@ -2,6 +2,7 @@ import { BaseButton } from './Button.styles';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'login';
+  headerType?: 'main' | 'sub';
   label?: string;
   width?: string | number;
   height?: string | number;
@@ -10,9 +11,15 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children?: React.ReactNode;
 }
 
-export function Button({ label, children, variant = 'primary', ...props }: ButtonProps) {
+export function Button({
+  label,
+  children,
+  variant = 'primary',
+  headerType,
+  ...props
+}: ButtonProps) {
   return (
-    <BaseButton variant={variant} {...props}>
+    <BaseButton variant={variant} headerType={headerType} {...props}>
       {children ?? label}
     </BaseButton>
   );
