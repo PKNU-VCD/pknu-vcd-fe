@@ -12,6 +12,10 @@ const meta: Meta<typeof Header> = {
 export default meta;
 type Story = StoryObj<typeof Header>;
 
-export const Default: Story = {
-  render: () => <Header />,
+export const MainHeader: Story = {
+  render: () => <Header headerType="main" />,
+};
+
+export const SubHeader: Story = {
+  render: () => <Header headerType="sub" />,
 };
