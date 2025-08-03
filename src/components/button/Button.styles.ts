@@ -20,8 +20,6 @@ export const variantStyles = {
   secondary: css`
     width: 245px;
     padding: 14px 0;
-    gap: 10px;
-    border-radius: 1000px;
     border: 1px solid #f3a;
     background: #fff;
     color: #f3a;
