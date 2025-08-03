@@ -1,15 +1,21 @@
+import ColorInstaIcon from '@/assets/icons/ColorInstaIcon.svg';
+import ColorYoutubeIcon from '@/assets/icons/ColorYoutubeIcon.svg';
 import FootLogo from '@/assets/icons/FootLogo.svg';
 import InstaIcon from '@/assets/icons/InstaIcon.svg';
 import YoutubeIcon from '@/assets/icons/YoutubeIcon.svg';
 import * as S from './Footer.styles';
 
-export default function Footer() {
+interface FooterProps {
+  footerType?: 'main' | 'sub';
+}
+
+export default function Footer({ footerType = 'main' }: FooterProps) {
   return (
     <S.FooterContainer>
       <S.FooterWrapper>
         <S.ExhibitionWrapper>
           <FootLogo />
-          <S.ExhibitionText>
+          <S.ExhibitionText footerType={footerType}>
             <p>국립부경대학교 핵심역량도서관 1층 갤러리라운지 (부산광역시 남구 용소로45)</p>
             <p>2025.10.24.Fri, 2025.10.27.Mon. - 2025.10.28.Tue (10AM~8PM)</p>
             <p>pkvcd1234@gmail.com</p>
@@ -23,7 +29,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             aria-label="instagram"
           >
-            <InstaIcon />
+            {footerType === 'main' ? <ColorInstaIcon /> : <InstaIcon />}
           </a>
           <a
             href="https://www.youtube.com/@pkvcd1234"
@@ -31,7 +37,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             aria-label="youtube"
           >
-            <YoutubeIcon />
+            {footerType === 'main' ? <ColorYoutubeIcon /> : <YoutubeIcon />}
           </a>
         </S.FooterSocialWrapper>
       </S.FooterWrapper>
