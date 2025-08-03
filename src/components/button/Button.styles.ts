@@ -72,6 +72,21 @@ export const BaseButton = styled.button<ButtonProps>`
   letter-spacing: ${theme.typography.medium.letterSpacing};
 
   ${({ variant }) => variant && variantStyles[variant]}
+
+  ${({ variant, headerType }) =>
+    variant === 'primary' &&
+    headerType === 'main' &&
+    css`
+      background: #fff;
+    `}
+
+  ${({ variant, headerType }) =>
+    variant === 'primary' &&
+    headerType === 'sub' &&
+    css`
+      background: #f2f2f2;
+    `}
+
   ${({ width }) =>
     width &&
     css`
