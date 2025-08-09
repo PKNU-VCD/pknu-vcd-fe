@@ -44,5 +44,6 @@ export const theme = {
     desktop: '1920px',
     tablet: '860px',
     mobile: '375px',
+    mobileLarge: '500px',
   },
 };
