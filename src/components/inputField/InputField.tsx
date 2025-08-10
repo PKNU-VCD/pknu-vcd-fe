@@ -16,18 +16,26 @@ const InputField = ({
   onChange,
   onDelete,
 }: InputFieldProps) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    onChange?.(newValue);
+  };
+
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete();
+    } else {
+      onChange?.('');
+    }
+  };
+
   return (
-    <S.InputWrapper>
-      <S.InputField
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={e => onChange?.(e.target.value)}
-      />
-      <S.DeleteButton onClick={onDelete}>
+    <S.Wrapper>
+      <S.InputField type={type} placeholder={placeholder} value={value} onChange={handleChange} />
+      <S.DeleteButton onClick={handleDelete}>
         <DeleteIcon />
       </S.DeleteButton>
-    </S.InputWrapper>
+    </S.Wrapper>
   );
 };
 
