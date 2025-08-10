@@ -11,18 +11,18 @@ interface FooterProps {
 
 export default function Footer({ footerType = 'main' }: FooterProps) {
   return (
-    <S.FooterContainer>
-      <S.FooterWrapper>
-        <S.ExhibitionWrapper>
+    <S.Wrapper>
+      <S.FooterContainer>
+        <S.FooterMainSection>
           <FootLogo />
-          <S.ExhibitionText footerType={footerType}>
+          <S.FooterText footerType={footerType}>
             <p>국립부경대학교 핵심역량도서관 1층 갤러리라운지 (부산광역시 남구 용소로45)</p>
             <p>2025.10.24.Fri, 2025.10.27.Mon. - 2025.10.28.Tue (10AM~8PM)</p>
             <p>pkvcd1234@gmail.com</p>
             <p>copyright 2025. PKVCD All Right Reserved</p>
-          </S.ExhibitionText>
-        </S.ExhibitionWrapper>
-        <S.FooterSocialWrapper>
+          </S.FooterText>
+        </S.FooterMainSection>
+        <S.FooterSocialLinks>
           <a
             href="https://www.instagram.com/pkvcd1234/"
             target="_blank"
@@ -39,8 +39,8 @@ export default function Footer({ footerType = 'main' }: FooterProps) {
           >
             {footerType === 'main' ? <ColorYoutubeIcon /> : <YoutubeIcon />}
           </a>
-        </S.FooterSocialWrapper>
-      </S.FooterWrapper>
-    </S.FooterContainer>
+        </S.FooterSocialLinks>
+      </S.FooterContainer>
+    </S.Wrapper>
   );
 }

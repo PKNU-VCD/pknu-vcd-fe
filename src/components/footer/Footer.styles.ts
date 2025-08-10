@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-interface ExhibitionTextProps {
+interface FooterTextProps {
   footerType?: 'main' | 'sub';
 }
 
-export const FooterContainer = styled.footer`
+export const Wrapper = styled.footer`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -22,7 +22,7 @@ export const FooterContainer = styled.footer`
   }
 `;
 
-export const FooterWrapper = styled.div`
+export const FooterContainer = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
@@ -40,7 +40,7 @@ export const FooterWrapper = styled.div`
   }
 `;
 
-export const ExhibitionWrapper = styled.div`
+export const FooterMainSection = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
@@ -57,7 +57,7 @@ export const ExhibitionWrapper = styled.div`
   }
 `;
 
-export const ExhibitionText = styled.div<ExhibitionTextProps>`
+export const FooterText = styled.div<FooterTextProps>`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -77,7 +77,7 @@ export const ExhibitionText = styled.div<ExhibitionTextProps>`
   }
 `;
 
-export const FooterSocialWrapper = styled.div`
+export const FooterSocialLinks = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
