@@ -6,7 +6,7 @@ interface InputFieldProps {
   placeholder?: string;
 }
 
-export const InputWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   width: 464px;
   height: 40px;
