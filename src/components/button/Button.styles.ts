@@ -19,8 +19,7 @@ export const variantStyles = {
     }
   `,
   secondary: css`
-    width: 245px;
-    padding: 14px 0;
+    padding: 14px 20px;
     border: 1px solid #f3a;
     background: #fff;
     color: #f3a;
@@ -36,7 +35,6 @@ export const variantStyles = {
     }
 
     @media (max-width: 500px) {
-      width: 100%;
       padding: 16px 20px;
       gap: 10px;
       border: 2px solid #f3a;
@@ -67,36 +65,27 @@ export const variantStyles = {
     }
 
     @media (max-width: 500px) {
-      width: 100%;
       padding: 16px 20px;
       gap: 10px;
+      align-self: stretch;
     }
   `,
   login: css`
-    width: 464px;
-    height: 48px;
     padding: 14px 100px;
     gap: 10px;
     background: var(--color-5-blue, #34cd8c);
     border-radius: 0;
     color: #fff;
-
-    @media (max-width: 500px) {
-      // 상수로 변경예정
-      width: 100%;
-    }
   `,
 } as const;
 
 export type StyledButtonProps = {
   variant?: ButtonVariant;
-  $width?: string | number;
-  $height?: string | number;
   $fullWidth?: boolean;
 };
 
 export const BaseButton = styled('button', {
-  shouldForwardProp: prop => !['variant', '$width', '$height', '$fullWidth'].includes(String(prop)),
+  shouldForwardProp: prop => !['variant', '$fullWidth'].includes(String(prop)),
 })<StyledButtonProps>`
   display: flex;
   justify-content: center;
@@ -109,15 +98,5 @@ export const BaseButton = styled('button', {
   letter-spacing: ${theme.typography.medium.letterSpacing};
 
   ${({ variant }) => variant && variantStyles[variant]}
-  ${({ $width }) =>
-    $width &&
-    css`
-      width: ${typeof $width === 'number' ? `${$width}px` : $width};
-    `}
-  ${({ $height }) =>
-    $height &&
-    css`
-      height: ${typeof $height === 'number' ? `${$height}px` : $height};
-    `}
   ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
 `;
