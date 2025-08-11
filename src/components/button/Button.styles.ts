@@ -1,7 +1,8 @@
 import { theme } from '@/styles/theme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { ButtonProps } from './Button';
+
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login';
 
 export const variantStyles = {
   primary: css`
@@ -37,10 +38,7 @@ export const variantStyles = {
     @media (max-width: 500px) {
       width: 100%;
       padding: 16px 20px;
-      justify-content: center;
-      align-items: center;
       gap: 10px;
-      flex: 1 0 0;
       border: 2px solid #f3a;
 
       font-size: ${theme.typography.medium.fontSize};
@@ -71,10 +69,7 @@ export const variantStyles = {
     @media (max-width: 500px) {
       width: 100%;
       padding: 16px 20px;
-      justify-content: center;
-      align-items: center;
       gap: 10px;
-      align-self: stretch;
     }
   `,
   login: css`
@@ -91,9 +86,18 @@ export const variantStyles = {
       width: 100%;
     }
   `,
+} as const;
+
+export type StyledButtonProps = {
+  variant?: ButtonVariant;
+  $width?: string | number;
+  $height?: string | number;
+  $fullWidth?: boolean;
 };
 
-export const BaseButton = styled.button<ButtonProps>`
+export const BaseButton = styled('button', {
+  shouldForwardProp: prop => !['variant', '$width', '$height', '$fullWidth'].includes(String(prop)),
+})<StyledButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,15 +109,15 @@ export const BaseButton = styled.button<ButtonProps>`
   letter-spacing: ${theme.typography.medium.letterSpacing};
 
   ${({ variant }) => variant && variantStyles[variant]}
-  ${({ width }) =>
-    width &&
+  ${({ $width }) =>
+    $width &&
     css`
-      width: ${typeof width === 'number' ? `${width}px` : width};
+      width: ${typeof $width === 'number' ? `${$width}px` : $width};
     `}
-  ${({ height }) =>
-    height &&
+  ${({ $height }) =>
+    $height &&
     css`
-      height: ${typeof height === 'number' ? `${height}px` : height};
+      height: ${typeof $height === 'number' ? `${$height}px` : $height};
     `}
-  ${({ fullWidth }) => fullWidth && `width: 100%;`}
+  ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
 `;
