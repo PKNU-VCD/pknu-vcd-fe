@@ -1,7 +1,8 @@
 import { theme } from '@/styles/theme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { ButtonProps } from './Button';
+
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login';
 
 export const variantStyles = {
   primary: css`
@@ -18,8 +19,7 @@ export const variantStyles = {
     }
   `,
   secondary: css`
-    width: 245px;
-    padding: 14px 0;
+    padding: 14px 20px;
     border: 1px solid #f3a;
     background: #fff;
     color: #f3a;
@@ -35,12 +35,8 @@ export const variantStyles = {
     }
 
     @media (max-width: 500px) {
-      width: 100%;
       padding: 16px 20px;
-      justify-content: center;
-      align-items: center;
       gap: 10px;
-      flex: 1 0 0;
       border: 2px solid #f3a;
 
       font-size: ${theme.typography.medium.fontSize};
@@ -69,17 +65,12 @@ export const variantStyles = {
     }
 
     @media (max-width: 500px) {
-      width: 100%;
       padding: 16px 20px;
-      justify-content: center;
-      align-items: center;
       gap: 10px;
       align-self: stretch;
     }
   `,
   login: css`
-    width: 464px;
-    height: 48px;
     padding: 14px 100px;
     gap: 10px;
     background: var(--color-5-blue, #34cd8c);
@@ -134,9 +125,16 @@ export const variantStyles = {
       height: 44px;
     }
   `,
+} as const;
+
+export type StyledButtonProps = {
+  variant?: ButtonVariant;
+  $fullWidth?: boolean;
 };
 
-export const BaseButton = styled.button<ButtonProps>`
+export const BaseButton = styled('button', {
+  shouldForwardProp: prop => !['variant', '$fullWidth'].includes(String(prop)),
+})<StyledButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,15 +146,20 @@ export const BaseButton = styled.button<ButtonProps>`
   letter-spacing: ${theme.typography.medium.letterSpacing};
 
   ${({ variant }) => variant && variantStyles[variant]}
-  ${({ width }) =>
-    width &&
+
+  ${({ variant, headerType }) =>
+    variant === 'primary' &&
+    headerType === 'main' &&
     css`
-      width: ${typeof width === 'number' ? `${width}px` : width};
+      background: #fff;
     `}
-  ${({ height }) =>
-    height &&
+
+  ${({ variant, headerType }) =>
+    variant === 'primary' &&
+    headerType === 'sub' &&
     css`
-      height: ${typeof height === 'number' ? `${height}px` : height};
+      background: #f2f2f2;
     `}
-  ${({ fullWidth }) => fullWidth && `width: 100%;`}
+
+   ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
 `;
