@@ -1,6 +1,6 @@
 import FileUploadIcon from '@/assets/icons/FileUploadIcon.svg';
+import { Button } from '@/components/button/Button';
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
