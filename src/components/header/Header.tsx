@@ -12,7 +12,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
     <S.HeaderContainer>
       <S.HeaderWrapper>
         <S.HeaderLogo>
-          <HeaderIcon />
+          <HeaderIcon width={120} height={54} />
         </S.HeaderLogo>
         <S.HeaderMenu>
           <Button variant="primary" headerType={headerType}>
