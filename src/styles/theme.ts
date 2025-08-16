@@ -33,6 +33,7 @@ export const theme = {
       fontWeight: 700,
       fontSize: '20px',
       lineHeight: '130%',
+      letterSpacing: '-0.4px',
     },
     extraBold: {
       fontWeight: 800,
