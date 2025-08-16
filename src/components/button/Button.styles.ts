@@ -98,5 +98,20 @@ export const BaseButton = styled('button', {
   letter-spacing: ${theme.typography.medium.letterSpacing};
 
   ${({ variant }) => variant && variantStyles[variant]}
-  ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
+
+  ${({ variant, headerType }) =>
+    variant === 'primary' &&
+    headerType === 'main' &&
+    css`
+      background: #fff;
+    `}
+
+  ${({ variant, headerType }) =>
+    variant === 'primary' &&
+    headerType === 'sub' &&
+    css`
+      background: #f2f2f2;
+    `}
+
+   ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
 `;

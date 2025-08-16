@@ -12,6 +12,7 @@ export const global = css`
   }
   body {
     font-family: 'SUIT', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+    padding-top: 76px;
   }
   html {
     scroll-behavior: smooth;
