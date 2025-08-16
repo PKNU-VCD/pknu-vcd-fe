@@ -4,12 +4,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   variant?: 'primary' | 'secondary' | 'tertiary' | 'login';
   headerType?: 'main' | 'sub';
   label?: string;
-  width?: string | number;
-  height?: string | number;
   fullWidth?: boolean;
   style?: React.CSSProperties;
   children?: React.ReactNode;
 }
+
 
 export function Button({
   label,
@@ -20,6 +19,10 @@ export function Button({
 }: ButtonProps) {
   return (
     <BaseButton variant={variant} headerType={headerType} {...props}>
+
+export function Button({ label, children, variant = 'primary', fullWidth, ...rest }: ButtonProps) {
+  return (
+    <BaseButton variant={variant} $fullWidth={fullWidth} {...rest}>
       {children ?? label}
     </BaseButton>
   );
