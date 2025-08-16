@@ -2,7 +2,7 @@ import { theme } from '@/styles/theme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login';
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login' | 'addFile' | 'upload';
 
 export const variantStyles = {
   primary: css`
@@ -130,6 +130,7 @@ export const variantStyles = {
 export type StyledButtonProps = {
   variant?: ButtonVariant;
   $fullWidth?: boolean;
+  headerType?: 'main' | 'sub';
 };
 
 export const BaseButton = styled('button', {
@@ -161,5 +162,5 @@ export const BaseButton = styled('button', {
       background: #f2f2f2;
     `}
 
-   ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
+  ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
 `;

@@ -9,20 +9,16 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children?: React.ReactNode;
 }
 
-
 export function Button({
   label,
   children,
   variant = 'primary',
   headerType,
+  fullWidth,
   ...props
 }: ButtonProps) {
   return (
-    <BaseButton variant={variant} headerType={headerType} {...props}>
-
-export function Button({ label, children, variant = 'primary', fullWidth, ...rest }: ButtonProps) {
-  return (
-    <BaseButton variant={variant} $fullWidth={fullWidth} {...rest}>
+    <BaseButton headerType={headerType} variant={variant} $fullWidth={fullWidth} {...props}>
       {children ?? label}
     </BaseButton>
   );
