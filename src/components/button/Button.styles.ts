@@ -2,7 +2,7 @@ import { theme } from '@/styles/theme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login';
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login' | 'addFile' | 'upload';
 
 export const variantStyles = {
   primary: css`
@@ -76,12 +76,61 @@ export const variantStyles = {
     background: var(--color-5-blue, #34cd8c);
     border-radius: 0;
     color: #fff;
+
+    @media (max-width: 500px) {
+      // 상수로 변경예정
+      width: 100%;
+    }
+  `,
+  addFile: css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 10px 14px;
+    gap: 20px;
+    border: 1px solid var(--stroke-222-1, #222);
+    background: #ffadeb;
+
+    font-size: ${theme.typography.regular.fontSize};
+    font-weight: ${theme.typography.regular.fontWeight};
+    line-height: ${theme.typography.regular.lineHeight};
+    letter-spacing: ${theme.typography.regular.letterSpacing};
+
+    @media (max-width: 500px) {
+      width: 100%;
+      padding: 10px 20px;
+      gap: 10px;
+      justify-content: flex-start;
+    }
+  `,
+  upload: css`
+    display: flex;
+    width: 80px;
+    height: 40px;
+    padding: 10px 14px;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid var(--stroke-222-1, #222);
+    background: #f4f4a7;
+
+    font-size: ${theme.typography.regular.fontSize};
+    font-weight: ${theme.typography.regular.fontWeight};
+    line-height: ${theme.typography.regular.lineHeight};
+    letter-spacing: ${theme.typography.regular.letterSpacing};
+
+    @media (max-width: 500px) {
+      width: 100%;
+      height: 44px;
+    }
   `,
 } as const;
 
 export type StyledButtonProps = {
   variant?: ButtonVariant;
   $fullWidth?: boolean;
+  headerType?: 'main' | 'sub';
 };
 
 export const BaseButton = styled('button', {
@@ -113,5 +162,5 @@ export const BaseButton = styled('button', {
       background: #f2f2f2;
     `}
 
-   ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
+  ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
 `;

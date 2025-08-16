@@ -1,5 +1,6 @@
+import FileUploadIcon from '@/assets/icons/FileUploadIcon.svg';
+import { Button } from '@/components/button/Button';
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -35,5 +36,24 @@ export const login: Story = {
   args: {
     variant: 'login',
     children: '로그인',
+  },
+};
+
+export const addFile: Story = {
+  args: {
+    variant: 'addFile',
+    children: (
+      <>
+        <FileUploadIcon />
+        <span>업로드 파일추가</span>
+      </>
+    ),
+  },
+};
+
+export const upload: Story = {
+  args: {
+    variant: 'upload',
+    children: '업로드',
   },
 };

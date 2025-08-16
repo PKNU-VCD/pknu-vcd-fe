@@ -1,5 +1,5 @@
+import InputField from '@/components/inputField/InputField';
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import InputField from './InputField';
 
 const meta: Meta<typeof InputField> = {
   title: 'Components/InputField',
