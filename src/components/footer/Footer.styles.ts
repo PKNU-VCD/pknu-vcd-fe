@@ -9,7 +9,7 @@ export const Wrapper = styled.footer`
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #f5f5f5;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 8.16%, #fff 96.68%);
   display: flex;
   align-items: center;
   z-index: 1000;
