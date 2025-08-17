@@ -41,22 +41,25 @@ export const variantStyles = {
     }
   `,
   tertiary: css`
-    padding: 12px 20px;
+    padding: 6px 20px;
     gap: 10px;
-    border: 2px solid #f3a;
+    border: 2px solid var(--color-1-blue, #00aeef);
     background: #fff;
-    color: #f3a;
+    color: var(--color-1-blue, #00aeef);
+    font-size: ${theme.typography.bold.fontSize};
+    font-weight: ${theme.typography.bold.fontWeight};
+    line-height: ${theme.typography.bold.lineHeight};
+    letter-spacing: ${theme.typography.bold.letterSpacing};
 
     &:active {
-      border-color: #ffadeb;
-      background: #f3a;
+      border: 2px solid var(--color-2-pink, #ff74ff);
+      background: var(--color-1-blue, #00aeef);
       color: #fff;
     }
 
     @media (max-width: 500px) {
-      padding: 16px 20px;
+      padding: 20px 20px;
       gap: 10px;
-      align-self: stretch;
     }
   `,
   login: css`
