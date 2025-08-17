@@ -73,11 +73,6 @@ export const variantStyles = {
     font-weight: ${theme.typography.bold.fontWeight};
     line-height: ${theme.typography.bold.lineHeight};
     letter-spacing: ${theme.typography.bold.letterSpacing};
-
-    @media (max-width: 500px) {
-      // 상수로 변경예정
-      width: 100%;
-    }
   `,
   addFile: css`
     display: flex;
