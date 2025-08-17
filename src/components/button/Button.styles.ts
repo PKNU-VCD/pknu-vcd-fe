@@ -74,6 +74,18 @@ export const variantStyles = {
     color: var(--color-0-black, #222);
     font-weight: ${theme.typography.medium.fontWeight};
   `,
+  confirm: css`
+    padding: 14px 40px;
+    border: 3px solid var(--color-2-pink, #ff74ff);
+    background: var(--color-1-blue, #00aeef);
+    color: #fff;
+  `,
+  cancel: css`
+    padding: 14px 40px;
+    border: 3px solid var(--color-1-blue, #00aeef);
+    background: #fff;
+    color: var(--color-1-blue, #00aeef);
+  `,
 } as const;
 
 export type StyledButtonProps = {
