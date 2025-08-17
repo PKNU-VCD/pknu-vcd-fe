@@ -2,7 +2,7 @@ import { theme } from '@/styles/theme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login' | 'addFile' | 'upload';
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login';
 
 export const variantStyles = {
   primary: css`
