@@ -7,6 +7,7 @@ export type ButtonVariant =
   | 'secondary'
   | 'tertiary'
   | 'submit'
+  | 'submit_sub'
   | 'exhibition'
   | 'confirm'
   | 'cancel';
@@ -65,6 +66,14 @@ export const variantStyles = {
     gap: 10px;
     background: var(--color-1-blue, #00aeef);
     border-radius: 0;
+    color: #fff;
+  `,
+  submit_sub: css`
+    padding: 14px 20px;
+    gap: 10px;
+    border: none;
+    border-radius: 0;
+    background: var(--color-2-pink, #ff74ff);
     color: #fff;
   `,
   exhibition: css`
