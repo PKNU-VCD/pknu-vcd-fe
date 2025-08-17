@@ -5,6 +5,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     | 'primary'
     | 'secondary'
     | 'tertiary'
+    | 'submit'
     | 'exhibition'
     | 'confirm'
     | 'cancel';

@@ -6,6 +6,7 @@ export type ButtonVariant =
   | 'primary'
   | 'secondary'
   | 'tertiary'
+  | 'submit'
   | 'exhibition'
   | 'confirm'
   | 'cancel';
@@ -59,7 +60,7 @@ export const variantStyles = {
       gap: 10px;
     }
   `,
-  login: css`
+  submit: css`
     padding: 14px 100px;
     gap: 10px;
     background: var(--color-1-blue, #00aeef);
