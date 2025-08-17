@@ -1,7 +1,13 @@
 import { BaseButton } from './Button.styles';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'login';
+  variant?:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'exhibition'
+    | 'confirm'
+    | 'cancel';
   headerType?: 'main' | 'sub';
   label?: string;
   fullWidth?: boolean;

@@ -2,7 +2,13 @@ import { theme } from '@/styles/theme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login';
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'exhibition'
+  | 'confirm'
+  | 'cancel';
 
 export const variantStyles = {
   primary: css`
@@ -59,6 +65,14 @@ export const variantStyles = {
     background: var(--color-1-blue, #00aeef);
     border-radius: 0;
     color: #fff;
+  `,
+  exhibition: css`
+    padding: 17px 16px;
+    gap: 10px;
+    border: 2px solid var(--color-2-pink, #ff74ff);
+    background: var(--color-3-yellow, #ffff85);
+    color: var(--color-0-black, #222);
+    font-weight: ${theme.typography.medium.fontWeight};
   `,
 } as const;
 
