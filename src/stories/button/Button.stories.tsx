@@ -31,16 +31,37 @@ export const tertiary: Story = {
   },
 };
 
-export const login: Story = {
+export const submit: Story = {
   args: {
-    variant: 'login',
+    variant: 'submit',
     children: '로그인',
   },
 };
 
-export const enroll: Story = {
+export const submit_sub: Story = {
   args: {
-    variant: 'login',
-    children: '등록',
+    variant: 'submit_sub',
+    children: '수정',
+  },
+};
+
+export const exhibition: Story = {
+  args: {
+    variant: 'exhibition',
+    children: '부경대학교 시각디자인학과 졸업전시 인스타그램',
+  },
+};
+
+export const confirm: Story = {
+  args: {
+    variant: 'confirm',
+    children: '확인',
+  },
+};
+
+export const cancel: Story = {
+  args: {
+    variant: 'cancel',
+    children: '취소',
   },
 };

@@ -2,7 +2,15 @@ import { theme } from '@/styles/theme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'login';
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'submit'
+  | 'submit_sub'
+  | 'exhibition'
+  | 'confirm'
+  | 'cancel';
 
 export const variantStyles = {
   primary: css`
@@ -53,12 +61,40 @@ export const variantStyles = {
       gap: 10px;
     }
   `,
-  login: css`
+  submit: css`
     padding: 14px 100px;
     gap: 10px;
     background: var(--color-1-blue, #00aeef);
     border-radius: 0;
     color: #fff;
+  `,
+  submit_sub: css`
+    padding: 14px 20px;
+    gap: 10px;
+    border: none;
+    border-radius: 0;
+    background: var(--color-2-pink, #ff74ff);
+    color: #fff;
+  `,
+  exhibition: css`
+    padding: 17px 16px;
+    gap: 10px;
+    border: 2px solid var(--color-2-pink, #ff74ff);
+    background: var(--color-3-yellow, #ffff85);
+    color: var(--color-0-black, #222);
+    font-weight: ${theme.typography.medium.fontWeight};
+  `,
+  confirm: css`
+    padding: 14px 40px;
+    border: 3px solid var(--color-2-pink, #ff74ff);
+    background: var(--color-1-blue, #00aeef);
+    color: #fff;
+  `,
+  cancel: css`
+    padding: 14px 40px;
+    border: 3px solid var(--color-1-blue, #00aeef);
+    background: #fff;
+    color: var(--color-1-blue, #00aeef);
   `,
 } as const;
 
