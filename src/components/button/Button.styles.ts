@@ -65,9 +65,14 @@ export const variantStyles = {
   login: css`
     padding: 14px 100px;
     gap: 10px;
-    background: var(--color-5-blue, #34cd8c);
+    background: var(--color-1-blue, #00aeef);
     border-radius: 0;
     color: #fff;
+
+    font-size: ${theme.typography.bold.fontSize};
+    font-weight: ${theme.typography.bold.fontWeight};
+    line-height: ${theme.typography.bold.lineHeight};
+    letter-spacing: ${theme.typography.bold.letterSpacing};
 
     @media (max-width: 500px) {
       // 상수로 변경예정
