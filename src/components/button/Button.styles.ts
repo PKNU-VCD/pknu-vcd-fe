@@ -8,13 +8,13 @@ export const variantStyles = {
   primary: css`
     padding: 12px 20px;
     gap: 10px;
-    border: 2px solid #f3a;
+    border: 2px solid var(--color-1-blue, #00aeef);
     background: #fff;
-    color: #f3a;
+    color: var(--color-1-blue, #00aeef);
 
     &:active {
-      border-color: #fff;
-      background: #f3a;
+      border: 2px solid var(--color-2-pink, #ff74ff);
+      background: var(--color-1-blue, #00aeef);
       color: #fff;
     }
   `,
