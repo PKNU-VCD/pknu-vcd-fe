@@ -38,6 +38,9 @@ export const login: Story = {
   },
 };
 
+export const enroll: Story = {
   args: {
+    variant: 'login',
+    children: '등록',
   },
 };
