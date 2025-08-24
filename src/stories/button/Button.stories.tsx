@@ -1,4 +1,4 @@
-import { Button } from '@/components/button/Button';
+import { Button } from '@/components/Button/Button';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const meta: Meta<typeof Button> = {
