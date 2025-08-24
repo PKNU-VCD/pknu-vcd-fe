@@ -1,4 +1,4 @@
-import { BaseButton } from '@/components/button/Button.styles';
+import { BaseButton } from '@/components/Button/Button.styles';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?:
