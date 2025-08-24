@@ -17,7 +17,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children?: React.ReactNode;
 }
 
-function Button({
+export function Button({
   label,
   children,
   variant = 'primary',
@@ -31,5 +31,3 @@ function Button({
     </BaseButton>
   );
 }
-
-export default Button;
