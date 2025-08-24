@@ -14,7 +14,7 @@ const meta: Meta<typeof Footer> = {
 export default meta;
 type Story = StoryObj<typeof Footer>;
 
-export const main: Story = {
+export const Main: Story = {
   parameters: {
     viewport: {
       defaultViewport: 'desktop',
@@ -23,7 +23,7 @@ export const main: Story = {
   render: () => <Footer footerType="main" />,
 };
 
-export const sub: Story = {
+export const Sub: Story = {
   parameters: {
     viewport: {
       defaultViewport: 'desktop',
