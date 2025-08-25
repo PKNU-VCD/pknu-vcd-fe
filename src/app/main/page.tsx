@@ -21,7 +21,6 @@ export default function HomePage() {
         dotRadius={14}
         spacing={28}
         burstEvery={0}
-        decayPerSec={0}
         stampCoords={FIREWORK_SHAPE} // 코드 내 배열
         stampUnits="cells"
       />
