@@ -11,7 +11,7 @@ interface TranslationPanelProps {
   buttonColor?: keyof Theme['colors'];
 }
 
-export const TranslationPanel = ({ text, buttonColor = 'gray' }: TranslationPanelProps) => {
+export const TranslationPanel = ({ text, buttonColor = 'yellow' }: TranslationPanelProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePanel = () => {

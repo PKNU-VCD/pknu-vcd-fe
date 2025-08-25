@@ -3,7 +3,7 @@
 import HeaderIcon from '@/assets/icons/HeaderIcon.svg';
 import UnionIcon from '@/assets/icons/Union.svg';
 import { useRouter } from 'next/navigation';
-import { Button } from '../Button/Button';
+import { Button } from '../button/Button';
 import * as S from './Header.styles';
 
 // [x] FIXME: 헤더 서브타입 제거
@@ -21,7 +21,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
   return (
     <S.HeaderContainer>
       <S.HeaderWrapper>
-        <S.HeaderLogo>
+        <S.HeaderLogo onClick={() => handleButtonClick('/main')}>
           <HeaderIcon width={120} height={54} />
         </S.HeaderLogo>
         <S.HeaderMenu>
