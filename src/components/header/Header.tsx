@@ -3,7 +3,7 @@
 import HeaderIcon from '@/assets/icons/HeaderIcon.svg';
 import UnionIcon from '@/assets/icons/Union.svg';
 import { useRouter } from 'next/navigation';
-import { Button } from '../button/Button';
+import { Button } from '../Button/Button';
 import * as S from './Header.styles';
 
 // [x] FIXME: 헤더 서브타입 제거
