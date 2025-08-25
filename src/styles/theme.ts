@@ -1,14 +1,16 @@
 export const theme = {
   colors: {
     stroke: '#222222',
-    pink: '#F299C1',
+    blue: '#00AEEF',
+    mediumBle: '#90FBFB',
+    lightBlue: '#CDFFFF',
+    pink: '#FF74FF',
     lightPink: '#FFD6E8',
-    yellow: '#FFF200',
-    lightYellow: '#FFFA9C',
-    green: '#34CD8C',
-    lightGreen: '#C8E7E7',
-    white: '#F2F2F2',
-    gray: '#DDDDDD',
+    yellow: '#FFFF85',
+    darkYellow: '#FFEF60',
+    green: '#9FFFB9',
+    lightGreen: '#D2FFDE',
+    gray: '#F2F2F2',
     guestbook: {
       green: '#D2F1E3',
       pink: '#FFE8F9',

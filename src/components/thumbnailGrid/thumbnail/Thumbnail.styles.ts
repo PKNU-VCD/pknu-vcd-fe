@@ -47,10 +47,10 @@ export const OverlayContainer = styled.div`
 
 export const TitleContainer = styled.div`
   ${({ theme }) => theme.typography.bold};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.gray};
 `;
 
 export const DesignerContainer = styled.div`
   ${({ theme }) => theme.typography.medium};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.gray};
 `;
