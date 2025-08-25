@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import { Button } from '../button/Button';
+import { Button } from '../Button/Button';
 import * as S from './ButtonList.styles';
 
 export default function ButtonList() {

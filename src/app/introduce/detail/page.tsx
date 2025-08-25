@@ -5,7 +5,7 @@ import CarIcon from '@/assets/icons/sub/carIcon.svg';
 import ExhibitDetailLogo from '@/assets/icons/sub/exhibit_detail.svg';
 import MapIcon from '@/assets/icons/sub/mapIcon.svg';
 import SubwayIcon from '@/assets/icons/sub/subwayIcon.svg';
-import { Button } from '@/components/button/Button';
+import { Button } from '@/components/Button/Button';
 import ButtonList from '@/components/buttonlist/ButtonList';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
