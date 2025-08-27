@@ -8,7 +8,7 @@ interface InputFieldProps {
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 464px;
+  width: 100%;
   height: 40px;
   padding: 14px;
   justify-content: space-between;
