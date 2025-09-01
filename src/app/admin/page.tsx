@@ -6,6 +6,7 @@ import { Button } from '@/components/Button/Button';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import InputField from '@/components/inputField/InputField';
+import { useNavigator } from '@/hooks/useNavigator';
 import { Project } from '@/types/project';
 import { useEffect, useState } from 'react';
 import * as S from './page.styles';
@@ -17,6 +18,7 @@ export default function AdminPage() {
   const [password, setPassword] = useState('');
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(false);
+  const { navigateTo } = useNavigator();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,7 +83,7 @@ export default function AdminPage() {
           <>
             <S.SectionContainer>
               <S.TitleContainer>원하는 작업을 선택하세요.</S.TitleContainer>
-              <Button variant="submit" label="등록" />
+              <Button variant="submit" label="등록" onClick={() => navigateTo('/admin/update')} />
             </S.SectionContainer>
 
             <S.ProjectsSectionContainer>
@@ -90,7 +92,11 @@ export default function AdminPage() {
                 <S.ProjectRow key={project.projectId}>
                   <S.ProjectCardContainer>{project.designerNameKr}</S.ProjectCardContainer>
                   <S.ProjectCardContainer>{project.projectNameKr}</S.ProjectCardContainer>
-                  <Button variant="submit_sub" label="수정" />
+                  <Button
+                    variant="submit_sub"
+                    label="수정"
+                    onClick={() => navigateTo('/admin/update')}
+                  />
                 </S.ProjectRow>
               ))}
             </S.ProjectsSectionContainer>
