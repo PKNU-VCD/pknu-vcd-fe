@@ -24,7 +24,16 @@ async function request<T>(path: string, options: HttpOptions = {}): Promise<T> {
     .json()
     .catch(() => ({}));
 
-  if (!res.ok) throw new HttpError(res.status, json?.message);
+  if (!res.ok) {
+    if (res.status === 401) {
+      // 세션 만료시 로그인 페이지로 리디렉션
+      window.location.href = '/admin';
+      return Promise.reject(
+        new HttpError(res.status, '세션이 만료되었습니다. 다시 로그인해주세요.'),
+      );
+    }
+    throw new HttpError(res.status, json?.message);
+  }
   return json as T;
 }
 
@@ -48,6 +57,14 @@ export const http = {
 
     return request<T>(path, { ...options, method: 'POST', body: payload });
   },
+
+  postJson: <T>(path: string, data: unknown, options?: Omit<HttpOptions, 'method' | 'body'>) =>
+    request<T>(path, {
+      ...options,
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json', ...options?.headers },
+    }),
 
   put: <T>(path: string, data: unknown, options?: Omit<HttpOptions, 'method' | 'body'>) =>
     request<T>(path, {
