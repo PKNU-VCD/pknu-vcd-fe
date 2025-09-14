@@ -31,4 +31,6 @@ export interface Project extends ProjectBase {
   images: string[];
   createdAt: string;
   updatedAt: string;
+  designerNameKr: string;
+  projectNameKr: string;
 }
