@@ -10,9 +10,10 @@ import { CATEGORIES } from '@/constants/categories';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { useProjectForm } from '@/hooks/useProjectForm';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import * as S from './page.styles';
 
-export default function UpdatePage() {
+function UpdatePageContent() {
   const searchParams = useSearchParams();
   const projectId = searchParams.get('id');
 
@@ -163,5 +164,13 @@ export default function UpdatePage() {
       </S.Wrapper>
       <Footer footerType="sub" />
     </>
+  );
+}
+
+export default function UpdatePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <UpdatePageContent />
+    </Suspense>
   );
 }
