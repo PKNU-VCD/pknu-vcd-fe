@@ -102,10 +102,11 @@ export type StyledButtonProps = {
   variant?: ButtonVariant;
   $fullWidth?: boolean;
   headerType?: 'main' | 'sub';
+  $isActive?: boolean;
 };
 
 export const BaseButton = styled('button', {
-  shouldForwardProp: prop => !['variant', '$fullWidth'].includes(String(prop)),
+  shouldForwardProp: prop => !['variant', '$fullWidth', '$isActive'].includes(String(prop)),
 })<StyledButtonProps>`
   display: flex;
   justify-content: center;
@@ -134,4 +135,22 @@ export const BaseButton = styled('button', {
     `}
 
   ${({ $fullWidth }) => $fullWidth && `width: 100%;`}
+
+  ${({ $isActive, variant }) =>
+    $isActive &&
+    variant === 'primary' &&
+    css`
+      border: 2px solid var(--color-2-pink, #ff74ff);
+      background: var(--color-1-blue, #00aeef);
+      color: #fff;
+    `}
+
+  ${({ $isActive, variant }) =>
+    $isActive &&
+    variant === 'tertiary' &&
+    css`
+      border: 2px solid var(--color-2-pink, #ff74ff);
+      background: var(--color-1-blue, #00aeef);
+      color: #fff;
+    `}
 `;
