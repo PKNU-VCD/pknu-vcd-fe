@@ -13,16 +13,20 @@ export interface FileWithOrder {
   url: string;
   displayOrder?: number;
 }
-export interface Project {
-  projectId: number;
+
+export interface ProjectBase {
   category: string;
-  projectNameKr: string;
-  projectEn?: string;
-  designerNameKr: string;
+  projectKr: string;
+  projectEn: string;
+  designerKr: string;
   designerEn: string;
   email: string;
   descriptionKr: string;
-  descriptionEn?: string;
+  descriptionEn: string;
+}
+
+export interface Project extends ProjectBase {
+  projectId: number;
   thumbnail: string;
   images: string[];
   createdAt: string;
