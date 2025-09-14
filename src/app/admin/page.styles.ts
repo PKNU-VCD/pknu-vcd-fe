@@ -62,3 +62,8 @@ export const ProjectRow = styled.div`
     gap: 10px;
   }
 `;
+
+export const ErrorText = styled.div`
+  color: red;
+  margin-bottom: 10px;
+`;

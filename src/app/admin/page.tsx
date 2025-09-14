@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react';
 import * as S from './page.styles';
 
 export default function AdminPage() {
-  //TODO: error에 따른 UI 처리 필요
   const { me, error, login, logout } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -37,6 +36,11 @@ export default function AdminPage() {
         setLoading(true);
         try {
           const response = await fetchProjects();
+          console.log('fetchProjects response:', response.data);
+          if (response.data && response.data.length > 0) {
+            console.log('First project structure:', response.data[0]);
+            console.log('First project keys:', Object.keys(response.data[0]));
+          }
           setProjects(response.data);
         } catch (err) {
           console.error(err);
@@ -74,6 +78,7 @@ export default function AdminPage() {
                 value={password}
                 onChange={setPassword}
               />
+              {error && <S.ErrorText>{error}</S.ErrorText>}
               <Button variant="submit" label="로그인" disabled={!username || !password} />
             </S.SectionContainer>
           </>
@@ -95,7 +100,7 @@ export default function AdminPage() {
                   <Button
                     variant="submit_sub"
                     label="수정"
-                    onClick={() => navigateTo('/admin/update')}
+                    onClick={() => navigateTo(`/admin/update?id=${project.projectId}`)}
                   />
                 </S.ProjectRow>
               ))}
