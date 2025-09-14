@@ -36,11 +36,6 @@ export default function AdminPage() {
         setLoading(true);
         try {
           const response = await fetchProjects();
-          console.log('fetchProjects response:', response.data);
-          if (response.data && response.data.length > 0) {
-            console.log('First project structure:', response.data[0]);
-            console.log('First project keys:', Object.keys(response.data[0]));
-          }
           setProjects(response.data);
         } catch (err) {
           console.error(err);
