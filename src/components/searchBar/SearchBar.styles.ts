@@ -4,6 +4,7 @@ export const Wrapper = styled.form`
   display: flex;
   gap: 27px;
   align-items: center;
+  width: 100%;
 `;
 
 export const InputContainer = styled.input`
