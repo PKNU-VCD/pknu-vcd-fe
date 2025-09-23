@@ -153,4 +153,13 @@ export const BaseButton = styled('button', {
       background: var(--color-1-blue, #00aeef);
       color: #fff;
     `}
+
+  ${({ $isActive, variant }) =>
+    $isActive &&
+    variant === 'secondary' &&
+    css`
+      border: 3px solid var(--color-2-pink, #ff74ff);
+      background: var(--color-1-blue, #00aeef);
+      color: #fff;
+    `}
 `;
