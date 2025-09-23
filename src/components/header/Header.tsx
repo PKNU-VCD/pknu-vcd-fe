@@ -2,7 +2,7 @@
 
 import HeaderIcon from '@/assets/icons/HeaderIcon.svg';
 import UnionIcon from '@/assets/icons/Union.svg';
-import { useRouter } from 'next/navigation';
+import { useNavigator } from '@/hooks/useNavigator';
 import { Button } from '../Button/Button';
 import * as S from './Header.styles';
 
@@ -12,10 +12,10 @@ interface HeaderProps {
 }
 
 const Header = ({ headerType = 'main' }: HeaderProps) => {
-  const router = useRouter();
+  const { navigateTo } = useNavigator();
 
   const handleButtonClick = (path: string) => {
-    router.push(path);
+    navigateTo(path);
   };
 
   return (
@@ -54,7 +54,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
             기록합니다.
           </Button>
         </S.HeaderMenu>
-        <S.HeaderAdminTab>관리자</S.HeaderAdminTab>
+        <S.HeaderAdminTab onClick={() => handleButtonClick('/admin')}>관리자</S.HeaderAdminTab>
         <S.HeaderUnion>
           <UnionIcon />
         </S.HeaderUnion>

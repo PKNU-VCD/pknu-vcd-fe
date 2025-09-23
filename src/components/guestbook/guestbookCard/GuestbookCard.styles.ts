@@ -14,7 +14,7 @@ export const Wrapper = styled.div<{ $backgroundColor: keyof Theme['colors']['gue
   ${({ theme }) => ({ ...theme.typography.medium })}
   background-color: ${({ theme, $backgroundColor }) => theme.colors.guestbook[$backgroundColor]};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileLarge}) {
     height: 75px;
     padding: 20px 30px;
     overflow: hidden;
