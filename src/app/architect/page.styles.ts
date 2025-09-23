@@ -39,3 +39,8 @@ export const MenuListContainer = styled.div`
   padding: 60px 100px;
 `;
 
+export const ThumbnailGridContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 100px;
+`;
