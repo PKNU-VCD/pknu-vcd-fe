@@ -9,6 +9,38 @@ import { SearchBar } from '@/components/searchBar/SearchBar';
 import { ThumbnailGrid } from '@/components/thumbnailGrid/ThumbnailGrid';
 import * as S from './page.styles';
 
+const projects = [
+  {
+    title: '프로젝트 제목',
+    designer: '디자이너 이름',
+    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
+  },
+  {
+    title: '프로젝트 제목',
+    designer: '디자이너 이름',
+    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
+  },
+  {
+    title: '프로젝트 제목',
+    designer: '디자이너 이름',
+    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
+  },
+  {
+    title: '프로젝트 제목',
+    designer: '디자이너 이름',
+    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
+  },
+  {
+    title: '프로젝트 제목',
+    designer: '디자이너 이름',
+    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
+  },
+  {
+    title: '프로젝트 제목',
+    designer: '디자이너 이름',
+    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
+  },
+];
 
 export default function Architect() {
   return (
@@ -31,6 +63,9 @@ export default function Architect() {
       <S.MenuListContainer>
         <ButtonList />
       </S.MenuListContainer>
+      <S.ThumbnailGridContainer>
+        <ThumbnailGrid projects={projects} />
+      </S.ThumbnailGridContainer>
       <Footer footerType="sub" />
     </>
   );
