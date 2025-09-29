@@ -1,8 +1,8 @@
 import { Button } from '@/components/Button/Button';
 import { useState } from 'react';
-import * as S from './ButtonList.styles';
+import * as S from './ArchitectButton.styles';
 
-export default function ButtonList() {
+export default function ArchitectButton() {
   const [selectedButtons, setSelectedButtons] = useState<string[]>([]);
 
   const handleButtonClick = (label: string) => {

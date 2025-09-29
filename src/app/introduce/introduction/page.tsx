@@ -9,7 +9,7 @@ import IntroImageMobile from '@/assets/icons/sub/mobile/introduce.svg';
 import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_intro.svg';
 import IntroImageTablet from '@/assets/icons/sub/tablet/introduce.svg';
 import ExhibitUnion from '@/assets/icons/sub/Union.svg';
-import ButtonList from '@/components/buttonlist/introduce/ButtonList';
+import ButtonList from '@/components/buttonList/introduce/IntroduceButton';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
