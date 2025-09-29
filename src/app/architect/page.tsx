@@ -5,7 +5,7 @@ import IntroLogo from '@/assets/icons/sub/intro.svg';
 import MobileIntroLogo from '@/assets/icons/sub/mobile/intro.svg';
 import MobileDesignUnion from '@/assets/icons/sub/mobile/Union_design.svg';
 import DesignUnion from '@/assets/icons/sub/Union_design.svg';
-import ButtonList from '@/components/ButtonList/architect/ButtonList';
+import ButtonList from '@/components/buttonlist/architect/ButtonList';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { SearchBar } from '@/components/searchBar/SearchBar';
