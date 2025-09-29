@@ -1,13 +1,14 @@
 import { Button } from '@/components/Button/Button';
-import { usePathname, useRouter } from 'next/navigation';
+import { useNavigator } from '@/hooks/useNavigator';
+import { usePathname } from 'next/navigation';
 import * as S from './ButtonList.styles';
 
 export default function ButtonList() {
-  const router = useRouter();
   const pathname = usePathname();
+  const { navigateTo } = useNavigator();
 
   const handleButtonClick = (path: string) => {
-    router.push(path);
+    navigateTo(path);
   };
 
   return (
