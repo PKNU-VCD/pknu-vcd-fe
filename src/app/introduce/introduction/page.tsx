@@ -3,7 +3,7 @@
 import ExhibitAside from '@/assets/icons/sub/exhibit_aside.svg';
 import IntroLogo from '@/assets/icons/sub/intro.svg';
 import ExhibitUnion from '@/assets/icons/sub/Union.svg';
-import ButtonList from '@/components/buttonlist/ButtonList';
+import ButtonList from '@/components/buttonlist/introduce/ButtonList';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
