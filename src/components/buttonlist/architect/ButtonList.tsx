@@ -7,7 +7,7 @@ export default function ButtonList() {
 
   const handleButtonClick = (label: string) => {
     setSelectedButtons(prev =>
-      prev.includes(label) ? prev.filter(item => item !== label) : [...prev, label]
+      prev.includes(label) ? prev.filter(item => item !== label) : [...prev, label],
     );
   };
 

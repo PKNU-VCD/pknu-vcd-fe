@@ -2,7 +2,16 @@ import { theme } from '@/styles/theme';
 import styled from '@emotion/styled';
 import { CommonWrapper, LogoContainer, LogoText, Wrapper } from '../common.styles';
 
-export const IntroductionWrapper = styled(CommonWrapper)``;
+export const IntroductionWrapper = styled(CommonWrapper)`
+  margin-top: 120px;
+  margin-bottom: 120px;
+  width: 100%;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+`;
 
 export const LogoWrapper = styled.div`
   position: relative;
@@ -11,9 +20,21 @@ export const LogoWrapper = styled.div`
   align-items: center;
 `;
 
-export const IntroductionLogoContainer = styled(LogoContainer)``;
+export const IntroductionLogoContainer = styled(LogoContainer)`
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    align-items: center;
+  }
+`;
 
-export const IntroductionLogoText = styled(LogoText)``;
+export const IntroductionLogoText = styled(LogoText)`
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    text-align: center;
+    font-size: ${theme.typography.regular.fontSize};
+    font-weight: ${theme.typography.regular.fontWeight};
+    line-height: ${theme.typography.regular.lineHeight};
+    letter-spacing: ${theme.typography.regular.letterSpacing};
+  }
+`;
 
 export const UnionWrapper = styled.div`
   position: absolute;
@@ -22,18 +43,38 @@ export const UnionWrapper = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 28px;
+export const ButtonListContainer = styled.div`
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    width: 100%;
+  }
 `;
 
 export const IntroductionContainer = styled(Wrapper)`
-  gap: 50px; // [ ] TODO: 실제 100px인데 겹치는 문제로 50px로 줄임
+  justify-content: space-between;
+  gap: 100px;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    margin-top: 80px;
+    flex-direction: column;
+  }
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const AsideContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 `;
 
 export const IntroductionSubContainer = styled.div`
+  margin-bottom: 120px;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -42,8 +83,19 @@ export const IntroductionSubContainer = styled.div`
   svg {
     width: 100%;
     height: auto;
-    max-height: 600px;
     object-fit: contain;
+  }
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    margin-bottom: 40px;
+  }
+`;
+
+export const MobileAsideContainer = styled.div`
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
 `;
 
@@ -68,18 +120,45 @@ export const ContentDescription = styled.p`
   letter-spacing: ${theme.typography.regular.letterSpacing};
 `;
 
-export const IconPlaceholder = styled.div`
+export const IntroImageContainer = styled.div`
   width: 100%;
-  height: 600px;
-  background-color: #f0f0f0;
+  height: auto;
+  aspect-ratio: 1120/516.92;
+  overflow: hidden;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const ParticipantsContainer = styled(Wrapper)`
+  margin-top: 120px;
+  margin-bottom: 120px;
   flex-direction: row;
+  align-items: flex-start;
   gap: 100px;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    flex-direction: column;
+  }
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    gap: 80px;
+    align-items: flex-start;
+  }
 `;
 
 export const TextContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -88,10 +167,17 @@ export const TextContainer = styled.div`
 export const KoreanText = styled.p`
   white-space: nowrap;
   color: ${theme.colors.stroke};
-  font-size: ${theme.typography.medium.fontSize};
-  font-weight: ${theme.typography.medium.fontWeight};
-  line-height: ${theme.typography.medium.lineHeight};
-  letter-spacing: ${theme.typography.medium.letterSpacing};
+  font-size: ${theme.typography.regular.fontSize};
+  font-weight: ${theme.typography.regular.fontWeight};
+  line-height: ${theme.typography.regular.lineHeight};
+  letter-spacing: ${theme.typography.regular.letterSpacing};
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    font-size: ${theme.typography.medium.fontSize};
+    font-weight: ${theme.typography.medium.fontWeight};
+    line-height: ${theme.typography.medium.lineHeight};
+    letter-spacing: ${theme.typography.medium.letterSpacing};
+  }
 `;
 
 export const EnglishText = styled.p`
@@ -106,6 +192,10 @@ export const ParticipantsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 80px;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    gap: 60px;
+  }
 `;
 
 export const ParticipantItem = styled.div`
@@ -113,6 +203,10 @@ export const ParticipantItem = styled.div`
   flex-direction: column;
   gap: 30px;
   color: ${theme.colors.stroke};
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    gap: 40px;
+  }
 `;
 
 export const ParticipantType = styled.p`
@@ -140,6 +234,12 @@ export const FadedTextContainer = styled.div`
   font-weight: ${theme.typography.regular.fontWeight};
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 30px;
+  }
 `;
 
 export const FadedText = styled.span<{ color: string }>`

@@ -2,17 +2,46 @@ import { theme } from '@/styles/theme';
 import styled from '@emotion/styled';
 import { CommonWrapper, LogoContainer, LogoText } from '../common.styles';
 
-export const CelebrationWrapper = styled(CommonWrapper)``;
+export const CelebrationWrapper = styled(CommonWrapper)`
+  margin-top: 120px;
+  margin-bottom: 120px;
 
-export const CelebrationLogoContainer = styled(LogoContainer)``;
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    margin-top: 80px;
+    margin-bottom: 80px;
 
-export const CelebrationLogoText = styled(LogoText)``;
+    align-items: center;
+    flex-direction: column;
+    gap: 70px;
+  }
+`;
+
+export const CelebrationLogoContainer = styled(LogoContainer)`
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    align-items: center;
+    gap: 40px;
+  }
+`;
+
+export const CelebrationLogoText = styled(LogoText)`
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    text-align: center;
+  }
+`;
 
 export const CelebrationInfoContainer = styled.div`
+  margin-top: 100px;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: row;
-  padding: 100px;
   gap: 100px;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    flex-direction: column;
+    gap: 60px;
+  }
 `;
 
 export const ProfessorContainer = styled.div`
