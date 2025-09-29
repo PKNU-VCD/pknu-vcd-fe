@@ -28,6 +28,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
           <Button
             variant="primary"
             headerType={headerType}
+            isActive={pathname.startsWith('/introduce')}
             onClick={() => handleButtonClick('/introduce/introduction')}
           >
             소개합니다.
@@ -35,6 +36,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
           <Button
             variant="primary"
             headerType={headerType}
+            isActive={pathname.startsWith('/exhibition')}
             onClick={() => handleButtonClick('/exhibition')}
           >
             전시합니다.
@@ -42,6 +44,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
           <Button
             variant="primary"
             headerType={headerType}
+            isActive={pathname.startsWith('/architect')}
             onClick={() => handleButtonClick('/architect')}
           >
             디자인합니다.
@@ -49,6 +52,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
           <Button
             variant="primary"
             headerType={headerType}
+            isActive={pathname.startsWith('/record')}
             onClick={() => handleButtonClick('/record')}
           >
             기록합니다.
