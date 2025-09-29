@@ -2,7 +2,7 @@
 
 import ExhibitCelebrationLogo from '@/assets/icons/sub/celebration.svg';
 import ExhibitCelebrationLogoMobile from '@/assets/icons/sub/mobile/celebration.svg';
-import ButtonList from '@/components/buttonlist/introduce/ButtonList';
+import ButtonList from '@/components/ButtonList/introduce/ButtonList';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
