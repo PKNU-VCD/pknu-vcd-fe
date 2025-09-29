@@ -38,9 +38,12 @@ export const variantStyles = {
       color: #fff;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: ${theme.breakpoints.tablet}) {
+      padding: 20px 16px;
+    }
+
+    @media (max-width: ${theme.breakpoints.mobileLarge}) {
       padding: 16px 20px;
-      gap: 10px;
     }
   `,
   tertiary: css`
@@ -56,7 +59,7 @@ export const variantStyles = {
       color: #fff;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: ${theme.breakpoints.mobileLarge}) {
       padding: 20px 20px;
       gap: 10px;
     }
@@ -150,6 +153,15 @@ export const BaseButton = styled('button', {
     variant === 'tertiary' &&
     css`
       border: 2px solid var(--color-2-pink, #ff74ff);
+      background: var(--color-1-blue, #00aeef);
+      color: #fff;
+    `}
+
+  ${({ $isActive, variant }) =>
+    $isActive &&
+    variant === 'secondary' &&
+    css`
+      border: 3px solid var(--color-2-pink, #ff74ff);
       background: var(--color-1-blue, #00aeef);
       color: #fff;
     `}
