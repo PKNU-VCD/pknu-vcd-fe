@@ -6,7 +6,7 @@ import ExhibitDetailLogo from '@/assets/icons/sub/exhibit_detail.svg';
 import MapIcon from '@/assets/icons/sub/mapIcon.svg';
 import SubwayIcon from '@/assets/icons/sub/subwayIcon.svg';
 import { Button } from '@/components/Button/Button';
-import ButtonList from '@/components/buttonlist/ButtonList';
+import ButtonList from '@/components/buttonlist/introduce/ButtonList';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import * as S from './page.styles';
