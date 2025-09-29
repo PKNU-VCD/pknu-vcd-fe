@@ -2,7 +2,7 @@
 
 import HeaderIcon from '@/assets/icons/HeaderIcon.svg';
 import UnionIcon from '@/assets/icons/Union.svg';
-import { usePathname, useRouter } from 'next/navigation';
+import { useNavigator } from '@/hooks/useNavigator';
 import { Button } from '../Button/Button';
 import * as S from './Header.styles';
 
@@ -12,11 +12,10 @@ interface HeaderProps {
 }
 
 const Header = ({ headerType = 'main' }: HeaderProps) => {
-  const router = useRouter();
-  const pathname = usePathname();
+  const { navigateTo } = useNavigator();
 
   const handleButtonClick = (path: string) => {
-    router.push(path);
+    navigateTo(path);
   };
 
   return (
