@@ -3,6 +3,7 @@
 import HeaderIcon from '@/assets/icons/HeaderIcon.svg';
 import UnionIcon from '@/assets/icons/Union.svg';
 import { useNavigator } from '@/hooks/useNavigator';
+import { usePathname } from 'next/navigation';
 import { Button } from '../Button/Button';
 import * as S from './Header.styles';
 
@@ -13,6 +14,7 @@ interface HeaderProps {
 
 const Header = ({ headerType = 'main' }: HeaderProps) => {
   const { navigateTo } = useNavigator();
+  const pathname = usePathname();
 
   const handleButtonClick = (path: string) => {
     navigateTo(path);
