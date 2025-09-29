@@ -10,7 +10,7 @@ import MapIconMobile from '@/assets/icons/sub/mobile/mapIcon.svg';
 import SubwayIcon from '@/assets/icons/sub/subwayIcon.svg';
 import MapIconTablet from '@/assets/icons/sub/tablet/mapIcon.svg';
 import { Button } from '@/components/Button/Button';
-import ButtonList from '@/components/buttonList/introduce/ButtonList';
+import ButtonList from '@/components/buttonList/introduce/IntroduceButton';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import Progress from '@/components/progress/progress';

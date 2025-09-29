@@ -1,6 +1,6 @@
 import { Button } from '@/components/Button/Button';
 import { usePathname, useRouter } from 'next/navigation';
-import * as S from './ButtonList.styles';
+import * as S from './IntroduceButton.styles';
 
 export default function ButtonList() {
   const router = useRouter();
