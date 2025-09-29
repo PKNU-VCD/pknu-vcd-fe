@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   column-count: 3;
   column-gap: 50px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileLarge}) {
     column-count: 1;
   }
 `;

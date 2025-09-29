@@ -7,6 +7,7 @@ interface InputFieldProps {
   value?: string;
   onChange?: (value: string) => void;
   onDelete?: () => void;
+  multiline?: boolean;
 }
 
 const InputField = ({
@@ -15,8 +16,9 @@ const InputField = ({
   value = '',
   onChange,
   onDelete,
+  multiline = false,
 }: InputFieldProps) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const newValue = e.target.value;
     onChange?.(newValue);
   };
@@ -30,8 +32,13 @@ const InputField = ({
   };
 
   return (
-    <S.Wrapper>
-      <S.InputField type={type} placeholder={placeholder} value={value} onChange={handleChange} />
+    <S.Wrapper multiline={multiline}>
+      {multiline ? (
+        <S.TextAreaField placeholder={placeholder} value={value} onChange={handleChange} />
+      ) : (
+        <S.InputField type={type} placeholder={placeholder} value={value} onChange={handleChange} />
+      )}
+
       <S.DeleteButton onClick={handleDelete}>
         <DeleteIcon />
       </S.DeleteButton>

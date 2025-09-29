@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   gap: 20px;
   padding: 0;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileLarge}) {
     flex-direction: column;
     flex-direction: column-reverse;
   }
@@ -58,7 +58,7 @@ export const TextLengthContainer = styled.div<{ $isOverLimit: boolean }>`
   bottom: 12px;
   right: 80px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileLarge}) {
     right: 20px;
   }
 `;
