@@ -30,6 +30,7 @@ type StampOptions = {
   rotationDeg?: number;
   subpixel?: 'nearest' | 'bilinear';
   thicken?: number;
+  customCoords?: DotCoord[];
 };
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
@@ -173,10 +174,12 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
     const triggerStampAtWindowPx = useCallback(
       (x: number, y: number, opts?: StampOptions) => {
         const s = stateRef.current;
-        if (!s.stampCoords.length) return;
+        const coords = opts?.customCoords || s.stampCoords;
+        if (!coords.length) return;
         const gx = Math.round(x / s.cell);
         const gy = Math.round(y / s.cell);
-        stampAtGrid(gx, gy, s.stampCoords, opts);
+        console.log(`Firework: windowX=${x}, windowY=${y}, cell=${s.cell}, gridX=${gx}, gridY=${gy}`);
+        stampAtGrid(gx, gy, coords, opts);
       },
       [stampAtGrid],
     );
@@ -198,7 +201,7 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
       const canvas = canvasRef.current!;
       const ctx = canvas.getContext('2d', { alpha: true })!;
       let raf = 0;
-      let timer: ReturnType<typeof setInterval> | null = null;
+      const timer: ReturnType<typeof setInterval> | null = null;
 
       const s = stateRef.current;
       s.ctx = ctx;
@@ -207,8 +210,9 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
       s.dpr = dpr;
 
       const resize = () => {
-        s.width = window.innerWidth;
-        s.height = window.innerHeight;
+        // 뷰포트 크기 정확히 가져오기
+        s.width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        s.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 
         canvas.width = Math.floor(s.width * dpr);
         canvas.height = Math.floor(s.height * dpr);
@@ -216,8 +220,8 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
         canvas.style.height = `${s.height}px`;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        s.cols = Math.ceil(s.width / s.cell) + 1;
-        s.rows = Math.ceil(s.height / s.cell) + 1;
+        s.cols = Math.ceil(s.width / s.cell) + 2;
+        s.rows = Math.ceil(s.height / s.cell) + 2;
 
         s.intensity = new Float32Array(s.cols * s.rows);
         s.tint = new Array(s.cols * s.rows).fill(s.palette[0]);
@@ -238,8 +242,8 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
         for (let gy = 0; gy < rows; gy++) {
           for (let gx = 0; gx < cols; gx++) {
             const id = gy * cols + gx;
-            const cx = gx * cell + 0.5;
-            const cy = gy * cell + 0.5;
+            const cx = gx * cell;
+            const cy = gy * cell;
 
             ctx.globalAlpha = 1;
             ctx.fillStyle = s.baseColor;
@@ -270,37 +274,46 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
 
       resize();
       window.addEventListener('resize', resize);
+
+      // 초기 로드 시 리사이즈 재실행 (DOM 완전 로드 후)
+      setTimeout(() => {
+        resize();
+      }, 100);
+
       prev = performance.now();
       raf = requestAnimationFrame(loop);
 
-      if (burstEvery > 0 && s.stampCoords.length) {
-        timer = setInterval(() => {
-          const cx = Math.floor(Math.random() * s.cols);
-          const cy = Math.floor(Math.random() * s.rows);
-          stampAtGrid(cx, cy, s.stampCoords);
-        }, burstEvery);
-      }
-      type Detail = {
-        x: number;
-        y: number;
-        color?: string;
-        intensityBoost?: number;
-        units?: 'cells' | 'px';
-        scaleCells?: number;
-        scalePx?: number;
-        rotationDeg?: number;
-        subpixel?: 'nearest' | 'bilinear';
-        thicken?: number;
-      };
-      const onStamp = (ev: Event) => {
-        const e = ev as CustomEvent<Detail>;
-        triggerStampAtWindowPx(e.detail.x, e.detail.y, e.detail);
-      };
-      window.addEventListener('dotFireWorks', onStamp as EventListener);
+      // 랜덤 폭죽 생성 로직 주석처리 (FIREWORK_SHAPE 좌표만 사용)
+      // if (burstEvery > 0 && s.stampCoords.length) {
+      //   timer = setInterval(() => {
+      //     const cx = Math.floor(Math.random() * s.cols);
+      //     const cy = Math.floor(Math.random() * s.rows);
+      //     stampAtGrid(cx, cy, s.stampCoords);
+      //   }, burstEvery);
+      // }
+
+      // 커스텀 이벤트 리스너 주석처리 (FIREWORK_SHAPE 좌표만 사용)
+      // type Detail = {
+      //   x: number;
+      //   y: number;
+      //   color?: string;
+      //   intensityBoost?: number;
+      //   units?: 'cells' | 'px';
+      //   scaleCells?: number;
+      //   scalePx?: number;
+      //   rotationDeg?: number;
+      //   subpixel?: 'nearest' | 'bilinear';
+      //   thicken?: number;
+      // };
+      // const onStamp = (ev: Event) => {
+      //   const e = ev as CustomEvent<Detail>;
+      //   triggerStampAtWindowPx(e.detail.x, e.detail.y, e.detail);
+      // };
+      // window.addEventListener('dotFireWorks', onStamp as EventListener);
 
       return () => {
         window.removeEventListener('resize', resize);
-        window.removeEventListener('dotFireWorks', onStamp as EventListener);
+        // window.removeEventListener('dotFireWorks', onStamp as EventListener);
         if (timer) clearInterval(timer);
         cancelAnimationFrame(raf);
       };

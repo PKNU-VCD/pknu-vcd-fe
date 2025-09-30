@@ -3,13 +3,19 @@ import ColorYoutubeIcon from '@/assets/icons/ColorYoutubeIcon.svg';
 import FootLogo from '@/assets/icons/FootLogo.svg';
 import InstaIcon from '@/assets/icons/InstaIcon.svg';
 import YoutubeIcon from '@/assets/icons/YoutubeIcon.svg';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { theme } from '@/styles/theme';
 import * as S from './Footer.styles';
 
 interface FooterProps {
   footerType?: 'main' | 'sub';
 }
 
+const InstagramUrl = 'https://www.instagram.com/pknu_vcd/';
+
 export default function Footer({ footerType = 'main' }: FooterProps) {
+  const isMobile = useMediaQuery(theme.breakpoints.mobileLarge);
+
   return (
     <S.Wrapper>
       <S.FooterContainer>
@@ -23,12 +29,7 @@ export default function Footer({ footerType = 'main' }: FooterProps) {
           </S.FooterText>
         </S.FooterMainSection>
         <S.FooterSocialLinks>
-          <a
-            href="https://www.instagram.com/pkvcd1234/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="instagram"
-          >
+          <a href={InstagramUrl} target="_blank" rel="noopener noreferrer" aria-label="instagram">
             {footerType === 'main' ? <ColorInstaIcon /> : <InstaIcon />}
           </a>
           <a

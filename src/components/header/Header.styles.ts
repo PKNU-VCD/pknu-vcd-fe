@@ -18,11 +18,11 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   padding: 0 100px;
 
-  @media (max-width: 1200px) {
+  @media (max-width: ${theme.breakpoints.tablet}) {
     padding: 0 80px;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
     padding: 0 28px;
   }
 `;
@@ -36,7 +36,7 @@ export const HeaderMenu = styled.div`
   align-items: center;
   gap: 60px;
 
-  @media (max-width: 1200px) {
+  @media (max-width: ${theme.breakpoints.tablet}) {
     display: none;
   }
 `;
@@ -49,7 +49,7 @@ export const HeaderAdminTab = styled.text`
   letter-spacing: ${theme.typography.medium.letterSpacing};
   cursor: pointer;
 
-  @media (max-width: 1200px) {
+  @media (max-width: ${theme.breakpoints.tablet}) {
     display: none;
   }
 `;
@@ -57,7 +57,7 @@ export const HeaderAdminTab = styled.text`
 export const HeaderUnion = styled.button`
   display: none;
 
-  @media (max-width: 1200px) {
+  @media (max-width: ${theme.breakpoints.tablet}) {
     display: block;
   }
 `;

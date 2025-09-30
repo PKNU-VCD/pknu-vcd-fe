@@ -3,6 +3,7 @@
 import HeaderIcon from '@/assets/icons/HeaderIcon.svg';
 import UnionIcon from '@/assets/icons/Union.svg';
 import { useNavigator } from '@/hooks/useNavigator';
+import { usePathname } from 'next/navigation';
 import { Button } from '../Button/Button';
 import * as S from './Header.styles';
 
@@ -13,6 +14,7 @@ interface HeaderProps {
 
 const Header = ({ headerType = 'main' }: HeaderProps) => {
   const { navigateTo } = useNavigator();
+  const pathname = usePathname();
 
   const handleButtonClick = (path: string) => {
     navigateTo(path);
@@ -28,6 +30,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
           <Button
             variant="primary"
             headerType={headerType}
+            isActive={pathname.startsWith('/introduce')}
             onClick={() => handleButtonClick('/introduce/introduction')}
           >
             소개합니다.
@@ -35,6 +38,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
           <Button
             variant="primary"
             headerType={headerType}
+            isActive={pathname.startsWith('/exhibition')}
             onClick={() => handleButtonClick('/exhibition')}
           >
             전시합니다.
@@ -42,6 +46,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
           <Button
             variant="primary"
             headerType={headerType}
+            isActive={pathname.startsWith('/architect')}
             onClick={() => handleButtonClick('/architect')}
           >
             디자인합니다.
@@ -49,6 +54,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
           <Button
             variant="primary"
             headerType={headerType}
+            isActive={pathname.startsWith('/record')}
             onClick={() => handleButtonClick('/record')}
           >
             기록합니다.

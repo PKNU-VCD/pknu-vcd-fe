@@ -4,9 +4,9 @@ import { BlinkingLogo } from '@/components/blinkingLogo/BlinkingLogo';
 import FloatingDraggable from '@/components/floatingDraggable/FloatingDraggable';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DotFireworksBackground, { DotFireworksHandle } from './canvas/canvas';
-import { FIREWORK_SHAPE } from './canvas/Dot';
+import { FIREWORK_SHAPE, FIREWORK_SHAPE_LARGE } from './canvas/Dot';
 import * as S from './page.styles';
 
 export default function HomePage() {
@@ -14,12 +14,36 @@ export default function HomePage() {
   const mainRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<DotFireworksHandle>(null);
 
+  // 반응형 dotRadius 계산
+  const [dotRadius, setDotRadius] = useState(8);
+
+  useEffect(() => {
+    const updateDotRadius = () => {
+      const width = window.innerWidth;
+
+      if (width >= 1920) {
+        setDotRadius(8);
+      } else if (width <= 375) {
+        setDotRadius(6.5);
+      } else {
+        const ratio = (width - 375) / (1920 - 375);
+        const diameter = 13 + (16 - 13) * ratio;
+        setDotRadius(diameter / 2);
+      }
+    };
+
+    updateDotRadius();
+    window.addEventListener('resize', updateDotRadius);
+
+    return () => window.removeEventListener('resize', updateDotRadius);
+  }, []);
+
   return (
     <>
       <DotFireworksBackground
         ref={bgRef}
-        dotRadius={14}
-        spacing={28}
+        dotRadius={dotRadius}
+        spacing={dotRadius * 2}
         burstEvery={0}
         stampCoords={FIREWORK_SHAPE} // 코드 내 배열
         stampUnits="cells"
@@ -35,11 +59,50 @@ export default function HomePage() {
             containerRef={mainRef}
             label="floating one"
             onOverDropArea={({ windowX, windowY }) => {
+              // 첫 번째 위치
               bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                 color: '#9FFFB9',
                 units: 'cells',
                 scaleCells: 1,
                 thicken: 0.25,
+                customCoords: FIREWORK_SHAPE,
+              });
+              bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
+                color: '#D2FFDE',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE_LARGE,
+              });
+              // 두 번째 위치
+              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 100, {
+                color: '#9FFFB9',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE,
+              });
+              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
+                color: '#D2FFDE',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE_LARGE,
+              });
+              // 세 번째 위치
+              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+                color: '#9FFFB9',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE,
+              });
+              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+                color: '#D2FFDE',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE_LARGE,
               });
             }}
           />
@@ -50,11 +113,52 @@ export default function HomePage() {
             dropRef={blinkRef}
             label="floating two"
             onOverDropArea={({ windowX, windowY }) => {
+              // 첫 번째 위치 (원래 위치)
               bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                 color: '#FFEF60',
                 units: 'cells',
                 scaleCells: 1,
                 thicken: 0.25,
+                customCoords: FIREWORK_SHAPE,
+              });
+              bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
+                color: '#FFFF85',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE_LARGE,
+              });
+
+              // 두 번째 위치 (오른쪽으로 300px)
+              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
+                color: '#FFEF60',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE,
+              });
+              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
+                color: '#FFFF85',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE_LARGE,
+              });
+
+              // 세 번째 위치
+              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+                color: '#FFEF60',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE,
+              });
+              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+                color: '#FFFF85',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE_LARGE,
               });
             }}
           />
@@ -65,11 +169,52 @@ export default function HomePage() {
             containerRef={mainRef}
             label="floating three"
             onOverDropArea={({ windowX, windowY }) => {
+              // 첫 번째 위치 (원래 위치)
               bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                 color: '#90FBFB',
                 units: 'cells',
                 scaleCells: 1,
                 thicken: 0.25,
+                customCoords: FIREWORK_SHAPE,
+              });
+              bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
+                color: '#CDFFFF',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE_LARGE,
+              });
+
+              // 두 번째 위치 (오른쪽으로 300px)
+              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY, {
+                color: '#90FBFB',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE,
+              });
+              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY, {
+                color: '#CDFFFF',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE_LARGE,
+              });
+
+              // 세 번째 위치
+              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+                color: '#90FBFB',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE,
+              });
+              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+                color: '#CDFFFF',
+                units: 'cells',
+                scaleCells: 1,
+                thicken: 0.25,
+                customCoords: FIREWORK_SHAPE_LARGE,
               });
             }}
           />
