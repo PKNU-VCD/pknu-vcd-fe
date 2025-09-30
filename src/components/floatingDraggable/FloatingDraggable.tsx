@@ -234,6 +234,7 @@ export default function FloatingDraggable({
           alignItems: 'center',
           justifyContent: 'center',
           lineHeight: 0,
+          zIndex: 10,
           x,
           y,
         }}
@@ -244,7 +245,22 @@ export default function FloatingDraggable({
         onDragEnd={handleDragEnd}
         animate={controls}
       >
-        {icon}
+        <motion.div
+          animate={
+            dragging
+              ? {}
+              : {
+                  y: [0, -10, 0],
+                  transition: {
+                    duration: 3,
+                    ease: 'easeInOut',
+                    repeat: Infinity,
+                  }
+                }
+          }
+        >
+          {icon}
+        </motion.div>
       </motion.div>
     </>
   );

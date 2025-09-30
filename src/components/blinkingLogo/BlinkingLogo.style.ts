@@ -29,4 +29,18 @@ export const BlinkSection = styled.div`
   border: 3px dashed ${({ theme }) => theme.colors.blue};
   pointer-events: none;
   transition: opacity 120ms ease;
+  color: ${({ theme }) => theme.colors.pink};
+  text-align: center;
+  ${({ theme }) => theme.typography.bold}
+  white-space: pre-line;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    ${({ theme }) => theme.typography.bold}
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileLarge}) {
+    ${({ theme }) => theme.typography.regular}
+  }
 `;

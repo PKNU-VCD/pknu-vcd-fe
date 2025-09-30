@@ -37,7 +37,7 @@ export const DropSection = styled.section`
   z-index: 1;
 `;
 
-export const SubTitle = styled.p`
+export const SubTitle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
