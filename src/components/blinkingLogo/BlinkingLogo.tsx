@@ -22,7 +22,9 @@ export const BlinkingLogo = ({ blinkRef }: BlinkingLogoProps) => {
         aria-hidden
         data-role="drop-target"
         style={{ opacity: showBlink ? 1 : 0 }}
-      />
+      >
+        {`영역에\n오브젝트를\n끌어다\n놓아보세요`}
+      </S.BlinkSection>
     </S.LogoWrapper>
   );
 };
