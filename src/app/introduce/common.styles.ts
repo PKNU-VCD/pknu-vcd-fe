@@ -6,7 +6,7 @@ export const CommonContainer = styled.div`
   flex-direction: column;
   margin: 0 120px;
 
-  @media (max-width: 1200px) {
+  @media (max-width: ${theme.breakpoints.tablet}) {
     margin: 0 80px;
   }
 
