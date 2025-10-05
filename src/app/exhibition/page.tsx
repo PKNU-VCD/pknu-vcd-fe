@@ -2,17 +2,17 @@
 
 import { CommonContainer } from '@/app/introduce/common.styles';
 import ExhibitionAside from '@/assets/icons/sub/exhibit_aside.svg';
-import ExhibitionIcon from '@/assets/icons/sub/exhibit_icon.svg';
+import ExhibitionIcon from '@/assets/icons/sub/exhibition_icon.png';
 import ExhibitionLogo from '@/assets/icons/sub/intro.svg';
 import ExhibitionLogoMobile from '@/assets/icons/sub/mobile/intro.svg';
 import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_exhibit.svg';
-import ExhibitionIconTablet from '@/assets/icons/sub/tablet/exhibit_icon.svg';
 import ExhibitUnion from '@/assets/icons/sub/Union_exhibit.svg';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
+import Image from 'next/image';
 import * as S from './page.styles';
 
 const VideoData = {
@@ -28,7 +28,6 @@ const VideoData = {
 
 export default function Exhibition() {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
-  const isTablet = useMediaQuery(`(max-width: ${theme.breakpoints.tablet})`);
 
   return (
     <>
@@ -62,13 +61,7 @@ export default function Exhibition() {
             </S.ColumnOne>
             <S.ColumnThree>
               <S.ExhibitionImageWrapper>
-                {isTablet ? (
-                  <ExhibitionIconTablet />
-                ) : isMobile ? (
-                  <ExhibitionIcon />
-                ) : (
-                  <ExhibitionIcon />
-                )}
+                <Image src={ExhibitionIcon} alt="exhibition" />
               </S.ExhibitionImageWrapper>
               <S.ColumnFour>
                 <S.VideoTitle>{VideoData.title}</S.VideoTitle>
