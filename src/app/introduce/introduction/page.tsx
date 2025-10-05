@@ -2,12 +2,12 @@
 
 import { CommonContainer } from '@/app/introduce/common.styles';
 import ExhibitAside from '@/assets/icons/sub/exhibit_aside.svg';
+import IntroImageMobile from '@/assets/icons/sub/exhibition_icon.png';
 import IntroLogo from '@/assets/icons/sub/intro.svg';
-import IntroImage from '@/assets/icons/sub/introduce.svg';
+import IntroImage from '@/assets/icons/sub/introduce.png';
 import IntroLogoMobile from '@/assets/icons/sub/mobile/intro.svg';
-import IntroImageMobile from '@/assets/icons/sub/mobile/introduce.svg';
 import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_intro.svg';
-import IntroImageTablet from '@/assets/icons/sub/tablet/introduce.svg';
+import IntroImageTablet from '@/assets/icons/sub/tablet/introduce.png';
 import ExhibitUnion from '@/assets/icons/sub/Union.svg';
 import ButtonList from '@/components/buttonList/introduce/IntroduceButton';
 import Footer from '@/components/footer/Footer';
@@ -15,6 +15,7 @@ import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
+import Image from 'next/image';
 import * as S from './page.styles';
 
 const FadedTextColors = [
@@ -73,7 +74,13 @@ export default function Introduce() {
 
           <S.IntroductionSubContainer>
             <S.IntroImageContainer>
-              {isTablet ? <IntroImageTablet /> : isMobile ? <IntroImageMobile /> : <IntroImage />}
+              {isMobile ? (
+                <Image src={IntroImageMobile} alt="intro" />
+              ) : isTablet ? (
+                <Image src={IntroImageTablet} alt="intro" />
+              ) : (
+                <Image src={IntroImage} alt="intro" />
+              )}
             </S.IntroImageContainer>
             <S.ContentContainer>
               {isMobile && (

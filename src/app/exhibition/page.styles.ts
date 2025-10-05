@@ -71,6 +71,7 @@ export const ExhibitionWrapper = styled(Wrapper)`
     margin-bottom: 80px;
 
     justify-content: center;
+
     text-align: center;
   }
 `;
@@ -143,11 +144,6 @@ export const ExhibitionImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  svg {
-    width: 100%;
-    height: 100%;
   }
 `;
 
