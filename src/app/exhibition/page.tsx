@@ -82,6 +82,9 @@ export default function Exhibition() {
             </S.VideoImageWrapper>
           </S.ColumnWrapper>
         </S.VideoWrapper>
+        <S.MobileBottomImageWrapper>
+          <Image src={ExhibitionIcon} alt="exhibition" />
+        </S.MobileBottomImageWrapper>
       </CommonContainer>
       <Footer footerType="sub" />
     </>

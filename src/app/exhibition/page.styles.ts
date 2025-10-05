@@ -70,7 +70,7 @@ export const ExhibitionWrapper = styled(Wrapper)`
     margin-top: 80px;
     margin-bottom: 80px;
 
-    align-items: center;
+    justify-content: center;
     text-align: center;
   }
 `;
@@ -131,20 +131,23 @@ export const EnglishText = styled.p`
 export const ExhibitionImageWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 600px;
   aspect-ratio: 1120/516.92;
   overflow: hidden;
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    height: 211px;
   }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -181,9 +184,35 @@ export const VideoWrapper = styled.div`
     margin-bottom: 80px;
     gap: 60px;
   }
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const VideoImageWrapper = styled.div`
   width: 100%;
   aspect-ratio: 1120/630.33;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    display: none;
+  }
+`;
+
+export const MobileBottomImageWrapper = styled.div`
+  display: none;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    display: block;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-bottom: 60px;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
 `;
