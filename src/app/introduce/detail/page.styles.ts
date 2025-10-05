@@ -17,6 +17,7 @@ export const DetailWrapper = styled(CommonWrapper)`
 
 export const DetailLogoContainer = styled(LogoContainer)`
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    align-items: center;
     gap: 40px;
   }
 `;

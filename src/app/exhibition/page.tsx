@@ -1,11 +1,18 @@
 'use client';
 
+import { CommonContainer } from '@/app/introduce/common.styles';
 import ExhibitionAside from '@/assets/icons/sub/exhibit_aside.svg';
+import ExhibitionIcon from '@/assets/icons/sub/exhibition_icon.png';
 import ExhibitionLogo from '@/assets/icons/sub/intro.svg';
+import ExhibitionLogoMobile from '@/assets/icons/sub/mobile/intro.svg';
+import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_exhibit.svg';
 import ExhibitUnion from '@/assets/icons/sub/Union_exhibit.svg';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { theme } from '@/styles/theme';
+import Image from 'next/image';
 import * as S from './page.styles';
 
 const VideoData = {
@@ -20,57 +27,65 @@ const VideoData = {
 };
 
 export default function Exhibition() {
+  const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
+
   return (
     <>
       <Header headerType="main" />
-      <S.ExhibitionWrapper>
-        <S.ExhibitionLogoContainer>
-          <S.ExhibitionLogoText>당신은 어떤 가능성을 꿈꾸고 있나요?</S.ExhibitionLogoText>
-          <S.LogoWrapper>
-            <ExhibitionLogo />
-            <S.UnionWrapper>
-              <ExhibitUnion />
-            </S.UnionWrapper>
-          </S.LogoWrapper>
-        </S.ExhibitionLogoContainer>
-      </S.ExhibitionWrapper>
-      <S.ExhibitionWrapper>
-        <S.RowWrapper style={{ gap: '100px' }}>
-          <S.ColumnWrapper style={{ gap: '60px' }}>
-            <ExhibitionAside />
-            <S.ColumnWrapper style={{ gap: '50px' }}>
-              <S.ExhibitionLogoText>
-                제 37회 2025 국립부경대학교 <br />
-                시각디자인전공 졸업전시회 소개 영상
-              </S.ExhibitionLogoText>
-              <S.EnglishText>
-                The 37th PKNU <br /> Visual CommunicationDesign Major <br />
-                Graduation Exhibition Intro Video
-              </S.EnglishText>
-            </S.ColumnWrapper>
+      <CommonContainer>
+        <S.ExhibitionWrapper>
+          <S.ExhibitionLogoContainer>
+            <S.ExhibitionLogoText>당신은 어떤 가능성을 꿈꾸고 있나요?</S.ExhibitionLogoText>
+            <S.LogoWrapper>
+              {isMobile ? <ExhibitionLogoMobile /> : <ExhibitionLogo />}
+              <S.UnionWrapper>
+                {isMobile ? <ExhibitUnionMobile /> : <ExhibitUnion />}
+              </S.UnionWrapper>
+            </S.LogoWrapper>
+          </S.ExhibitionLogoContainer>
+        </S.ExhibitionWrapper>
+        <S.ExhibitionSubWrapper>
+          <S.ExhibitionSubContainer>
+            <S.ColumnOne>
+              <ExhibitionAside />
+              <S.ColumnTwo>
+                <S.ExhibitionLogoText>
+                  제 37회 2025 국립부경대학교 <br />
+                  시각디자인전공 졸업전시회 소개 영상
+                </S.ExhibitionLogoText>
+                <S.EnglishText>
+                  The 37th PKNU <br /> Visual CommunicationDesign Major <br />
+                  Graduation Exhibition Intro Video
+                </S.EnglishText>
+              </S.ColumnTwo>
+            </S.ColumnOne>
+            <S.ColumnThree>
+              <S.ExhibitionImageWrapper>
+                <Image src={ExhibitionIcon} alt="exhibition" />
+              </S.ExhibitionImageWrapper>
+              <S.ColumnFour>
+                <S.VideoTitle>{VideoData.title}</S.VideoTitle>
+                <S.VideoDescription>{VideoData.description}</S.VideoDescription>
+                <TranslationPanel text={VideoData.englishDescription} />
+              </S.ColumnFour>
+            </S.ColumnThree>
+          </S.ExhibitionSubContainer>
+        </S.ExhibitionSubWrapper>
+        <S.VideoWrapper>
+          <S.ColumnWrapper style={{ gap: '50px' }}>
+            <S.VideoTitle>{VideoData.subTitle}</S.VideoTitle>
+            <S.VideoDescription>{VideoData.subDescription}</S.VideoDescription>
+            <S.VideoImageWrapper>
+              <video width="100%" height="100%" controls>
+                <source src="/path/to/video.mp4" type="video/mp4" />
+              </video>
+            </S.VideoImageWrapper>
           </S.ColumnWrapper>
-          <S.ColumnWrapper style={{ gap: '60px' }}>
-            <S.ExhibitionImageWrapper></S.ExhibitionImageWrapper>
-            <S.ColumnWrapper style={{ gap: '30px' }}>
-              <S.VideoTitle>{VideoData.title}</S.VideoTitle>
-              <S.VideoDescription>{VideoData.description}</S.VideoDescription>
-              <TranslationPanel text={VideoData.englishDescription} />
-            </S.ColumnWrapper>
-          </S.ColumnWrapper>
-        </S.RowWrapper>
-      </S.ExhibitionWrapper>
-      <S.VideoWrapper>
-        <S.ColumnWrapper style={{ gap: '50px' }}>
-          <S.VideoTitle>{VideoData.subTitle}</S.VideoTitle>
-          <S.VideoDescription>{VideoData.subDescription}</S.VideoDescription>
-          <S.VideoImageWrapper>
-            <video width="100%" height="100%" controls>
-              <source src="/path/to/video.mp4" type="video/mp4" />
-            </video>
-          </S.VideoImageWrapper>
-        </S.ColumnWrapper>
-      </S.VideoWrapper>
-
+        </S.VideoWrapper>
+        <S.MobileBottomImageWrapper>
+          <Image src={ExhibitionIcon} alt="exhibition" />
+        </S.MobileBottomImageWrapper>
+      </CommonContainer>
       <Footer footerType="sub" />
     </>
   );

@@ -1,3 +1,4 @@
+import { theme } from '@/styles/theme';
 import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -20,4 +21,9 @@ export const ToggleContainer = styled.button<{ $buttonColor: keyof Theme['colors
 
 export const TextContainer = styled.p`
   white-space: pre-line;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    text-align: left;
+    white-space: pre-wrap;
+  }
 `;

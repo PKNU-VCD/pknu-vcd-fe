@@ -29,10 +29,6 @@ export const IntroductionLogoContainer = styled(LogoContainer)`
 export const IntroductionLogoText = styled(LogoText)`
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
     text-align: center;
-    font-size: ${theme.typography.regular.fontSize};
-    font-weight: ${theme.typography.regular.fontWeight};
-    line-height: ${theme.typography.regular.lineHeight};
-    letter-spacing: ${theme.typography.regular.letterSpacing};
   }
 `;
 
