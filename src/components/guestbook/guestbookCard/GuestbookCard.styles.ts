@@ -3,8 +3,11 @@ import styled from '@emotion/styled';
 
 export const Wrapper = styled.div<{ $backgroundColor: keyof Theme['colors']['guestbook'] }>`
   width: 100%;
-  height: 100px;
-  padding: 30px 50px;
+  height: 180px;
+  padding: 40px 70px;
+  display: flex;
+  align-items: flex-start;
+
   //TODO: 디자인 팀과 협의 후 overflow 설정 변경
   overflow: auto;
   &::-webkit-scrollbar {
@@ -14,8 +17,12 @@ export const Wrapper = styled.div<{ $backgroundColor: keyof Theme['colors']['gue
   ${({ theme }) => ({ ...theme.typography.medium })}
   background-color: ${({ theme, $backgroundColor }) => theme.colors.guestbook[$backgroundColor]};
 
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    border-radius: 30px;
+    padding: 30px;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileLarge}) {
-    height: 75px;
     padding: 20px 30px;
     overflow: hidden;
   }
