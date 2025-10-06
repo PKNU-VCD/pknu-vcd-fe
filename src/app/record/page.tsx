@@ -9,6 +9,7 @@ import RecordLogoTablet from '@/assets/icons/sub/record/tablet/main_icon.svg';
 import Footer from '@/components/footer/Footer';
 import { GuestbookCard } from '@/components/guestbook/guestbookCard/GuestbookCard';
 import { GuestbookGrid } from '@/components/guestbook/guestbookGrid/GuestbookGrid';
+import { GuestbookInput } from '@/components/guestbook/guestbookInput/GuestbookInput';
 import Header from '@/components/header/Header';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
@@ -69,6 +70,9 @@ export default function Record() {
           </>
         )}
         <GuestbookGrid comments={mockComments} />
+        <S.GuestbookInputContainer>
+          <GuestbookInput onSubmit={() => {}} />
+        </S.GuestbookInputContainer>
       </CommonContainer>
       <Footer footerType="sub" />
     </>

@@ -93,3 +93,14 @@ export const RecordContentContainer = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
+
+export const GuestbookInputContainer = styled.div`
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+`;
