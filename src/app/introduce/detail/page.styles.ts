@@ -158,6 +158,7 @@ export const MapContainer = styled.div`
   gap: 100px;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
+    width: 85vw;
     gap: 60px;
   }
 
