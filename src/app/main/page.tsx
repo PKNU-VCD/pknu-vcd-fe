@@ -13,9 +13,17 @@ export default function HomePage() {
   const blinkRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<DotFireworksHandle>(null);
+  const splashFireworkRef = useRef<DotFireworksHandle>(null);
 
   // 반응형 dotRadius 계산
   const [dotRadius, setDotRadius] = useState(8);
+  const [showSplashFirework, setShowSplashFirework] = useState(() => {
+    // Initialize from sessionStorage
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('splashComplete') === 'true';
+    }
+    return false;
+  });
 
   useEffect(() => {
     const updateDotRadius = () => {
@@ -38,6 +46,49 @@ export default function HomePage() {
     return () => window.removeEventListener('resize', updateDotRadius);
   }, []);
 
+  useEffect(() => {
+    // Only run once when component mounts
+    if (showSplashFirework && splashFireworkRef.current) {
+      sessionStorage.removeItem('splashComplete');
+
+      const { OPENING_1, OPENING_2, OPENING_3, OPENING_4 } = require('../spalsh/opening');
+      const centerX = window.innerWidth / 2;
+      // Calculate Y position: center moved up by 60% = centerY - (0.6 * centerY)
+      const centerY = window.innerHeight / 2 - (window.innerHeight / 2) * 0.6;
+
+      console.log('Restoring firework at', centerX, centerY);
+
+      splashFireworkRef.current.triggerStampAtWindowPx(centerX, centerY, {
+        color: '#00AEEF',
+        units: 'cells',
+        scaleCells: 1,
+        thicken: 0,
+        customCoords: OPENING_1,
+      });
+      splashFireworkRef.current.triggerStampAtWindowPx(centerX, centerY, {
+        color: '#00AEEF',
+        units: 'cells',
+        scaleCells: 1,
+        thicken: 0,
+        customCoords: OPENING_2,
+      });
+      splashFireworkRef.current.triggerStampAtWindowPx(centerX, centerY, {
+        color: '#00AEEF',
+        units: 'cells',
+        scaleCells: 1,
+        thicken: 0,
+        customCoords: OPENING_3,
+      });
+      splashFireworkRef.current.triggerStampAtWindowPx(centerX, centerY, {
+        color: '#FFFF85',
+        units: 'cells',
+        scaleCells: 1,
+        thicken: 0,
+        customCoords: OPENING_4,
+      });
+    }
+  }, [showSplashFirework]);
+
   return (
     <>
       <DotFireworksBackground
@@ -48,6 +99,16 @@ export default function HomePage() {
         stampCoords={FIREWORK_SHAPE} // 코드 내 배열
         stampUnits="cells"
       />
+      {showSplashFirework && (
+        <DotFireworksBackground
+          ref={splashFireworkRef}
+          dotRadius={dotRadius}
+          spacing={dotRadius * 2}
+          burstEvery={0}
+          decayPerSec={0}
+          baseColor="transparent"
+        />
+      )}
       <S.Wrapper>
         <Header />
         <S.MainSection ref={mainRef}>
