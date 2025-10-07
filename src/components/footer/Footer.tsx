@@ -9,15 +9,16 @@ import * as S from './Footer.styles';
 
 interface FooterProps {
   footerType?: 'main' | 'sub';
+  backgroundColor?: 'default' | 'white';
 }
 
 const InstagramUrl = 'https://www.instagram.com/pknu_vcd/';
 
-export default function Footer({ footerType = 'main' }: FooterProps) {
+export default function Footer({ footerType = 'main', backgroundColor = 'default' }: FooterProps) {
   const isMobile = useMediaQuery(theme.breakpoints.mobileLarge);
 
   return (
-    <S.Wrapper>
+    <S.Wrapper backgroundColor={backgroundColor}>
       <S.FooterContainer>
         <S.FooterMainSection>
           <FootLogo />

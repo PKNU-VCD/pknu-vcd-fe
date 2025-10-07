@@ -88,7 +88,7 @@ export default function Exhibition() {
           <Image src={ExhibitionIcon} alt="exhibition" />
         </S.MobileBottomImageWrapper>
       </CommonContainer>
-      <Footer footerType="sub" />
+      <Footer footerType="sub" backgroundColor="white" />
     </>
   );
 }

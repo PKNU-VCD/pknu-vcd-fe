@@ -90,7 +90,7 @@ export default function Architect() {
         <S.ThumbnailGridContainer>
           <ThumbnailGrid projects={projects} />
         </S.ThumbnailGridContainer>
-        <Footer footerType="sub" />
+        <Footer footerType="sub" backgroundColor="white" />
       </CommonContainer>
     </>
   );

@@ -166,7 +166,7 @@ export default function Introduce() {
           </S.ParticipantsList>
         </S.ParticipantsContainer>
       </CommonContainer>
-      <Footer footerType="sub" />
+      <Footer footerType="sub" backgroundColor="white" />
     </>
   );
 }

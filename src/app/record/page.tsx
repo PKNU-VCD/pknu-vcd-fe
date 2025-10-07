@@ -87,7 +87,7 @@ export default function Record() {
           <GuestbookInput onSubmit={() => {}} />
         </S.GuestbookInputContainer>
       </CommonContainer>
-      <Footer footerType="sub" />
+      <Footer footerType="sub" backgroundColor="white" />
     </>
   );
 }
