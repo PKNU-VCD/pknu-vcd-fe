@@ -100,6 +100,10 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   gap: 30px;
   color: ${theme.colors.stroke};
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    padding: 0 28px;
+  }
 `;
 
 export const ContentTitle = styled.p`
@@ -230,6 +234,11 @@ export const FadedTextContainer = styled.div`
   font-weight: ${theme.typography.regular.fontWeight};
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
     align-items: flex-start;
