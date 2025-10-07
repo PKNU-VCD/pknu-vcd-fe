@@ -5,6 +5,7 @@ import FloatingDraggable from '@/components/floatingDraggable/FloatingDraggable'
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { useEffect, useRef, useState } from 'react';
+import { OPENING_1, OPENING_2, OPENING_3, OPENING_4 } from '../splash/opening';
 import DotFireworksBackground, { DotFireworksHandle } from './canvas/canvas';
 import { FIREWORK_SHAPE, FIREWORK_SHAPE_LARGE } from './canvas/Dot';
 import * as S from './page.styles';
@@ -51,7 +52,6 @@ export default function HomePage() {
     if (showSplashFirework && splashFireworkRef.current) {
       sessionStorage.removeItem('splashComplete');
 
-      const { OPENING_1, OPENING_2, OPENING_3, OPENING_4 } = require('../splash/opening');
       const centerX = window.innerWidth / 2;
       // Calculate Y position: center moved up by 70% = centerY - (0.7 * window.innerHeight)
       const centerY = window.innerHeight / 2 - window.innerHeight * 0.7;
