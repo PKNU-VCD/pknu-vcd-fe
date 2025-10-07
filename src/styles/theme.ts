@@ -19,6 +19,12 @@ export const theme = {
     input: '#A4A4A4',
   },
   typography: {
+    small: {
+      fontWeight: 400,
+      fontSize: '10px',
+      lineHeight: '130%',
+      letterSpacing: '-0.32px',
+    },
     regular: {
       fontWeight: 400,
       fontSize: '16px',
