@@ -4,12 +4,19 @@ interface FooterTextProps {
   footerType?: 'main' | 'sub';
 }
 
-export const Wrapper = styled.footer`
+interface WrapperProps {
+  backgroundColor?: 'default' | 'white';
+}
+
+export const Wrapper = styled.footer<WrapperProps>`
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 8.16%, #fff 96.68%);
+  background: ${({ backgroundColor }) =>
+    backgroundColor === 'white'
+      ? '#FFFFFF'
+      : 'linear-gradient(180deg, rgba(255, 255, 255, 0) 8.16%, #fff 96.68%)'};
   display: flex;
   align-items: center;
   z-index: 1000;

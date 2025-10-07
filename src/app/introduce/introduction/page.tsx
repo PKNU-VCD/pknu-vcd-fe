@@ -10,6 +10,7 @@ import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_intro.svg';
 import IntroImageTablet from '@/assets/icons/sub/tablet/introduce.png';
 import ExhibitUnion from '@/assets/icons/sub/Union.svg';
 import ButtonList from '@/components/buttonList/introduce/IntroduceButton';
+import FireworkBackground from '@/components/fireworkBackground/FireworkBackground';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
@@ -32,6 +33,7 @@ export default function Introduce() {
 
   return (
     <>
+      <FireworkBackground color={theme.colors.yellow} />
       <Header headerType="main" />
       <CommonContainer>
         <S.IntroductionWrapper>
@@ -164,7 +166,7 @@ export default function Introduce() {
           </S.ParticipantsList>
         </S.ParticipantsContainer>
       </CommonContainer>
-      <Footer footerType="sub" />
+      <Footer footerType="sub" backgroundColor="white" />
     </>
   );
 }

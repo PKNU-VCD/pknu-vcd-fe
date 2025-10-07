@@ -7,6 +7,8 @@ import UnionIntro from '@/assets/icons/sub/mobile/Union_intro.svg';
 import RecordLogoBlue from '@/assets/icons/sub/record/main_blue.svg';
 import RecordLogoPink from '@/assets/icons/sub/record/main_pink.svg';
 import RecordLogoTablet from '@/assets/icons/sub/record/tablet/main_icon.svg';
+import FireworkBackground from '@/components/fireworkBackground/FireworkBackground';
+import FloatingDraggable from '@/components/floatingDraggable/FloatingDraggable';
 import Footer from '@/components/footer/Footer';
 import { GuestbookCard } from '@/components/guestbook/guestbookCard/GuestbookCard';
 import { GuestbookGrid } from '@/components/guestbook/guestbookGrid/GuestbookGrid';
@@ -14,7 +16,9 @@ import { GuestbookInput } from '@/components/guestbook/guestbookInput/GuestbookI
 import Header from '@/components/header/Header';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
+import { useRef } from 'react';
 import { CommonContainer } from '../introduce/common.styles';
+import * as MainStyles from '../main/page.styles';
 import * as S from './page.styles';
 
 const mockComments = [
@@ -34,17 +38,34 @@ const recordLogos = [RecordLogoPink, RecordLogoBlue];
 const unionIcons = [UnionDesign, UnionExhibit, UnionIntro];
 const RandomUnionIcon = unionIcons[Math.floor(Math.random() * unionIcons.length)];
 
+const generateEdgeWeightedPosition = () => {
+  const random = Math.random();
+  if (random < 0.7) {
+    return Math.random() < 0.5 ? Math.random() * 20 : 80 + Math.random() * 20;
+  }
+  return 20 + Math.random() * 60;
+};
+
+const floatingIcons = [
+  { icon: <MainStyles.FloatingOne />, color: theme.colors.lightGreen },
+  { icon: <MainStyles.FloatingTwo />, color: theme.colors.yellow },
+  { icon: <MainStyles.FloatingThree />, color: theme.colors.lightBlue },
+];
+
 export default function Record() {
   const isTablet = useMediaQuery(`(max-width: ${theme.breakpoints.tablet})`);
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
+  const recordContainerRef = useRef<HTMLDivElement>(null);
+  const blinkRef = useRef<HTMLDivElement>(null);
 
   const RandomRecordLogo = recordLogos[Math.floor(Math.random() * recordLogos.length)];
 
   return (
     <>
+      <FireworkBackground color={theme.colors.lightGreen} />
       <Header headerType="main" />
       <CommonContainer>
-        <S.RecordContainer>
+        <S.RecordContainer ref={recordContainerRef}>
           <S.RecordLogoWrapper>
             {isMobile ? (
               <RecordLogoMobile />
@@ -84,8 +105,23 @@ export default function Record() {
         <S.GuestbookInputContainer>
           <GuestbookInput onSubmit={() => {}} />
         </S.GuestbookInputContainer>
+
+        {!isMobile &&
+          floatingIcons.map((item, index) => (
+            <FloatingDraggable
+              key={index}
+              icon={item.icon}
+              initialPercent={{
+                x: generateEdgeWeightedPosition(),
+                y: generateEdgeWeightedPosition(),
+              }}
+              dropRef={blinkRef}
+              containerRef={recordContainerRef}
+              label={`floating ${index + 1}`}
+            />
+          ))}
       </CommonContainer>
-      <Footer footerType="sub" />
+      <Footer footerType="sub" backgroundColor="white" />
     </>
   );
 }
