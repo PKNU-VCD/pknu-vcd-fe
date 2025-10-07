@@ -14,10 +14,19 @@ import FireworkBackground from '@/components/fireworkBackground/FireworkBackgrou
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
+
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
 import Image from 'next/image';
 import * as S from './page.styles';
+
+const INTRODUCTION_ENGLISH_TEXT = `\"_합니다.\" is an unfinished sentence
+It holds space for words like "graduate," "challenge," or "design" — a place where each of us can freely write our own beginning and direction.
+As designers, we are still in the process of completing that sentence, one step at a time.
+This exhibition was created to capture a moment where our dreams and potential come together in a single, visual expression.
+The vibrant trajectories radiating from the center of the poster symbolize the time, thoughts, and energy we've accumulated through learning design — now bursting outward as a powerful force of possibility.
+The irregular, colorful lines represent our unique journeys and identities. At the same time, they point to infinite directions in which our creativity can grow and expand.
+This exhibition is a visual unfolding of potential in motion — a vivid explosion born from the convergence of colors and lines that each began from a different place, yet came together in one striking moment.`;
 
 const FadedTextColors = [
   '#222',
@@ -119,7 +128,7 @@ export default function Introduce() {
                 <br />이 전시는 진행형의 가능성들이 시각적으로 피어나는 장면이며, 각자의 위치에서
                 출발한 색과 선들이 모여 하나의 강렬한 시각적 폭발을 만들어냅니다.
               </S.ContentDescription>
-              <TranslationPanel text={'\"_합니다.\" is an unfinished sentence\n'} />
+              <TranslationPanel text={INTRODUCTION_ENGLISH_TEXT} />
             </S.ContentContainer>
           </S.IntroductionSubContainer>
         </S.IntroductionContainer>
