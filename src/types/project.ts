@@ -27,7 +27,7 @@ export interface ProjectBase {
 
 export interface Project extends ProjectBase {
   projectId: number;
-  thumbnail: string;
+  thumbnailUrl: string;
   images: string[];
   createdAt: string;
   updatedAt: string;
