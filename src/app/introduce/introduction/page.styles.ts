@@ -177,7 +177,7 @@ export const KoreanText = styled.p`
 `;
 
 export const EnglishText = styled.p`
-  color: #666666;
+  color: ${theme.colors.darkGray};
   font-size: ${theme.typography.regular.fontSize};
   font-weight: ${theme.typography.regular.fontWeight};
   line-height: ${theme.typography.regular.lineHeight};

@@ -16,8 +16,8 @@ export const ProgressBar = styled.div<{
 }>`
   width: 100%;
   height: 20px;
-  border: 2px solid ${({ borderColor }) => borderColor || '#ff74ff'};
-  background-color: ${({ backgroundColor }) => backgroundColor || '#ffff85'};
+  border: 2px solid ${({ borderColor, theme }) => borderColor || theme.colors.pink};
+  background-color: ${({ backgroundColor, theme }) => backgroundColor || theme.colors.yellow};
   position: relative;
   border-radius: 10px;
   z-index: 2;
@@ -34,8 +34,8 @@ export const FilledProgress = styled.div<{
   left: ${({ startPercent }) => startPercent}%;
   width: ${({ endPercent, startPercent }) => endPercent - startPercent}%;
   height: 100%;
-  border: 2px solid ${({ filledBorderColor }) => filledBorderColor || '#ff74ff'};
-  background-color: ${({ filledColor }) => filledColor || '#ff74ff'};
+  border: 2px solid ${({ filledBorderColor, theme }) => filledBorderColor || theme.colors.pink};
+  background-color: ${({ filledColor, theme }) => filledColor || theme.colors.pink};
   border-radius: 10px;
   z-index: 1;
 `;

@@ -4,7 +4,9 @@ import HeaderIcon from '@/assets/icons/HeaderIcon.svg';
 import UnionIcon from '@/assets/icons/Union.svg';
 import { useNavigator } from '@/hooks/useNavigator';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import { Button } from '../Button/Button';
+import Sidebar from '../sidebar/Sidebar';
 import * as S from './Header.styles';
 
 // [x] FIXME: 헤더 서브타입 제거
@@ -15,9 +17,18 @@ interface HeaderProps {
 const Header = ({ headerType = 'main' }: HeaderProps) => {
   const { navigateTo } = useNavigator();
   const pathname = usePathname();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleButtonClick = (path: string) => {
     navigateTo(path);
+  };
+
+  const handleSidebarToggle = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleSidebarClose = () => {
+    setIsSidebarOpen(false);
   };
 
   return (
@@ -61,10 +72,11 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
           </Button>
         </S.HeaderMenu>
         <S.HeaderAdminTab onClick={() => handleButtonClick('/admin')}>관리자</S.HeaderAdminTab>
-        <S.HeaderUnion>
+        <S.HeaderUnion onClick={handleSidebarToggle}>
           <UnionIcon />
         </S.HeaderUnion>
       </S.HeaderWrapper>
+      <Sidebar isOpen={isSidebarOpen} onClose={handleSidebarClose} />
     </S.HeaderContainer>
   );
 };

@@ -14,7 +14,7 @@ export const Wrapper = styled.div<{ multiline?: boolean }>`
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-  border: 1px solid #f2f2f2;
+  border: 1px solid ${theme.colors.gray};
   background: #fff;
   position: relative;
 `;
@@ -30,7 +30,7 @@ export const InputField = styled.input<InputFieldProps>`
   color: var(--stroke-222-1, #222);
 
   &::placeholder {
-    color: #a4a4a4;
+    color: ${theme.colors.input};
   }
 `;
 
@@ -48,7 +48,7 @@ export const TextAreaField = styled.textarea`
   color: var(--stroke-222-1, #222);
 
   &::placeholder {
-    color: #a4a4a4;
+    color: ${theme.colors.input};
   }
 `;
 

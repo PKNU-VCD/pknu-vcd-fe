@@ -69,12 +69,12 @@ export default function Detail() {
               </S.ExhibitionDateProgressText>
               <Progress
                 timeMarkers={[
-                  { time: 0.2, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 6, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 10.4, color: '#FF74FF', labelColor: '#222222' },
-                  { time: 12.8, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 19.5, color: '#FF74FF', labelColor: '#222222' },
-                  { time: 23.8, color: '#DDDDDD', labelColor: '#DDDDDD' },
+                  { time: 0.2, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 6, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 10.4, color: theme.colors.pink, labelColor: theme.colors.black },
+                  { time: 12.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 19.5, color: theme.colors.pink, labelColor: theme.colors.black },
+                  { time: 23.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
                 ]}
               />
             </S.ExhibitionDateProgress>
@@ -87,16 +87,16 @@ export default function Detail() {
                 <p>휴관</p>
               </S.ExhibitionDateProgressText>
               <Progress
-                backgroundColor="#DDDDDD"
-                filledColor="#DDDDDD"
-                borderColor="#DDDDDD"
-                filledBorderColor="#DDDDDD"
+                backgroundColor={theme.colors.mediumGray}
+                filledColor={theme.colors.mediumGray}
+                borderColor={theme.colors.mediumGray}
+                filledBorderColor={theme.colors.mediumGray}
                 timeMarkers={[
-                  { time: 0.2, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 6, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 12.8, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 19.8, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 23.8, color: '#DDDDDD', labelColor: '#DDDDDD' },
+                  { time: 0.2, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 6, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 12.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 19.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 23.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
                 ]}
               />
             </S.ExhibitionDateProgress>
@@ -110,12 +110,12 @@ export default function Detail() {
               </S.ExhibitionDateProgressText>
               <Progress
                 timeMarkers={[
-                  { time: 0.2, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 6, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 10.4, color: '#FF74FF', labelColor: '#222222' },
-                  { time: 12.8, color: '#DDDDDD', labelColor: '#DDDDDD' },
-                  { time: 19.5, color: '#FF74FF', labelColor: '#222222' },
-                  { time: 23.8, color: '#DDDDDD', labelColor: '#DDDDDD' },
+                  { time: 0.2, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 6, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 10.4, color: theme.colors.pink, labelColor: theme.colors.black },
+                  { time: 12.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
+                  { time: 19.5, color: theme.colors.pink, labelColor: theme.colors.black },
+                  { time: 23.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
                 ]}
               />
             </S.ExhibitionDateProgress>
