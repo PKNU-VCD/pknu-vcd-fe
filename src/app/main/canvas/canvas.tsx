@@ -17,6 +17,7 @@ type Props = {
 export type DotFireworksHandle = {
   triggerStampAtWindowPx: (x: number, y: number, opts?: StampOptions) => void;
   triggerStampAtElement: (el: HTMLElement, opts?: StampOptions) => void;
+  clearCanvas: () => void;
 };
 
 type DotCoord = { dx: number; dy: number; a?: number };
@@ -176,9 +177,16 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
         const s = stateRef.current;
         const coords = opts?.customCoords || s.stampCoords;
         if (!coords.length) return;
-        const gx = Math.round(x / s.cell);
-        const gy = Math.round(y / s.cell);
-        console.log(`Firework: windowX=${x}, windowY=${y}, cell=${s.cell}, gridX=${gx}, gridY=${gy}`);
+
+        // 화면 중앙을 (0, 0) 그리드로 설정
+        const centerX = s.width / 2;
+        const centerY = s.height / 2;
+
+        // 화면 중앙 기준으로 그리드 좌표 계산
+        const gx = Math.round((x - centerX) / s.cell + s.cols / 2);
+        const gy = Math.round((y - centerY) / s.cell + s.rows / 2);
+
+        console.log(`Firework: windowX=${x}, windowY=${y}, centerX=${centerX}, centerY=${centerY}, cell=${s.cell}, gridX=${gx}, gridY=${gy}`);
         stampAtGrid(gx, gy, coords, opts);
       },
       [stampAtGrid],
@@ -192,9 +200,15 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
       [triggerStampAtWindowPx],
     );
 
-    useImperativeHandle(ref, () => ({ triggerStampAtWindowPx, triggerStampAtElement }), [
+    const clearCanvas = useCallback(() => {
+      const s = stateRef.current;
+      s.intensity.fill(0);
+    }, []);
+
+    useImperativeHandle(ref, () => ({ triggerStampAtWindowPx, triggerStampAtElement, clearCanvas }), [
       triggerStampAtWindowPx,
       triggerStampAtElement,
+      clearCanvas,
     ]);
 
     useEffect(() => {
@@ -239,11 +253,16 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
         ctx.clearRect(0, 0, s.width, s.height);
         const { cols, rows, cell, r } = s;
 
+        // 화면 중앙을 (0, 0) 그리드로 설정
+        const centerX = s.width / 2;
+        const centerY = s.height / 2;
+
         for (let gy = 0; gy < rows; gy++) {
           for (let gx = 0; gx < cols; gx++) {
             const id = gy * cols + gx;
-            const cx = gx * cell;
-            const cy = gy * cell;
+            // 그리드를 화면 중앙 기준으로 재조정
+            const cx = centerX + (gx - cols / 2) * cell;
+            const cy = centerY + (gy - rows / 2) * cell;
 
             ctx.globalAlpha = 1;
             ctx.fillStyle = s.baseColor;

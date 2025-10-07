@@ -41,6 +41,6 @@ export const BlinkSection = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileLarge}) {
-    ${({ theme }) => theme.typography.regular}
+    ${({ theme }) => theme.typography.small}
   }
 `;
