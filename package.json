@@ -29,6 +29,7 @@
     "@storybook/nextjs": "^9.0.18",
     "@storybook/nextjs-vite": "^9.0.18",
     "@svgr/webpack": "^8.1.0",
+    "@types/navermaps": "^3.9.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

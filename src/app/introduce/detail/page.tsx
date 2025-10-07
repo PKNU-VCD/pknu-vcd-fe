@@ -4,15 +4,13 @@ import { CommonContainer } from '@/app/introduce/common.styles';
 import BusIcon from '@/assets/icons/sub/busIcon.svg';
 import CarIcon from '@/assets/icons/sub/carIcon.svg';
 import ExhibitDetailLogo from '@/assets/icons/sub/exhibit_detail.svg';
-import MapIcon from '@/assets/icons/sub/mapIcon.svg';
 import ExhibitDetailLogoMobile from '@/assets/icons/sub/mobile/exhibit_detail.svg';
-import MapIconMobile from '@/assets/icons/sub/mobile/mapIcon.svg';
 import SubwayIcon from '@/assets/icons/sub/subwayIcon.svg';
-import MapIconTablet from '@/assets/icons/sub/tablet/mapIcon.svg';
 import { Button } from '@/components/Button/Button';
 import ButtonList from '@/components/buttonList/introduce/IntroduceButton';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
+import { NaverMap } from '@/components/naverMap/naverMap';
 import Progress from '@/components/progress/progress';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
@@ -192,7 +190,7 @@ export default function Detail() {
               </S.Address>
             </S.AddressContainer>
             <S.MapContainer>
-              {isMobile ? <MapIconMobile /> : isTablet ? <MapIconTablet /> : <MapIcon />}
+              <NaverMap latitude={35.1325} longitude={129.1035} zoom={17} />
               <S.VehicleContainer>
                 <S.Vehicle>
                   <Button variant="exhibition" label="승용차 이용 시" />
