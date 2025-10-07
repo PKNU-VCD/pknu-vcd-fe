@@ -4,14 +4,17 @@ import styled from '@emotion/styled';
 export const CommonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 120px;
+  padding: 0 120px;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(0deg, #fff 0%, #fff 82%, rgba(255, 255, 255, 0) 100%);
 
   @media (max-width: ${theme.breakpoints.tablet}) {
-    margin: 0 80px;
+    padding: 0 80px;
   }
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
-    margin: 0 28px;
+    padding: 0 28px;
   }
 `;
 
@@ -22,7 +25,6 @@ export const Wrapper = styled.div`
 
 export const CommonWrapper = styled(Wrapper)`
   flex-direction: column;
-  background: linear-gradient(0deg, #fff 11.69%, rgba(255, 255, 255, 0) 88.49%);
 `;
 
 export const LogoContainer = styled.div`

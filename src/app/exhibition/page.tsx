@@ -7,6 +7,7 @@ import ExhibitionLogo from '@/assets/icons/sub/intro.svg';
 import ExhibitionLogoMobile from '@/assets/icons/sub/mobile/intro.svg';
 import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_exhibit.svg';
 import ExhibitUnion from '@/assets/icons/sub/Union_exhibit.svg';
+import FireworkBackground from '@/components/fireworkBackground/FireworkBackground';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
@@ -31,6 +32,7 @@ export default function Exhibition() {
 
   return (
     <>
+      <FireworkBackground color={'#F9D2EF'} />
       <Header headerType="main" />
       <CommonContainer>
         <S.ExhibitionWrapper>

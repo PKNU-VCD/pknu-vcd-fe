@@ -6,6 +6,7 @@ import MobileIntroLogo from '@/assets/icons/sub/mobile/intro.svg';
 import MobileDesignUnion from '@/assets/icons/sub/mobile/Union_design.svg';
 import DesignUnion from '@/assets/icons/sub/Union_design.svg';
 import ArchitectButton from '@/components/buttonList/architect/ArchitectButton';
+import FireworkBackground from '@/components/fireworkBackground/FireworkBackground';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { SearchBar } from '@/components/searchBar/SearchBar';
@@ -52,6 +53,7 @@ export default function Architect() {
 
   return (
     <>
+      <FireworkBackground color={theme.colors.lightGreen} />
       <Header headerType="main" />
       <CommonContainer>
         <S.DesignerContainer>
