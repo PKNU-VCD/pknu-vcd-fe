@@ -14,7 +14,6 @@ import FireworkBackground from '@/components/fireworkBackground/FireworkBackgrou
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
-
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
 import Image from 'next/image';
@@ -94,20 +93,18 @@ export default function Introduce() {
               )}
             </S.IntroImageContainer>
             <S.ContentContainer>
-              {isMobile && (
+              {isMobile ? (
                 <S.ContentTitle>
                   The 37th PKNU Visual
                   <br /> Communication Design Major
                   <br />
                   Graduation Exhibition
                 </S.ContentTitle>
-              )}
-              {!isMobile && (
+              ) : (
                 <S.ContentTitle>
                   The 37th PKNU Visual Communication Design Major Graduation Exhibition
                 </S.ContentTitle>
               )}
-
               <S.ContentDescription>
                 “_합니다.”는 아직 완성되지 않은 문장입니다.
                 <br />
