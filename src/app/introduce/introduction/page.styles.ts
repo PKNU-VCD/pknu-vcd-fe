@@ -100,6 +100,10 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   gap: 30px;
   color: ${theme.colors.stroke};
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    padding: 0 28px;
+  }
 `;
 
 export const ContentTitle = styled.p`
