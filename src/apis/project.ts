@@ -6,6 +6,10 @@ export async function getProjects() {
   return http.get<ApiResponse<Project[]>>('/projects');
 }
 
+export async function getProject(projectId: number) {
+  return http.get<ApiResponse<Project>>(`/projects/${projectId}`);
+}
+
 export async function fetchProjects() {
   return http.get<ApiResponse<Project[]>>('/admin/projects');
 }
