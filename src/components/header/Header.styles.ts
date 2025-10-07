@@ -42,7 +42,7 @@ export const HeaderMenu = styled.div`
 `;
 
 export const HeaderAdminTab = styled.text`
-  color: #ececec;
+  color: ${theme.colors.lightGray};
   font-size: ${theme.typography.medium.fontSize};
   font-weight: ${theme.typography.medium.fontWeight};
   line-height: ${theme.typography.medium.lineHeight};

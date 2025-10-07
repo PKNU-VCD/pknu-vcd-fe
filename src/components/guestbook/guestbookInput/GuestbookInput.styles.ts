@@ -50,8 +50,7 @@ export const TextAreaContainer = styled.textarea<{ $isOverLimit: boolean }>`
 `;
 
 export const TextLengthContainer = styled.div<{ $isOverLimit: boolean }>`
-  //TODO: 컬러 시스템 정리 이후 수정 필요
-  color: ${({ theme, $isOverLimit }) => ($isOverLimit ? '#FF33AA' : theme.colors.input)};
+  color: ${({ theme, $isOverLimit }) => ($isOverLimit ? theme.colors.errorPink : theme.colors.input)};
   ${({ theme, $isOverLimit }) =>
     $isOverLimit ? theme.typography.extraBold : theme.typography.regular};
   position: absolute;
@@ -65,7 +64,7 @@ export const TextLengthContainer = styled.div<{ $isOverLimit: boolean }>`
 
 export const ButtonContainer = styled.button`
   border-radius: 1000px;
-  border: 1px solid #f2f2f2;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
   display: inline-flex;
   padding: 10px;
   align-self: flex-end;

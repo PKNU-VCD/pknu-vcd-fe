@@ -53,7 +53,7 @@ export const MainGuestbookContainerMobile = styled.div`
     display: block;
     margin-top: 40px;
     margin-bottom: 40px;
-    border-bottom: 8.6px solid #00aeef;
+    border-bottom: 8.6px solid ${theme.colors.blue};
   }
 `;
 

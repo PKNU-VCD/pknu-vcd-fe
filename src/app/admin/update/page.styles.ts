@@ -24,7 +24,7 @@ export type TextContainerProps = 'title' | 'option' | 'description';
 export const TextContainer = styled.div<{ variant: TextContainerProps }>`
   ${({ variant, theme }) =>
     variant === 'title' ? theme.typography.medium : theme.typography.regular}
-  color: ${({ variant, theme }) => (variant === 'option' ? theme.colors.pink : '#000000')};
+  color: ${({ variant, theme }) => (variant === 'option' ? theme.colors.pink : theme.colors.black)};
 `;
 
 export const RowTitleContainer = styled.div`
@@ -131,17 +131,17 @@ export const ImageGridContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      background: #f1f1f1;
+      background: ${({ theme }) => theme.colors.adminLightGray};
       border-radius: 10px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background: #c1c1c1;
+      background: ${({ theme }) => theme.colors.adminMediumGray};
       border-radius: 10px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      background: #a8a8a8;
+      background: ${({ theme }) => theme.colors.adminDarkGray};
     }
   }
 `;

@@ -42,7 +42,7 @@ export const DotContainer = styled.div<{ $isActive: boolean }>`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: ${({ $isActive }) => ($isActive ? '#666666' : '#D9D9D9')};
+  background-color: ${({ $isActive, theme }) => ($isActive ? theme.colors.darkGray : theme.colors.carouselGray)};
   border: none;
   cursor: pointer;
 `;

@@ -59,7 +59,7 @@ export default function Introduce() {
                 <S.IntroductionLogoText>
                   제 37회 2025 국립부경대학교 <br /> 시각디자인전공 졸업전시회 소개영상
                 </S.IntroductionLogoText>
-                <S.IntroductionLogoText style={{ color: '#666666' }}>
+                <S.IntroductionLogoText style={{ color: theme.colors.darkGray }}>
                   The 37th PKNU <br /> Visual CommunicationDesign Major <br />
                   Graduation Exhibition Intro Video
                 </S.IntroductionLogoText>
