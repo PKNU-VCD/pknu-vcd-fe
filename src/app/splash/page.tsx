@@ -288,6 +288,13 @@ export default function SplashPage() {
                 label="floating one"
                 onOverDropArea={({ windowX, windowY }) => {
                   bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
+                    color: '#9FFFB9',
+                    units: 'cells',
+                    scaleCells: 1,
+                    thicken: 0.25,
+                    customCoords: FIREWORK_SHAPE,
+                  });
+                  bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                     color: '#D2FFDE',
                     units: 'cells',
                     scaleCells: 1,
@@ -318,6 +325,13 @@ export default function SplashPage() {
                 label="floating two"
                 onOverDropArea={({ windowX, windowY }) => {
                   bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
+                    color: '#FFEF60',
+                    units: 'cells',
+                    scaleCells: 1,
+                    thicken: 0.25,
+                    customCoords: FIREWORK_SHAPE,
+                  });
+                  bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                     color: '#FFFF85',
                     units: 'cells',
                     scaleCells: 1,
@@ -347,6 +361,13 @@ export default function SplashPage() {
                 containerRef={mainRef}
                 label="floating three"
                 onOverDropArea={({ windowX, windowY }) => {
+                  bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
+                    color: '#90FBFB',
+                    units: 'cells',
+                    scaleCells: 1,
+                    thicken: 0.25,
+                    customCoords: FIREWORK_SHAPE,
+                  });
                   bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                     color: '#CDFFFF',
                     units: 'cells',
