@@ -131,8 +131,8 @@ export default function SplashPage() {
     } else if (currentStep === 6) {
       // After move animation completes, redraw fireworks at the new position to align with grid
       setTimeout(() => {
-        // Calculate the new Y position after -60% transform
-        const newCenterY = centerY - (window.innerHeight * 0.6);
+        // Calculate the new Y position after -70% transform
+        const newCenterY = centerY - (window.innerHeight * 0.7);
 
         // Remove transform first
         setRemoveTransform(true);
@@ -226,7 +226,7 @@ export default function SplashPage() {
           width: '100vw',
           height: '100vh',
           transition: removeTransform ? 'none' : 'transform 1s ease-out',
-          transform: removeTransform ? 'translateY(0)' : (isMovingUp ? 'translateY(-60%)' : 'translateY(0)'),
+          transform: removeTransform ? 'translateY(0)' : (isMovingUp ? 'translateY(-70%)' : 'translateY(0)'),
           pointerEvents: 'none',
           zIndex: 2,
         }}
@@ -250,7 +250,7 @@ export default function SplashPage() {
           width: '100vw',
           height: '100vh',
           transition: removeTransform ? 'none' : 'transform 1s ease-out, opacity 2s ease-out',
-          transform: removeTransform ? 'translateY(0)' : (isMovingUp ? 'translateY(-60%)' : 'translateY(0)'),
+          transform: removeTransform ? 'translateY(0)' : (isMovingUp ? 'translateY(-70%)' : 'translateY(0)'),
           opacity: opening3Opacity,
           pointerEvents: 'none',
           zIndex: 3,
@@ -287,6 +287,7 @@ export default function SplashPage() {
                 containerRef={mainRef}
                 label="floating one"
                 onOverDropArea={({ windowX, windowY }) => {
+                  // First firework at drop position (small + large)
                   bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                     color: '#9FFFB9',
                     units: 'cells',
@@ -301,14 +302,22 @@ export default function SplashPage() {
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
                   });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
+
+                  // Second firework at random position
+                  const randomX2 = Math.random() * window.innerWidth;
+                  const randomY2 = Math.random() * window.innerHeight;
+                  bgRef.current?.triggerStampAtWindowPx(randomX2, randomY2, {
                     color: '#D2FFDE',
                     units: 'cells',
                     scaleCells: 1,
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
                   });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+
+                  // Third firework at random position
+                  const randomX3 = Math.random() * window.innerWidth;
+                  const randomY3 = Math.random() * window.innerHeight;
+                  bgRef.current?.triggerStampAtWindowPx(randomX3, randomY3, {
                     color: '#D2FFDE',
                     units: 'cells',
                     scaleCells: 1,
@@ -324,6 +333,7 @@ export default function SplashPage() {
                 dropRef={blinkRef}
                 label="floating two"
                 onOverDropArea={({ windowX, windowY }) => {
+                  // First firework at drop position (small + large)
                   bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                     color: '#FFEF60',
                     units: 'cells',
@@ -338,14 +348,22 @@ export default function SplashPage() {
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
                   });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
+
+                  // Second firework at random position
+                  const randomX2 = Math.random() * window.innerWidth;
+                  const randomY2 = Math.random() * window.innerHeight;
+                  bgRef.current?.triggerStampAtWindowPx(randomX2, randomY2, {
                     color: '#FFFF85',
                     units: 'cells',
                     scaleCells: 1,
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
                   });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+
+                  // Third firework at random position
+                  const randomX3 = Math.random() * window.innerWidth;
+                  const randomY3 = Math.random() * window.innerHeight;
+                  bgRef.current?.triggerStampAtWindowPx(randomX3, randomY3, {
                     color: '#FFFF85',
                     units: 'cells',
                     scaleCells: 1,
@@ -361,6 +379,7 @@ export default function SplashPage() {
                 containerRef={mainRef}
                 label="floating three"
                 onOverDropArea={({ windowX, windowY }) => {
+                  // First firework at drop position (small + large)
                   bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                     color: '#90FBFB',
                     units: 'cells',
@@ -375,14 +394,22 @@ export default function SplashPage() {
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
                   });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY, {
+
+                  // Second firework at random position
+                  const randomX2 = Math.random() * window.innerWidth;
+                  const randomY2 = Math.random() * window.innerHeight;
+                  bgRef.current?.triggerStampAtWindowPx(randomX2, randomY2, {
                     color: '#CDFFFF',
                     units: 'cells',
                     scaleCells: 1,
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
                   });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+
+                  // Third firework at random position
+                  const randomX3 = Math.random() * window.innerWidth;
+                  const randomY3 = Math.random() * window.innerHeight;
+                  bgRef.current?.triggerStampAtWindowPx(randomX3, randomY3, {
                     color: '#CDFFFF',
                     units: 'cells',
                     scaleCells: 1,

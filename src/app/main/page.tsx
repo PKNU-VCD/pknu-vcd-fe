@@ -53,8 +53,8 @@ export default function HomePage() {
 
       const { OPENING_1, OPENING_2, OPENING_3, OPENING_4 } = require('../splash/opening');
       const centerX = window.innerWidth / 2;
-      // Calculate Y position: center moved up by 60% = centerY - (0.6 * centerY)
-      const centerY = window.innerHeight / 2 - (window.innerHeight / 2) * 0.6;
+      // Calculate Y position: center moved up by 70% = centerY - (0.7 * window.innerHeight)
+      const centerY = window.innerHeight / 2 - window.innerHeight * 0.7;
 
       console.log('Restoring firework at', centerX, centerY);
 
@@ -120,7 +120,7 @@ export default function HomePage() {
             containerRef={mainRef}
             label="floating one"
             onOverDropArea={({ windowX, windowY }) => {
-              // 첫 번째 위치
+              // First firework at drop position (small + large)
               bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                 color: '#9FFFB9',
                 units: 'cells',
@@ -135,16 +135,22 @@ export default function HomePage() {
                 thicken: 0.25,
                 customCoords: FIREWORK_SHAPE_LARGE,
               });
-              // 두 번째 위치
-              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
+
+              // Second firework at random position
+              const randomX2 = Math.random() * window.innerWidth;
+              const randomY2 = Math.random() * window.innerHeight;
+              bgRef.current?.triggerStampAtWindowPx(randomX2, randomY2, {
                 color: '#D2FFDE',
                 units: 'cells',
                 scaleCells: 1,
                 thicken: 0.25,
                 customCoords: FIREWORK_SHAPE_LARGE,
               });
-              // 세 번째 위치
-              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+
+              // Third firework at random position
+              const randomX3 = Math.random() * window.innerWidth;
+              const randomY3 = Math.random() * window.innerHeight;
+              bgRef.current?.triggerStampAtWindowPx(randomX3, randomY3, {
                 color: '#D2FFDE',
                 units: 'cells',
                 scaleCells: 1,
@@ -160,7 +166,7 @@ export default function HomePage() {
             dropRef={blinkRef}
             label="floating two"
             onOverDropArea={({ windowX, windowY }) => {
-              // 첫 번째 위치 (원래 위치)
+              // First firework at drop position (small + large)
               bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                 color: '#FFEF60',
                 units: 'cells',
@@ -176,8 +182,10 @@ export default function HomePage() {
                 customCoords: FIREWORK_SHAPE_LARGE,
               });
 
-              // 두 번째 위치 (오른쪽으로 300px)
-              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
+              // Second firework at random position
+              const randomX2 = Math.random() * window.innerWidth;
+              const randomY2 = Math.random() * window.innerHeight;
+              bgRef.current?.triggerStampAtWindowPx(randomX2, randomY2, {
                 color: '#FFFF85',
                 units: 'cells',
                 scaleCells: 1,
@@ -185,8 +193,10 @@ export default function HomePage() {
                 customCoords: FIREWORK_SHAPE_LARGE,
               });
 
-              // 세 번째 위치
-              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+              // Third firework at random position
+              const randomX3 = Math.random() * window.innerWidth;
+              const randomY3 = Math.random() * window.innerHeight;
+              bgRef.current?.triggerStampAtWindowPx(randomX3, randomY3, {
                 color: '#FFFF85',
                 units: 'cells',
                 scaleCells: 1,
@@ -202,7 +212,7 @@ export default function HomePage() {
             containerRef={mainRef}
             label="floating three"
             onOverDropArea={({ windowX, windowY }) => {
-              // 첫 번째 위치 (원래 위치)
+              // First firework at drop position (small + large)
               bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                 color: '#90FBFB',
                 units: 'cells',
@@ -218,8 +228,10 @@ export default function HomePage() {
                 customCoords: FIREWORK_SHAPE_LARGE,
               });
 
-              // 두 번째 위치 (오른쪽으로 300px)
-              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY, {
+              // Second firework at random position
+              const randomX2 = Math.random() * window.innerWidth;
+              const randomY2 = Math.random() * window.innerHeight;
+              bgRef.current?.triggerStampAtWindowPx(randomX2, randomY2, {
                 color: '#CDFFFF',
                 units: 'cells',
                 scaleCells: 1,
@@ -227,8 +239,10 @@ export default function HomePage() {
                 customCoords: FIREWORK_SHAPE_LARGE,
               });
 
-              // 세 번째 위치
-              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
+              // Third firework at random position
+              const randomX3 = Math.random() * window.innerWidth;
+              const randomY3 = Math.random() * window.innerHeight;
+              bgRef.current?.triggerStampAtWindowPx(randomX3, randomY3, {
                 color: '#CDFFFF',
                 units: 'cells',
                 scaleCells: 1,
