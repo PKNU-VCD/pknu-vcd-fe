@@ -17,6 +17,7 @@ type Props = {
 export type DotFireworksHandle = {
   triggerStampAtWindowPx: (x: number, y: number, opts?: StampOptions) => void;
   triggerStampAtElement: (el: HTMLElement, opts?: StampOptions) => void;
+  clearCanvas: () => void;
 };
 
 type DotCoord = { dx: number; dy: number; a?: number };
@@ -199,9 +200,15 @@ const DotFireworksBackground = forwardRef<DotFireworksHandle, Props>(
       [triggerStampAtWindowPx],
     );
 
-    useImperativeHandle(ref, () => ({ triggerStampAtWindowPx, triggerStampAtElement }), [
+    const clearCanvas = useCallback(() => {
+      const s = stateRef.current;
+      s.intensity.fill(0);
+    }, []);
+
+    useImperativeHandle(ref, () => ({ triggerStampAtWindowPx, triggerStampAtElement, clearCanvas }), [
       triggerStampAtWindowPx,
       triggerStampAtElement,
+      clearCanvas,
     ]);
 
     useEffect(() => {

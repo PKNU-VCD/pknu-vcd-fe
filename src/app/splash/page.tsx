@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import DotFireworksBackground, { DotFireworksHandle } from '../main/canvas/canvas';
-import { OPENING_1, OPENING_2, OPENING_3, OPENING_4 } from './opening';
+import { OPENING_1, OPENING_2, OPENING_3, OPENING_4, OPENING_5 } from './opening';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import { BlinkingLogo } from '@/components/blinkingLogo/BlinkingLogo';
@@ -13,7 +13,8 @@ import * as S from '../main/page.styles';
 export default function SplashPage() {
   const bgRef = useRef<DotFireworksHandle>(null);
   const fireworkRef = useRef<DotFireworksHandle>(null);
-  const opening2Ref = useRef<DotFireworksHandle>(null);
+  const opening3Ref = useRef<DotFireworksHandle>(null);
+  const opening5Ref = useRef<DotFireworksHandle>(null);
   const blinkRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -21,8 +22,8 @@ export default function SplashPage() {
   const [isMovingUp, setIsMovingUp] = useState(false);
   const [showMain, setShowMain] = useState(false);
   const [dotRadius, setDotRadius] = useState(8);
-  const [opening2Opacity, setOpening2Opacity] = useState(0.5);
-  const [opening2Color, setOpening2Color] = useState('#00AEEF');
+  const [opening3Opacity, setOpening3Opacity] = useState(0.5);
+  const [opening3Color, setOpening3Color] = useState('#00AEEF');
 
   useEffect(() => {
     const updateDotRadius = () => {
@@ -49,7 +50,24 @@ export default function SplashPage() {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
+    const redrawOpening5 = () => {
+      opening5Ref.current?.triggerStampAtWindowPx(centerX, centerY, {
+        color: '#D2FFDE',
+        units: 'cells',
+        scaleCells: 1,
+        thicken: 0,
+        customCoords: OPENING_5,
+      });
+    };
+
     if (currentStep === 0) {
+      // OPENING_5 immediately - stays fixed in center
+      setTimeout(() => {
+        console.log('Rendering OPENING_5 at', centerX, centerY, 'with', OPENING_5.length, 'dots');
+        redrawOpening5();
+        setCurrentStep(1);
+      }, 0);
+    } else if (currentStep === 1) {
       // OPENING_1 immediately
       setTimeout(() => {
         fireworkRef.current?.triggerStampAtWindowPx(centerX, centerY, {
@@ -59,35 +77,38 @@ export default function SplashPage() {
           thicken: 0,
           customCoords: OPENING_1,
         });
-        setCurrentStep(1);
-      }, 0);
-    } else if (currentStep === 1) {
-      // OPENING_2 after 100ms - on separate layer for opacity control
-      setTimeout(() => {
-        opening2Ref.current?.triggerStampAtWindowPx(centerX, centerY, {
-          color: '#00AEEF',
-          units: 'cells',
-          scaleCells: 1,
-          thicken: 0,
-          customCoords: OPENING_2,
-        });
+        redrawOpening5(); // Redraw to keep visible
         setCurrentStep(2);
-        // Start opacity animation from 0.5 to 1
-        setTimeout(() => setOpening2Opacity(1), 50);
-      }, 100);
+      }, 0);
     } else if (currentStep === 2) {
-      // OPENING_3 after 100ms
+      // OPENING_2 after 100ms
       setTimeout(() => {
         fireworkRef.current?.triggerStampAtWindowPx(centerX, centerY, {
           color: '#00AEEF',
           units: 'cells',
           scaleCells: 1,
           thicken: 0,
-          customCoords: OPENING_3,
+          customCoords: OPENING_2,
         });
+        redrawOpening5(); // Redraw to keep visible
         setCurrentStep(3);
       }, 100);
     } else if (currentStep === 3) {
+      // OPENING_3 after 100ms - on separate layer for opacity control
+      setTimeout(() => {
+        opening3Ref.current?.triggerStampAtWindowPx(centerX, centerY, {
+          color: '#00AEEF',
+          units: 'cells',
+          scaleCells: 1,
+          thicken: 0,
+          customCoords: OPENING_3,
+        });
+        redrawOpening5(); // Redraw to keep visible
+        setCurrentStep(4);
+        // Start opacity animation from 0.5 to 1
+        setTimeout(() => setOpening3Opacity(1), 50);
+      }, 100);
+    } else if (currentStep === 4) {
       // OPENING_4 after 100ms
       setTimeout(() => {
         fireworkRef.current?.triggerStampAtWindowPx(centerX, centerY, {
@@ -97,27 +118,29 @@ export default function SplashPage() {
           thicken: 0,
           customCoords: OPENING_4,
         });
-        setCurrentStep(4);
+        redrawOpening5(); // Redraw to keep visible
+        setCurrentStep(5);
       }, 100);
-    } else if (currentStep === 4) {
+    } else if (currentStep === 5) {
       // Move up after all openings appear
       setTimeout(() => {
         setIsMovingUp(true);
-        setCurrentStep(5);
+        setCurrentStep(6);
       }, 500);
-    } else if (currentStep === 5) {
+    } else if (currentStep === 6) {
       // Show main page with fade-in after move up animation
       setTimeout(() => {
-        // Change OPENING_2 color to D2FFDE
-        setOpening2Color('#D2FFDE');
-        // Redraw OPENING_2 with new color
-        opening2Ref.current?.triggerStampAtWindowPx(centerX, centerY, {
-          color: '#D2FFDE',
-          units: 'cells',
-          scaleCells: 1,
-          thicken: 0,
-          customCoords: OPENING_2,
-        });
+        // Clear OPENING_3 canvas and redraw with new color
+        opening3Ref.current?.clearCanvas();
+        setTimeout(() => {
+          opening3Ref.current?.triggerStampAtWindowPx(centerX, centerY, {
+            color: '#D2FFDE',
+            units: 'cells',
+            scaleCells: 1,
+            thicken: 0,
+            customCoords: OPENING_3,
+          });
+        }, 50);
         setShowMain(true);
       }, 1000);
     }
@@ -135,7 +158,29 @@ export default function SplashPage() {
         stampUnits="cells"
       />
 
-      {/* Animated firework layer - OPENING_1, 3, 4 */}
+      {/* OPENING_5 layer - stays fixed in center, does not move up, below other fireworks */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      >
+        <DotFireworksBackground
+          ref={opening5Ref}
+          dotRadius={dotRadius}
+          spacing={dotRadius * 2}
+          burstEvery={0}
+          decayPerSec={0}
+          baseColor="transparent"
+        />
+      </div>
+
+      {/* Animated firework layer - OPENING_1, 2, 4 */}
       <div
         style={{
           position: 'fixed',
@@ -146,7 +191,7 @@ export default function SplashPage() {
           transition: 'transform 1s ease-out',
           transform: isMovingUp ? 'translateY(-60%)' : 'translateY(0)',
           pointerEvents: 'none',
-          zIndex: 1,
+          zIndex: 2,
         }}
       >
         <DotFireworksBackground
@@ -159,7 +204,7 @@ export default function SplashPage() {
         />
       </div>
 
-      {/* OPENING_2 layer with opacity animation */}
+      {/* OPENING_3 layer with opacity animation */}
       <div
         style={{
           position: 'fixed',
@@ -169,13 +214,13 @@ export default function SplashPage() {
           height: '100vh',
           transition: 'transform 1s ease-out, opacity 2s ease-out',
           transform: isMovingUp ? 'translateY(-60%)' : 'translateY(0)',
-          opacity: opening2Opacity,
+          opacity: opening3Opacity,
           pointerEvents: 'none',
-          zIndex: 1,
+          zIndex: 3,
         }}
       >
         <DotFireworksBackground
-          ref={opening2Ref}
+          ref={opening3Ref}
           dotRadius={dotRadius}
           spacing={dotRadius * 2}
           burstEvery={0}

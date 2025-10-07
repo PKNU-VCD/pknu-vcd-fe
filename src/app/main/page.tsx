@@ -51,7 +51,7 @@ export default function HomePage() {
     if (showSplashFirework && splashFireworkRef.current) {
       sessionStorage.removeItem('splashComplete');
 
-      const { OPENING_1, OPENING_2, OPENING_3, OPENING_4 } = require('../spalsh/opening');
+      const { OPENING_1, OPENING_2, OPENING_3, OPENING_4 } = require('../splash/opening');
       const centerX = window.innerWidth / 2;
       // Calculate Y position: center moved up by 60% = centerY - (0.6 * centerY)
       const centerY = window.innerHeight / 2 - (window.innerHeight / 2) * 0.6;
