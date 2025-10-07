@@ -136,13 +136,6 @@ export default function HomePage() {
                 customCoords: FIREWORK_SHAPE_LARGE,
               });
               // 두 번째 위치
-              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 100, {
-                color: '#9FFFB9',
-                units: 'cells',
-                scaleCells: 1,
-                thicken: 0.25,
-                customCoords: FIREWORK_SHAPE,
-              });
               bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
                 color: '#D2FFDE',
                 units: 'cells',
@@ -151,13 +144,6 @@ export default function HomePage() {
                 customCoords: FIREWORK_SHAPE_LARGE,
               });
               // 세 번째 위치
-              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
-                color: '#9FFFB9',
-                units: 'cells',
-                scaleCells: 1,
-                thicken: 0.25,
-                customCoords: FIREWORK_SHAPE,
-              });
               bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
                 color: '#D2FFDE',
                 units: 'cells',
@@ -192,13 +178,6 @@ export default function HomePage() {
 
               // 두 번째 위치 (오른쪽으로 300px)
               bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
-                color: '#FFEF60',
-                units: 'cells',
-                scaleCells: 1,
-                thicken: 0.25,
-                customCoords: FIREWORK_SHAPE,
-              });
-              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
                 color: '#FFFF85',
                 units: 'cells',
                 scaleCells: 1,
@@ -207,13 +186,6 @@ export default function HomePage() {
               });
 
               // 세 번째 위치
-              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
-                color: '#FFEF60',
-                units: 'cells',
-                scaleCells: 1,
-                thicken: 0.25,
-                customCoords: FIREWORK_SHAPE,
-              });
               bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
                 color: '#FFFF85',
                 units: 'cells',
@@ -248,13 +220,6 @@ export default function HomePage() {
 
               // 두 번째 위치 (오른쪽으로 300px)
               bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY, {
-                color: '#90FBFB',
-                units: 'cells',
-                scaleCells: 1,
-                thicken: 0.25,
-                customCoords: FIREWORK_SHAPE,
-              });
-              bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY, {
                 color: '#CDFFFF',
                 units: 'cells',
                 scaleCells: 1,
@@ -263,13 +228,6 @@ export default function HomePage() {
               });
 
               // 세 번째 위치
-              bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
-                color: '#90FBFB',
-                units: 'cells',
-                scaleCells: 1,
-                thicken: 0.25,
-                customCoords: FIREWORK_SHAPE,
-              });
               bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
                 color: '#CDFFFF',
                 units: 'cells',

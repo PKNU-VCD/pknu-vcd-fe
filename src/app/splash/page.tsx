@@ -24,6 +24,7 @@ export default function SplashPage() {
   const [dotRadius, setDotRadius] = useState(8);
   const [opening3Opacity, setOpening3Opacity] = useState(0.5);
   const [opening3Color, setOpening3Color] = useState('#00AEEF');
+  const [removeTransform, setRemoveTransform] = useState(false);
 
   useEffect(() => {
     const updateDotRadius = () => {
@@ -128,19 +129,55 @@ export default function SplashPage() {
         setCurrentStep(6);
       }, 500);
     } else if (currentStep === 6) {
-      // Show main page with fade-in after move up animation
+      // After move animation completes, redraw fireworks at the new position to align with grid
       setTimeout(() => {
-        // Clear OPENING_3 canvas and redraw with new color
+        // Calculate the new Y position after -60% transform
+        const newCenterY = centerY - (window.innerHeight * 0.6);
+
+        // Remove transform first
+        setRemoveTransform(true);
+
+        // Clear and redraw all fireworks at new aligned position
+        fireworkRef.current?.clearCanvas();
         opening3Ref.current?.clearCanvas();
+
         setTimeout(() => {
-          opening3Ref.current?.triggerStampAtWindowPx(centerX, centerY, {
+          // Redraw OPENING_1, 2, 4 at new position
+          fireworkRef.current?.triggerStampAtWindowPx(centerX, newCenterY, {
+            color: '#00AEEF',
+            units: 'cells',
+            scaleCells: 1,
+            thicken: 0,
+            customCoords: OPENING_1,
+          });
+          fireworkRef.current?.triggerStampAtWindowPx(centerX, newCenterY, {
+            color: '#00AEEF',
+            units: 'cells',
+            scaleCells: 1,
+            thicken: 0,
+            customCoords: OPENING_2,
+          });
+          fireworkRef.current?.triggerStampAtWindowPx(centerX, newCenterY, {
+            color: '#FFFF85',
+            units: 'cells',
+            scaleCells: 1,
+            thicken: 0,
+            customCoords: OPENING_4,
+          });
+
+          // Redraw OPENING_3 with new color at new position
+          opening3Ref.current?.triggerStampAtWindowPx(centerX, newCenterY, {
             color: '#D2FFDE',
             units: 'cells',
             scaleCells: 1,
             thicken: 0,
             customCoords: OPENING_3,
           });
+
+          // Redraw OPENING_5 to keep visible
+          redrawOpening5();
         }, 50);
+
         setShowMain(true);
       }, 1000);
     }
@@ -188,8 +225,8 @@ export default function SplashPage() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          transition: 'transform 1s ease-out',
-          transform: isMovingUp ? 'translateY(-60%)' : 'translateY(0)',
+          transition: removeTransform ? 'none' : 'transform 1s ease-out',
+          transform: removeTransform ? 'translateY(0)' : (isMovingUp ? 'translateY(-60%)' : 'translateY(0)'),
           pointerEvents: 'none',
           zIndex: 2,
         }}
@@ -212,8 +249,8 @@ export default function SplashPage() {
           left: 0,
           width: '100vw',
           height: '100vh',
-          transition: 'transform 1s ease-out, opacity 2s ease-out',
-          transform: isMovingUp ? 'translateY(-60%)' : 'translateY(0)',
+          transition: removeTransform ? 'none' : 'transform 1s ease-out, opacity 2s ease-out',
+          transform: removeTransform ? 'translateY(0)' : (isMovingUp ? 'translateY(-60%)' : 'translateY(0)'),
           opacity: opening3Opacity,
           pointerEvents: 'none',
           zIndex: 3,
@@ -251,25 +288,11 @@ export default function SplashPage() {
                 label="floating one"
                 onOverDropArea={({ windowX, windowY }) => {
                   bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
-                    color: '#9FFFB9',
-                    units: 'cells',
-                    scaleCells: 1,
-                    thicken: 0.25,
-                    customCoords: FIREWORK_SHAPE,
-                  });
-                  bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                     color: '#D2FFDE',
                     units: 'cells',
                     scaleCells: 1,
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
-                  });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 100, {
-                    color: '#9FFFB9',
-                    units: 'cells',
-                    scaleCells: 1,
-                    thicken: 0.25,
-                    customCoords: FIREWORK_SHAPE,
                   });
                   bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
                     color: '#D2FFDE',
@@ -277,13 +300,6 @@ export default function SplashPage() {
                     scaleCells: 1,
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
-                  });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
-                    color: '#9FFFB9',
-                    units: 'cells',
-                    scaleCells: 1,
-                    thicken: 0.25,
-                    customCoords: FIREWORK_SHAPE,
                   });
                   bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
                     color: '#D2FFDE',
@@ -302,13 +318,6 @@ export default function SplashPage() {
                 label="floating two"
                 onOverDropArea={({ windowX, windowY }) => {
                   bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
-                    color: '#FFEF60',
-                    units: 'cells',
-                    scaleCells: 1,
-                    thicken: 0.25,
-                    customCoords: FIREWORK_SHAPE,
-                  });
-                  bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                     color: '#FFFF85',
                     units: 'cells',
                     scaleCells: 1,
@@ -316,25 +325,11 @@ export default function SplashPage() {
                     customCoords: FIREWORK_SHAPE_LARGE,
                   });
                   bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
-                    color: '#FFEF60',
-                    units: 'cells',
-                    scaleCells: 1,
-                    thicken: 0.25,
-                    customCoords: FIREWORK_SHAPE,
-                  });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY + 150, {
                     color: '#FFFF85',
                     units: 'cells',
                     scaleCells: 1,
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
-                  });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
-                    color: '#FFEF60',
-                    units: 'cells',
-                    scaleCells: 1,
-                    thicken: 0.25,
-                    customCoords: FIREWORK_SHAPE,
                   });
                   bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
                     color: '#FFFF85',
@@ -353,13 +348,6 @@ export default function SplashPage() {
                 label="floating three"
                 onOverDropArea={({ windowX, windowY }) => {
                   bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
-                    color: '#90FBFB',
-                    units: 'cells',
-                    scaleCells: 1,
-                    thicken: 0.25,
-                    customCoords: FIREWORK_SHAPE,
-                  });
-                  bgRef.current?.triggerStampAtWindowPx(windowX, windowY, {
                     color: '#CDFFFF',
                     units: 'cells',
                     scaleCells: 1,
@@ -367,25 +355,11 @@ export default function SplashPage() {
                     customCoords: FIREWORK_SHAPE_LARGE,
                   });
                   bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY, {
-                    color: '#90FBFB',
-                    units: 'cells',
-                    scaleCells: 1,
-                    thicken: 0.25,
-                    customCoords: FIREWORK_SHAPE,
-                  });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 500, windowY, {
                     color: '#CDFFFF',
                     units: 'cells',
                     scaleCells: 1,
                     thicken: 0.25,
                     customCoords: FIREWORK_SHAPE_LARGE,
-                  });
-                  bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
-                    color: '#90FBFB',
-                    units: 'cells',
-                    scaleCells: 1,
-                    thicken: 0.25,
-                    customCoords: FIREWORK_SHAPE,
                   });
                   bgRef.current?.triggerStampAtWindowPx(windowX + 800, windowY - 100, {
                     color: '#CDFFFF',
