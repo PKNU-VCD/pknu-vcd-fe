@@ -16,6 +16,10 @@ export const CommonContainer = styled.div`
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
     padding: 0 28px;
   }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    padding: 0 28px;
+  }
 `;
 
 export const Wrapper = styled.div`
