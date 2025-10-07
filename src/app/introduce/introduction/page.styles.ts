@@ -231,6 +231,11 @@ export const FadedTextContainer = styled.div`
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
 
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
     align-items: flex-start;
     flex-direction: column;
