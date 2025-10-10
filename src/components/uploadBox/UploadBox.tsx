@@ -22,6 +22,7 @@ export const UploadBox = ({
   };
 
   const inputId = isThumbnail ? 'thumbnail-input' : 'additional-images-input';
+  const acceptAttribute = isThumbnail ? 'image/*' : 'image/*,video/mp4';
 
   return (
     <S.Wrapper htmlFor={inputId} $isThumbnail={isThumbnail} $hasUploadedImage={!!(uploadedImage && isThumbnail)}>
@@ -38,7 +39,7 @@ export const UploadBox = ({
         type="file"
         multiple={!isThumbnail}
         hidden
-        accept="image/*"
+        accept={acceptAttribute}
         onChange={handleFileChange}
       />
     </S.Wrapper>
