@@ -23,6 +23,11 @@ const INTRODUCTION_ENGLISH_TEXT = `The phrase “_합니다.” remains an unfin
 This exhibition is conceived to capture a moment in which our potential and dreams are visually condensed. At the center of the poster, multicolored trajectories radiating outward symbolize the accumulation of time, thought, and creative energy built through our design journey—an explosion of possibilities yet to come. The irregular and diverse lines reveal our unique paths and identities, while at the same time pointing toward the limitless directions of our expanding potential.\n
 This exhibition presents an unfolding scene of possibilities in motion—where colors and lines, each starting from an individual origin, converge into one powerful visual eruption.`;
 
+const INTRODUCTION_KOREAN_TEXT = `“_합니다.”는 아직 완성되지 않은 문장입니다.
+그 빈칸에는 ‘졸업합니다’, ‘도전합니다’, ‘디자인합니다’처럼 우리 각자의 시작과 방향성이 자유롭게 들어갈 수 있습니다. 우리는 디자이너로서, 지금도 그 문장을 써 내려가고 있는 중입니다.
+이번 전시는 우리의 가능성과 꿈이 시각적으로 응축된 순간을 담고자 기획되었습니다.\n
+포스터 중앙에서 사방으로 뻗어나가는 형형색색의 궤적은 디자인을 배우며 축적해온 시간과 고민, 그리고 앞으로의 잠재력이 하나의 에너지로 폭발하는 장면을 상징합니다. 불규칙하고 다채로운 선들은 각기 다른 우리가 가진 고유한 여정과 개성을 드러내며, 동시에 무한히 확장될 가능성의 방향을 제시합니다. \n
+이 전시는 진행형의 가능성들이 시각적으로 피어나는 장면이며, 각자의 위치에서 출발한 색과 선들이 모여 하나의 강렬한 시각적 폭발을 만들어냅니다.`;
 const FadedTextColors = [
   '#222',
   'rgba(34, 34, 34, 0.70)',
@@ -101,26 +106,7 @@ export default function Introduce() {
                   The 37th PKNU Visual Communication Design Major Graduation Exhibition
                 </S.ContentTitle>
               )}
-              <S.ContentDescription>
-                “_합니다.”는 아직 완성되지 않은 문장입니다.
-                <br />
-                그 빈칸에는 ‘졸업합니다’, ‘도전합니다’, ‘디자인합니다’처럼 우리 각자의 시작과
-                방향성이 자유롭게 들어갈 수 있습니다.
-                <br />
-                우리는 디자이너로서, 지금도 그 문장을 써 내려가고 있는 중입니다.
-                <br />
-                이번 전시는 우리의 가능성과 꿈이 시각적으로 응축된 순간을 담고자 기획되었습니다.
-                <br />
-                <br />
-                포스터 중앙에서 사방으로 뻗어나가는 형형색색의 궤적은 디자인을 배우며 축적해온
-                시간과 고민, <br />
-                그리고 앞으로의 잠재력이 하나의 에너지로 폭발하는 장면을 상징합니다. <br />
-                불규칙하고 다채로운 선들은 각기 다른 우리가 가진 고유한 여정과 개성을 드러내며,
-                동시에 무한히 확장될 가능성의 방향을 제시합니다.
-                <br />
-                <br />이 전시는 진행형의 가능성들이 시각적으로 피어나는 장면이며, 각자의 위치에서
-                출발한 색과 선들이 모여 하나의 강렬한 시각적 폭발을 만들어냅니다.
-              </S.ContentDescription>
+              <S.ContentDescription>{INTRODUCTION_KOREAN_TEXT}</S.ContentDescription>
               <TranslationPanel text={INTRODUCTION_ENGLISH_TEXT} />
             </S.ContentContainer>
           </S.IntroductionSubContainer>

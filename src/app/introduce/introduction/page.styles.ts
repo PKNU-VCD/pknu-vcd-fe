@@ -118,6 +118,7 @@ export const ContentDescription = styled.p`
   font-weight: ${theme.typography.regular.fontWeight};
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
+  white-space: pre-line;
 `;
 
 export const IntroImageContainer = styled.div`
