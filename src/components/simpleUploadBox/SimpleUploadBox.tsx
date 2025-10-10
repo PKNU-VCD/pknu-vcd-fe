@@ -44,6 +44,9 @@ export const SimpleUploadBox = ({
 
   const inputId = `simple-upload-${index}`;
 
+  const isVideo = uploadedImage &&
+    (uploadedImage.endsWith('.mp4') || uploadedImage.includes('video/mp4'));
+
   return (
     <S.Wrapper
       draggable={!!uploadedImage}
@@ -55,13 +58,17 @@ export const SimpleUploadBox = ({
       <S.FileInput
         id={inputId}
         type="file"
-        accept="image/*"
+        accept="image/*,video/mp4"
         onChange={handleFileChange}
         hidden
       />
       <S.Label htmlFor={inputId}>
         {uploadedImage ? (
-          <S.UploadedImage src={uploadedImage} alt={`Uploaded image ${index + 1}`} />
+          isVideo ? (
+            <S.UploadedVideo src={uploadedImage} muted loop autoPlay />
+          ) : (
+            <S.UploadedImage src={uploadedImage} alt={`Uploaded image ${index + 1}`} />
+          )
         ) : (
           <FileUploadIcon />
         )}

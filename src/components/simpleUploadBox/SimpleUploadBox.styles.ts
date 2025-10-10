@@ -35,6 +35,12 @@ export const UploadedImage = styled.img`
   object-fit: cover;
 `;
 
+export const UploadedVideo = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const PlusIcon = styled.div`
   font-size: 32px;
   font-weight: 300;
