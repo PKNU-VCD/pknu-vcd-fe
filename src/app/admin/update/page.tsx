@@ -45,7 +45,7 @@ function UpdatePageContent() {
         <S.ResponsiveRowContainer>
           <S.SectionContainer>
             <S.RowTitleContainer>
-              <S.TextContainer variant="title">프로젝트 국문명</S.TextContainer>
+              <S.TextContainer variant="title">프로젝트 국문 명</S.TextContainer>
               <S.TextContainer variant="option">* 필수 입력</S.TextContainer>
             </S.RowTitleContainer>
             <InputField
@@ -55,7 +55,7 @@ function UpdatePageContent() {
             />
           </S.SectionContainer>
           <S.SectionContainer>
-            <S.TextContainer variant="title">프로젝트 영문명</S.TextContainer>
+            <S.TextContainer variant="title">프로젝트 영문 명</S.TextContainer>
             <InputField
               placeholder="프로젝트 이름을 입력하세요."
               value={values.projectEn}
@@ -66,13 +66,24 @@ function UpdatePageContent() {
         <S.ResponsiveRowContainer>
           <S.SectionContainer>
             <S.RowTitleContainer>
-              <S.TextContainer variant="title">디자이너 국문명</S.TextContainer>
+              <S.TextContainer variant="title">디자이너 국문 명</S.TextContainer>
               <S.TextContainer variant="option">* 필수 입력</S.TextContainer>
             </S.RowTitleContainer>
             <InputField
               placeholder="디자이너 이름을 입력하세요."
               value={values.designerKr}
               onChange={setters.setDesignerKr}
+            />
+          </S.SectionContainer>
+          <S.SectionContainer>
+            <S.RowTitleContainer>
+              <S.TextContainer variant="title">디자이너 영문 명</S.TextContainer>
+              <S.TextContainer variant="option">* 필수 입력</S.TextContainer>
+            </S.RowTitleContainer>
+            <InputField
+              placeholder="디자이너 이름을 입력하세요."
+              value={values.designerEn}
+              onChange={setters.setDesignerEn}
             />
           </S.SectionContainer>
           <S.SectionContainer>
@@ -87,17 +98,6 @@ function UpdatePageContent() {
             />
           </S.SectionContainer>
         </S.ResponsiveRowContainer>
-        <S.SectionContainer>
-          <S.RowTitleContainer>
-            <S.TextContainer variant="title">디자이너 영문명</S.TextContainer>
-            <S.TextContainer variant="option">* 필수 입력</S.TextContainer>
-          </S.RowTitleContainer>
-          <InputField
-            placeholder="디자이너 이름을 입력하세요."
-            value={values.designerEn}
-            onChange={setters.setDesignerEn}
-          />
-        </S.SectionContainer>
         <S.SectionContainer>
           <S.TextContainer variant="title">디자인 프로젝트 이미지</S.TextContainer>
           <S.TextContainer variant="description">썸네일 이미지</S.TextContainer>
@@ -126,13 +126,16 @@ function UpdatePageContent() {
               ))}
             </S.ImageGridContainer>
             <S.AdditionalUploadContainer>
-              <UploadBox description="(최대 10장)" onFileUpload={media.handleAdditionalImagesUpload} />
+              <UploadBox
+                description="(최대 10장)"
+                onFileUpload={media.handleAdditionalImagesUpload}
+              />
             </S.AdditionalUploadContainer>
           </S.ImageSectionContainer>
         </S.SectionContainer>
         <S.SectionContainer>
           <S.RowTitleContainer>
-            <S.TextContainer variant="title">프로젝트 국문설명</S.TextContainer>
+            <S.TextContainer variant="title">프로젝트 국문 설명</S.TextContainer>
             <S.TextContainer variant="option">* 필수 입력</S.TextContainer>
           </S.RowTitleContainer>
           <InputField
@@ -143,7 +146,7 @@ function UpdatePageContent() {
           />
         </S.SectionContainer>
         <S.SectionContainer>
-          <S.TextContainer variant="title">프로젝트 영문설명</S.TextContainer>
+          <S.TextContainer variant="title">프로젝트 영문 설명</S.TextContainer>
           <InputField
             placeholder="프로젝트 설명을 입력하세요."
             multiline
