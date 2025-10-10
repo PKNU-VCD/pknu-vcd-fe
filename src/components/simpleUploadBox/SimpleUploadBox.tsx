@@ -65,7 +65,7 @@ export const SimpleUploadBox = ({
       <S.Label htmlFor={inputId}>
         {uploadedImage ? (
           isVideo ? (
-            <S.UploadedImage as="video" src={uploadedImage} muted loop autoPlay />
+            <S.UploadedVideo src={uploadedImage} muted loop autoPlay />
           ) : (
             <S.UploadedImage src={uploadedImage} alt={`Uploaded image ${index + 1}`} />
           )
