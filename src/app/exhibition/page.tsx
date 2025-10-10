@@ -49,7 +49,7 @@ export default function Exhibition() {
         <S.ExhibitionSubWrapper>
           <S.ExhibitionSubContainer>
             <S.ColumnOne>
-              <ExhibitionAside />
+              {!isMobile && <ExhibitionAside />}
               <S.ColumnTwo>
                 <S.ExhibitionLogoText>
                   제 37회 2025 국립부경대학교 <br />
