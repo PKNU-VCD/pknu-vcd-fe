@@ -36,6 +36,59 @@ const FadedTextColors = [
   'rgba(34, 34, 34, 0.10)',
 ];
 
+const PROFESSORS = [
+  '홍동식 Hong Dongsik',
+  '장청건 Jang Cheonggeon',
+  '김성필 Kim Sungpil',
+  '남윤태 Nam Yuntae',
+];
+
+const DESIGNERS = [
+  '강연우 Kang Yeonu',
+  '권이진 Gwon Leejin',
+  '김상희 Kim Sanghee',
+  '김종훈 Kim Jonghoon',
+  '김지혜 Kim Jihye',
+  '김효진 Kim Hyojin',
+  '리우 추웨이 Liu Chuwei',
+  '마다은 Ma Daeun',
+  '배서진 Bae Seojin',
+  '손다연 Son Dayeon',
+  '손수련 Son Suryeon',
+  '손정민 Son Jeongmin',
+  '송환영 Song Hwanyeong',
+  '신서현 Shin Seohyeon',
+  '안명철 An Myeongcheol',
+  '우경채 Woo Kyoungchae',
+  '우주형 Woo Juhyung',
+  '유하늘 Yu Haneul',
+  '이규원 Lee Gyuwon',
+  '이예림 Lee Yelim',
+  '이예은 Lee Yeeun',
+  '이유주 Lee Yuju',
+  '이유진 Lee Youjin',
+  '이채은 Lee Chaeeun',
+  '임나경 Im Nakyung',
+  '임이소 Rim Yiso',
+  '임채빈 Im Chaebean',
+  '장유나 Jang Youna',
+  '정다은 Jeong Daeun',
+  '조유진 Jo Yujin',
+  '최경진 Choi Gyeongjin',
+  '허다연 Huh Dayeon',
+  '허원주 Heo Wonju',
+];
+
+const GRADUATION_COMMITTEE = [
+  '김지혜 Kim Jihye (위원장)',
+  '강연우 Kang Yeonu (기획)',
+  '정다은 Jeong Daeun (총무)',
+  '배서진 Bae Seojin (편집)',
+  '허다연 Huh Dayeon (웹)',
+  '이채은 Lee Chaeeun (실무)',
+  '김효진 Kim Hyojin (홍보)',
+];
+
 export default function Introduce() {
   const isTablet = useMediaQuery(`(max-width: ${theme.breakpoints.tablet})`);
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
@@ -126,30 +179,45 @@ export default function Introduce() {
           <S.ParticipantsList>
             <S.ParticipantItem>
               <S.ParticipantType>지도교수 Professors</S.ParticipantType>
-              <S.ParticipantContent>홍동식 Hong dong sik</S.ParticipantContent>
+              {PROFESSORS.map((professor, index) => (
+                <S.ParticipantContent key={index}>{professor}</S.ParticipantContent>
+              ))}
             </S.ParticipantItem>
             <S.ParticipantItem>
               <S.ParticipantType>디자이너 Designer</S.ParticipantType>
               <S.FadedTextContainer>
-                {FadedTextColors.map((color, index) => (
-                  <S.FadedText key={index} color={color}>
-                    홍동식 Hong dong sik
-                  </S.FadedText>
-                ))}
+                <S.ScrollingWrapper>
+                  {DESIGNERS.map((designer, index) => (
+                    <S.FadedText key={index}>{designer}</S.FadedText>
+                  ))}
+                  {DESIGNERS.map((designer, index) => (
+                    <S.FadedText key={`duplicate-${index}`}>{designer}</S.FadedText>
+                  ))}
+                </S.ScrollingWrapper>
               </S.FadedTextContainer>
             </S.ParticipantItem>
             <S.ParticipantItem>
               <S.ParticipantType>졸업준비위원회 Graduation Committee</S.ParticipantType>
-              {isMobile && (
-                <S.FadedTextContainer>
-                  {FadedTextColors.map((color, index) => (
-                    <S.FadedText key={index} color={color}>
-                      홍동식 Hong dong sik
-                    </S.FadedText>
+              <S.FadedTextContainer>
+                <S.ScrollingWrapper>
+                  {/* 속도 맞추기 위함 */}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={index}>{person}</S.FadedText>
                   ))}
-                </S.FadedTextContainer>
-              )}
-              {!isMobile && <S.ParticipantContent>홍동식 Hong dong sik</S.ParticipantContent>}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={`duplicate-1-${index}`}>{person}</S.FadedText>
+                  ))}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={`duplicate-2-${index}`}>{person}</S.FadedText>
+                  ))}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={`duplicate-3-${index}`}>{person}</S.FadedText>
+                  ))}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={`duplicate-4-${index}`}>{person}</S.FadedText>
+                  ))}
+                </S.ScrollingWrapper>
+              </S.FadedTextContainer>
             </S.ParticipantItem>
           </S.ParticipantsList>
         </S.ParticipantsContainer>
