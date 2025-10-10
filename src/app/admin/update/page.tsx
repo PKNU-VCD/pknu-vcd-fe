@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/apis/useAuth';
 import { Button } from '@/components/Button/Button';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
@@ -8,18 +9,28 @@ import { SimpleUploadBox } from '@/components/simpleUploadBox/SimpleUploadBox';
 import { UploadBox } from '@/components/uploadBox/UploadBox';
 import { CATEGORIES } from '@/constants/categories';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
+import { useNavigator } from '@/hooks/useNavigator';
 import { useProjectForm } from '@/hooks/useProjectForm';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import * as S from './page.styles';
 
 function UpdatePageContent() {
   const searchParams = useSearchParams();
   const projectId = searchParams.get('id');
+  const { me, isInitialized } = useAuth();
+  const { navigateTo } = useNavigator();
 
   const { status, values, setters, media, actions } = useProjectForm(projectId);
 
   const { draggedIndex, handleDragStart, handleDragOver, handleDragEnd } = useDragAndDrop();
+
+  useEffect(() => {
+    if (isInitialized && !me) {
+      alert('로그인이 필요합니다.');
+      navigateTo('/admin');
+    }
+  }, [isInitialized, me, navigateTo]);
 
   const handleCategorySelect = (selectedCategory: string) => {
     setters.setCategory(prevCategories => {
