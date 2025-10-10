@@ -19,13 +19,9 @@ import { theme } from '@/styles/theme';
 import Image from 'next/image';
 import * as S from './page.styles';
 
-const INTRODUCTION_ENGLISH_TEXT = `\"_합니다.\" is an unfinished sentence
-It holds space for words like "graduate," "challenge," or "design" — a place where each of us can freely write our own beginning and direction.
-As designers, we are still in the process of completing that sentence, one step at a time.
-This exhibition was created to capture a moment where our dreams and potential come together in a single, visual expression.
-The vibrant trajectories radiating from the center of the poster symbolize the time, thoughts, and energy we've accumulated through learning design — now bursting outward as a powerful force of possibility.
-The irregular, colorful lines represent our unique journeys and identities. At the same time, they point to infinite directions in which our creativity can grow and expand.
-This exhibition is a visual unfolding of potential in motion — a vivid explosion born from the convergence of colors and lines that each began from a different place, yet came together in one striking moment.`;
+const INTRODUCTION_ENGLISH_TEXT = `The phrase “_합니다.” remains an unfinished sentence. In the blank, words like “graduate,” “challenge,” or “design” can freely take shape—each representing our own beginning and direction. As designers, we are still in the process of writing that sentence.\n
+This exhibition is conceived to capture a moment in which our potential and dreams are visually condensed. At the center of the poster, multicolored trajectories radiating outward symbolize the accumulation of time, thought, and creative energy built through our design journey—an explosion of possibilities yet to come. The irregular and diverse lines reveal our unique paths and identities, while at the same time pointing toward the limitless directions of our expanding potential.\n
+This exhibition presents an unfolding scene of possibilities in motion—where colors and lines, each starting from an individual origin, converge into one powerful visual eruption.`;
 
 const FadedTextColors = [
   '#222',
