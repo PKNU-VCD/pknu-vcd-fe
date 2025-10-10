@@ -3,6 +3,7 @@
 import DeleteIcon from '@/assets/icons/DeleteIcon.svg';
 import { useNavigator } from '@/hooks/useNavigator';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 import { Button } from '../Button/Button';
 import * as S from './Sidebar.styles';
 
@@ -15,6 +16,18 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   const { navigateTo } = useNavigator();
   const pathname = usePathname();
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const handleButtonClick = (path: string) => {
     navigateTo(path);
     onClose();
@@ -24,7 +37,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
 
   return (
     <S.SidebarOverlay onClick={onClose}>
-      <S.SidebarContainer onClick={(e) => e.stopPropagation()}>
+      <S.SidebarContainer onClick={e => e.stopPropagation()}>
         <S.CloseButton onClick={onClose}>
           <DeleteIcon />
         </S.CloseButton>
@@ -61,9 +74,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
           >
             기록합니다.
           </Button>
-          <S.AdminButton onClick={() => handleButtonClick('/admin')}>
-            관리자
-          </S.AdminButton>
+          <S.AdminButton onClick={() => handleButtonClick('/admin')}>관리자</S.AdminButton>
         </S.SidebarMenu>
       </S.SidebarContainer>
     </S.SidebarOverlay>

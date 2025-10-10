@@ -1,6 +1,16 @@
 import { theme } from '@/styles/theme';
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { CommonWrapper, LogoContainer, LogoText } from '../common.styles';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const CelebrationWrapper = styled(CommonWrapper)`
   margin-top: 120px;
@@ -35,6 +45,8 @@ export const CelebrationInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 100px;
+  cursor: pointer;
+  animation: ${fadeIn} 1s ease-out;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
     margin-top: 80px;
@@ -85,4 +97,5 @@ export const Content = styled.p`
   font-weight: ${theme.typography.regular.fontWeight};
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
+  white-space: pre-line;
 `;

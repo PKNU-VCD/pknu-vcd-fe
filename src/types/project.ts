@@ -15,7 +15,7 @@ export interface FileWithOrder {
 }
 
 export interface ProjectBase {
-  category: string;
+  category: string[];
   projectKr: string;
   projectEn: string;
   designerKr: string;

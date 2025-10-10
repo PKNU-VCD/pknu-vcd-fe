@@ -1,6 +1,25 @@
 import { theme } from '@/styles/theme';
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { CommonWrapper, LogoContainer, LogoText, Wrapper } from '../common.styles';
+
+const scroll = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+`;
+
+const scrollVertical = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+`;
 
 export const IntroductionWrapper = styled(CommonWrapper)`
   margin-top: 120px;
@@ -118,6 +137,7 @@ export const ContentDescription = styled.p`
   font-weight: ${theme.typography.regular.fontWeight};
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
+  white-space: pre-line;
 `;
 
 export const IntroImageContainer = styled.div`
@@ -144,6 +164,9 @@ export const ParticipantsContainer = styled(Wrapper)`
   flex-direction: row;
   align-items: flex-start;
   gap: 100px;
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
     flex-direction: column;
@@ -158,10 +181,10 @@ export const ParticipantsContainer = styled(Wrapper)`
 `;
 
 export const TextContainer = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  flex-shrink: 0;
 `;
 
 export const KoreanText = styled.p`
@@ -192,6 +215,8 @@ export const ParticipantsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 80px;
+  flex: 1;
+  min-width: 0;
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
     gap: 60px;
@@ -203,6 +228,7 @@ export const ParticipantItem = styled.div`
   flex-direction: column;
   gap: 30px;
   color: ${theme.colors.stroke};
+  min-width: 0;
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
     gap: 40px;
@@ -224,29 +250,37 @@ export const ParticipantContent = styled.p`
 `;
 
 export const FadedTextContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 50px;
-  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 
   font-size: ${theme.typography.regular.fontSize};
   font-weight: ${theme.typography.regular.fontWeight};
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
 
-  @media (max-width: ${theme.breakpoints.tablet}) {
-    flex-wrap: wrap;
-    white-space: normal;
-  }
-
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 30px;
+    height: 180px;
   }
 `;
 
-export const FadedText = styled.span<{ color: string }>`
-  color: ${({ color }) => color};
+export const ScrollingWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  white-space: nowrap;
+  animation: ${scroll} 80s linear infinite;
+  position: relative;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    animation: ${scrollVertical} 80s linear infinite;
+  }
+`;
+
+export const FadedText = styled.span`
+  color: ${theme.colors.black};
 `;

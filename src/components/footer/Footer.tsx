@@ -1,5 +1,3 @@
-import ColorInstaIcon from '@/assets/icons/ColorInstaIcon.svg';
-import ColorYoutubeIcon from '@/assets/icons/ColorYoutubeIcon.svg';
 import FootLogo from '@/assets/icons/FootLogo.svg';
 import InstaIcon from '@/assets/icons/InstaIcon.svg';
 import YoutubeIcon from '@/assets/icons/YoutubeIcon.svg';
@@ -31,7 +29,7 @@ export default function Footer({ footerType = 'main', backgroundColor = 'default
         </S.FooterMainSection>
         <S.FooterSocialLinks>
           <a href={InstagramUrl} target="_blank" rel="noopener noreferrer" aria-label="instagram">
-            {footerType === 'main' ? <ColorInstaIcon /> : <InstaIcon />}
+            <InstaIcon />
           </a>
           <a
             href="https://www.youtube.com/@pkvcd1234"
@@ -39,7 +37,7 @@ export default function Footer({ footerType = 'main', backgroundColor = 'default
             rel="noopener noreferrer"
             aria-label="youtube"
           >
-            {footerType === 'main' ? <ColorYoutubeIcon /> : <YoutubeIcon />}
+            <YoutubeIcon />
           </a>
         </S.FooterSocialLinks>
       </S.FooterContainer>

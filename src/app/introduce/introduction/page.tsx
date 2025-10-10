@@ -19,20 +19,74 @@ import { theme } from '@/styles/theme';
 import Image from 'next/image';
 import * as S from './page.styles';
 
-const INTRODUCTION_ENGLISH_TEXT = `\"_합니다.\" is an unfinished sentence
-It holds space for words like "graduate," "challenge," or "design" — a place where each of us can freely write our own beginning and direction.
-As designers, we are still in the process of completing that sentence, one step at a time.
-This exhibition was created to capture a moment where our dreams and potential come together in a single, visual expression.
-The vibrant trajectories radiating from the center of the poster symbolize the time, thoughts, and energy we've accumulated through learning design — now bursting outward as a powerful force of possibility.
-The irregular, colorful lines represent our unique journeys and identities. At the same time, they point to infinite directions in which our creativity can grow and expand.
-This exhibition is a visual unfolding of potential in motion — a vivid explosion born from the convergence of colors and lines that each began from a different place, yet came together in one striking moment.`;
+const INTRODUCTION_ENGLISH_TEXT = `The phrase “_합니다.” remains an unfinished sentence. In the blank, words like “graduate,” “challenge,” or “design” can freely take shape—each representing our own beginning and direction. As designers, we are still in the process of writing that sentence.\n
+This exhibition is conceived to capture a moment in which our potential and dreams are visually condensed. At the center of the poster, multicolored trajectories radiating outward symbolize the accumulation of time, thought, and creative energy built through our design journey—an explosion of possibilities yet to come. The irregular and diverse lines reveal our unique paths and identities, while at the same time pointing toward the limitless directions of our expanding potential.\n
+This exhibition presents an unfolding scene of possibilities in motion—where colors and lines, each starting from an individual origin, converge into one powerful visual eruption.`;
 
+const INTRODUCTION_KOREAN_TEXT = `“_합니다.”는 아직 완성되지 않은 문장입니다.
+그 빈칸에는 ‘졸업합니다’, ‘도전합니다’, ‘디자인합니다’처럼 우리 각자의 시작과 방향성이 자유롭게 들어갈 수 있습니다. 우리는 디자이너로서, 지금도 그 문장을 써 내려가고 있는 중입니다.
+이번 전시는 우리의 가능성과 꿈이 시각적으로 응축된 순간을 담고자 기획되었습니다.\n
+포스터 중앙에서 사방으로 뻗어나가는 형형색색의 궤적은 디자인을 배우며 축적해온 시간과 고민, 그리고 앞으로의 잠재력이 하나의 에너지로 폭발하는 장면을 상징합니다. 불규칙하고 다채로운 선들은 각기 다른 우리가 가진 고유한 여정과 개성을 드러내며, 동시에 무한히 확장될 가능성의 방향을 제시합니다. \n
+이 전시는 진행형의 가능성들이 시각적으로 피어나는 장면이며, 각자의 위치에서 출발한 색과 선들이 모여 하나의 강렬한 시각적 폭발을 만들어냅니다.`;
 const FadedTextColors = [
   '#222',
   'rgba(34, 34, 34, 0.70)',
   'rgba(34, 34, 34, 0.50)',
   'rgba(34, 34, 34, 0.20)',
   'rgba(34, 34, 34, 0.10)',
+];
+
+const PROFESSORS = [
+  '홍동식 Hong Dongsik',
+  '장청건 Jang Cheonggeon',
+  '김성필 Kim Sungpil',
+  '남윤태 Nam Yuntae',
+];
+
+const DESIGNERS = [
+  '강연우 Kang Yeonu',
+  '권이진 Gwon Leejin',
+  '김상희 Kim Sanghee',
+  '김종훈 Kim Jonghoon',
+  '김지혜 Kim Jihye',
+  '김효진 Kim Hyojin',
+  '리우 추웨이 Liu Chuwei',
+  '마다은 Ma Daeun',
+  '배서진 Bae Seojin',
+  '손다연 Son Dayeon',
+  '손수련 Son Suryeon',
+  '손정민 Son Jeongmin',
+  '송환영 Song Hwanyeong',
+  '신서현 Shin Seohyeon',
+  '안명철 An Myeongcheol',
+  '우경채 Woo Kyoungchae',
+  '우주형 Woo Juhyung',
+  '유하늘 Yu Haneul',
+  '이규원 Lee Gyuwon',
+  '이예림 Lee Yelim',
+  '이예은 Lee Yeeun',
+  '이유주 Lee Yuju',
+  '이유진 Lee Youjin',
+  '이채은 Lee Chaeeun',
+  '임나경 Im Nakyung',
+  '임이소 Rim Yiso',
+  '임채빈 Im Chaebean',
+  '장유나 Jang Youna',
+  '정다은 Jeong Daeun',
+  '조유진 Jo Yujin',
+  '최경진 Choi Gyeongjin',
+  '허다연 Huh Dayeon',
+  '허원주 Heo Wonju',
+];
+
+const GRADUATION_COMMITTEE = [
+  '김지혜 Kim Jihye (위원장)',
+  '강연우 Kang Yeonu (기획)',
+  '정다은 Jeong Daeun (총무)',
+  '배서진 Bae Seojin (편집)',
+  '허다연 Huh Dayeon (웹)',
+  '이채은 Lee Chaeeun (실무)',
+  '김효진 Kim Hyojin (홍보)',
 ];
 
 export default function Introduce() {
@@ -105,26 +159,7 @@ export default function Introduce() {
                   The 37th PKNU Visual Communication Design Major Graduation Exhibition
                 </S.ContentTitle>
               )}
-              <S.ContentDescription>
-                “_합니다.”는 아직 완성되지 않은 문장입니다.
-                <br />
-                그 빈칸에는 ‘졸업합니다’, ‘도전합니다’, ‘디자인합니다’처럼 우리 각자의 시작과
-                방향성이 자유롭게 들어갈 수 있습니다.
-                <br />
-                우리는 디자이너로서, 지금도 그 문장을 써 내려가고 있는 중입니다.
-                <br />
-                이번 전시는 우리의 가능성과 꿈이 시각적으로 응축된 순간을 담고자 기획되었습니다.
-                <br />
-                <br />
-                포스터 중앙에서 사방으로 뻗어나가는 형형색색의 궤적은 디자인을 배우며 축적해온
-                시간과 고민, <br />
-                그리고 앞으로의 잠재력이 하나의 에너지로 폭발하는 장면을 상징합니다. <br />
-                불규칙하고 다채로운 선들은 각기 다른 우리가 가진 고유한 여정과 개성을 드러내며,
-                동시에 무한히 확장될 가능성의 방향을 제시합니다.
-                <br />
-                <br />이 전시는 진행형의 가능성들이 시각적으로 피어나는 장면이며, 각자의 위치에서
-                출발한 색과 선들이 모여 하나의 강렬한 시각적 폭발을 만들어냅니다.
-              </S.ContentDescription>
+              <S.ContentDescription>{INTRODUCTION_KOREAN_TEXT}</S.ContentDescription>
               <TranslationPanel text={INTRODUCTION_ENGLISH_TEXT} />
             </S.ContentContainer>
           </S.IntroductionSubContainer>
@@ -144,30 +179,45 @@ export default function Introduce() {
           <S.ParticipantsList>
             <S.ParticipantItem>
               <S.ParticipantType>지도교수 Professors</S.ParticipantType>
-              <S.ParticipantContent>홍동식 Hong dong sik</S.ParticipantContent>
+              {PROFESSORS.map((professor, index) => (
+                <S.ParticipantContent key={index}>{professor}</S.ParticipantContent>
+              ))}
             </S.ParticipantItem>
             <S.ParticipantItem>
               <S.ParticipantType>디자이너 Designer</S.ParticipantType>
               <S.FadedTextContainer>
-                {FadedTextColors.map((color, index) => (
-                  <S.FadedText key={index} color={color}>
-                    홍동식 Hong dong sik
-                  </S.FadedText>
-                ))}
+                <S.ScrollingWrapper>
+                  {DESIGNERS.map((designer, index) => (
+                    <S.FadedText key={index}>{designer}</S.FadedText>
+                  ))}
+                  {DESIGNERS.map((designer, index) => (
+                    <S.FadedText key={`duplicate-${index}`}>{designer}</S.FadedText>
+                  ))}
+                </S.ScrollingWrapper>
               </S.FadedTextContainer>
             </S.ParticipantItem>
             <S.ParticipantItem>
               <S.ParticipantType>졸업준비위원회 Graduation Committee</S.ParticipantType>
-              {isMobile && (
-                <S.FadedTextContainer>
-                  {FadedTextColors.map((color, index) => (
-                    <S.FadedText key={index} color={color}>
-                      홍동식 Hong dong sik
-                    </S.FadedText>
+              <S.FadedTextContainer>
+                <S.ScrollingWrapper>
+                  {/* 속도 맞추기 위함 */}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={index}>{person}</S.FadedText>
                   ))}
-                </S.FadedTextContainer>
-              )}
-              {!isMobile && <S.ParticipantContent>홍동식 Hong dong sik</S.ParticipantContent>}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={`duplicate-1-${index}`}>{person}</S.FadedText>
+                  ))}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={`duplicate-2-${index}`}>{person}</S.FadedText>
+                  ))}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={`duplicate-3-${index}`}>{person}</S.FadedText>
+                  ))}
+                  {GRADUATION_COMMITTEE.map((person, index) => (
+                    <S.FadedText key={`duplicate-4-${index}`}>{person}</S.FadedText>
+                  ))}
+                </S.ScrollingWrapper>
+              </S.FadedTextContainer>
             </S.ParticipantItem>
           </S.ParticipantsList>
         </S.ParticipantsContainer>

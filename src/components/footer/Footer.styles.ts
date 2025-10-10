@@ -19,7 +19,7 @@ export const Wrapper = styled.footer<WrapperProps>`
       : 'linear-gradient(180deg, rgba(255, 255, 255, 0) 8.16%, #fff 96.68%)'};
   display: flex;
   align-items: center;
-  z-index: 1000;
+  z-index: 1;
 
   // 스토리북에서 보이도록 추가
   @media (max-width: 9999px) {
@@ -69,7 +69,7 @@ export const FooterText = styled.div<FooterTextProps>`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  color: ${({ footerType }) => (footerType === 'main' ? '#F3A' : '#666')};
+  color: ${({ theme }) => theme.colors.darkGray};
   font-size: ${({ theme }) => theme.typography.regular.fontSize};
   font-weight: ${({ theme }) => theme.typography.regular.fontWeight};
   line-height: ${({ theme }) => theme.typography.regular.lineHeight};
