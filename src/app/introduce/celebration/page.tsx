@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { CommonContainer } from '../common.styles';
 import * as S from './page.styles';
 
-const CONGRAULATION_SPEECH = [
+const CONGRATULATION_SPEECH = [
   {
     role: '국립부경대학교 총장',
     name: '배상훈',
@@ -77,10 +77,10 @@ export default function Celebration() {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const currentSpeech = CONGRAULATION_SPEECH[currentIndex];
+  const currentSpeech = CONGRATULATION_SPEECH[currentIndex];
 
   const goToNext = () => {
-    setCurrentIndex(prev => (prev + 1) % CONGRAULATION_SPEECH.length);
+    setCurrentIndex(prev => (prev + 1) % CONGRATULATION_SPEECH.length);
   };
 
   useEffect(() => {
