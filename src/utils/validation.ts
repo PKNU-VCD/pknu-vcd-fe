@@ -1,5 +1,5 @@
 export interface FormValidationProps {
-  category: string | null;
+  category: string[];
   projectKr: string;
   designerKr: string;
   designerEn: string;
@@ -24,7 +24,7 @@ export function validateProjectForm(props: FormValidationProps): boolean {
   } = props;
 
   const valid = Boolean(
-    category &&
+    category.length > 0 &&
       projectKr.trim() &&
       designerKr.trim() &&
       designerEn.trim() &&

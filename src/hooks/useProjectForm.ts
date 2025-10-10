@@ -12,7 +12,7 @@ export function useProjectForm(projectId?: string | null) {
   const isEditMode = !!projectId;
 
   const [loading, setLoading] = useState(false);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState<string[]>([]);
   const [projectKr, setProjectKr] = useState('');
   const [projectEn, setProjectEn] = useState('');
   const [designerKr, setDesignerKr] = useState('');
@@ -44,7 +44,7 @@ export function useProjectForm(projectId?: string | null) {
         const response = await fetchProject(projectId);
         const project = response.data as unknown as ProjectApiResponse;
 
-        const newCategory = REVERSE_CATEGORY_MAP[project.categories?.[0]] || '';
+        const newCategory = project.categories?.map(cat => REVERSE_CATEGORY_MAP[cat]).filter(Boolean) || [];
         const newProjectKr = project.projectName?.kr || '';
         const newProjectEn = project.projectName?.en || '';
         const newDesignerKr = project.designerName?.kr || '';

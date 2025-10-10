@@ -66,7 +66,7 @@ export async function prepareProjectPayload(
       kr: descriptionKr,
       en: descriptionEn,
     },
-    categories: [CATEGORY_MAP[category]],
+    categories: category.map(c => CATEGORY_MAP[c]),
     thumbnailUrl,
     fileUrls: orderedUrls.map((url, i) => ({
       displayOrder: i + 1,

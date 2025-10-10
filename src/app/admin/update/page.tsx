@@ -22,7 +22,13 @@ function UpdatePageContent() {
   const { draggedIndex, handleDragStart, handleDragOver, handleDragEnd } = useDragAndDrop();
 
   const handleCategorySelect = (selectedCategory: string) => {
-    setters.setCategory(selectedCategory);
+    setters.setCategory(prevCategories => {
+      if (prevCategories.includes(selectedCategory)) {
+        return prevCategories.filter(cat => cat !== selectedCategory);
+      } else {
+        return [...prevCategories, selectedCategory];
+      }
+    });
   };
 
   return (
@@ -36,7 +42,7 @@ function UpdatePageContent() {
               <Button
                 key={cat}
                 label={cat}
-                variant={values.category === cat ? 'confirm' : 'primary'}
+                variant={values.category.includes(cat) ? 'confirm' : 'primary'}
                 onClick={() => handleCategorySelect(cat)}
               />
             ))}
