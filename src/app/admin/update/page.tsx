@@ -103,6 +103,8 @@ function UpdatePageContent() {
               onChange={setters.setDesignerEn}
             />
           </S.SectionContainer>
+        </S.ResponsiveRowContainer>
+        <S.ResponsiveRowContainer>
           <S.SectionContainer>
             <S.RowTitleContainer>
               <S.TextContainer variant="title">디자이너 이메일</S.TextContainer>
