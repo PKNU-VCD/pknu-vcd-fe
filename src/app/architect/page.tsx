@@ -1,5 +1,6 @@
 'use client';
 
+import { getProjects } from '@/apis/project';
 import { CommonContainer } from '@/app/introduce/common.styles';
 import IntroLogo from '@/assets/icons/sub/intro.svg';
 import MobileIntroLogo from '@/assets/icons/sub/mobile/intro.svg';
@@ -13,43 +14,19 @@ import { SearchBar } from '@/components/searchBar/SearchBar';
 import { ThumbnailGrid } from '@/components/thumbnailGrid/ThumbnailGrid';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
+import { Project } from '@/types/project';
+import { useEffect, useState } from 'react';
 import * as S from './page.styles';
-
-const projects = [
-  {
-    title: '프로젝트 제목',
-    designer: '디자이너 이름',
-    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
-  },
-  {
-    title: '프로젝트 제목',
-    designer: '디자이너 이름',
-    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
-  },
-  {
-    title: '프로젝트 제목',
-    designer: '디자이너 이름',
-    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
-  },
-  {
-    title: '프로젝트 제목',
-    designer: '디자이너 이름',
-    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
-  },
-  {
-    title: '프로젝트 제목',
-    designer: '디자이너 이름',
-    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
-  },
-  {
-    title: '프로젝트 제목',
-    designer: '디자이너 이름',
-    imageUrl: 'https://i.pinimg.com/1200x/69/26/1b/69261bec7bcf155e6501475eccd7dc31.jpg',
-  },
-];
 
 export default function Architect() {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    getProjects().then(res => {
+      setProjects(res.data);
+    });
+  }, []);
 
   return (
     <>
@@ -88,7 +65,13 @@ export default function Architect() {
           </>
         )}
         <S.ThumbnailGridContainer>
-          <ThumbnailGrid projects={projects} />
+          <ThumbnailGrid
+            projects={projects.map(project => ({
+              title: project.projectNameKr,
+              designer: project.designerNameKr,
+              imageUrl: project.thumbnailUrl,
+            }))}
+          />
         </S.ThumbnailGridContainer>
         <Footer footerType="sub" backgroundColor="white" />
       </CommonContainer>
