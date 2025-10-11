@@ -6,7 +6,7 @@ interface GuestbookInputProps {
   /** 최대 입력 글자수 */
   maxLength?: number;
   /** 제출 시 호출 함수 */
-  onSubmit: () => void;
+  onSubmit: (content: string) => void | Promise<void>;
 }
 export const GuestbookInput = ({ maxLength = 100, onSubmit }: GuestbookInputProps) => {
   const [text, setText] = useState('');
@@ -19,6 +19,12 @@ export const GuestbookInput = ({ maxLength = 100, onSubmit }: GuestbookInputProp
     } else {
       setText(input);
     }
+  };
+
+  const handleSubmit = async () => {
+    if (!text.trim()) return;
+    await onSubmit(text);
+    setText('');
   };
 
   return (
@@ -35,7 +41,7 @@ export const GuestbookInput = ({ maxLength = 100, onSubmit }: GuestbookInputProp
       <S.TextLengthContainer
         $isOverLimit={isOverLimit}
       >{`${text.length}/100`}</S.TextLengthContainer>
-      <S.ButtonContainer onClick={onSubmit}>
+      <S.ButtonContainer onClick={handleSubmit}>
         <InputUpload />
       </S.ButtonContainer>
     </S.Wrapper>

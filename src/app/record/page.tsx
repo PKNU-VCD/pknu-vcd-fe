@@ -1,5 +1,6 @@
 'use client';
 
+import { createGuestbook, fetchGuestbooks, Guestbook } from '@/apis/guestbook';
 import RecordLogoMobile from '@/assets/icons/sub/mobile/intro.svg';
 import UnionDesign from '@/assets/icons/sub/mobile/Union_design.svg';
 import UnionExhibit from '@/assets/icons/sub/mobile/Union_exhibit.svg';
@@ -16,22 +17,11 @@ import { GuestbookInput } from '@/components/guestbook/guestbookInput/GuestbookI
 import Header from '@/components/header/Header';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
-import { useRef } from 'react';
+import { getRandomThemeColor } from '@/utils/randomColor';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { CommonContainer } from '../introduce/common.styles';
 import * as MainStyles from '../main/page.styles';
 import * as S from './page.styles';
-
-const mockComments = [
-  '진짜 이제야 졸업하네 레전드',
-  '진짜 이제야 졸업하네 레전드',
-  '진짜 이제야 졸업하네 레전드',
-  '진짜 이제야 졸업하네 레전드',
-  '진짜 이제야 졸업하네 레전드',
-  '진짜 이제야 졸업하네 레전드',
-  '진짜 이제야 졸업하네 레전드',
-  '진짜 이제야 졸업하네 레전드',
-  '진짜 이제야 졸업하네 레전드',
-];
 
 const recordLogos = [RecordLogoPink, RecordLogoBlue];
 
@@ -57,8 +47,49 @@ export default function Record() {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
   const recordContainerRef = useRef<HTMLDivElement>(null);
   const blinkRef = useRef<HTMLDivElement>(null);
+  const guestbookColors = ['green', 'pink', 'yellow'] as const;
+
+  const [guestbooks, setGuestbooks] = useState<Guestbook[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const RandomRecordLogo = recordLogos[Math.floor(Math.random() * recordLogos.length)];
+
+  useEffect(() => {
+    const loadGuestbooks = async () => {
+      try {
+        const response = await fetchGuestbooks();
+        if (response.success) {
+          setGuestbooks(response.data);
+        }
+      } catch (error) {
+        console.error('방명록을 불러오는데 실패했습니다.', error);
+      }
+    };
+
+    loadGuestbooks();
+  }, []);
+
+  const handleSubmit = async (content: string) => {
+    if (!content.trim()) return;
+
+    setIsLoading(true);
+    try {
+      const response = await createGuestbook({ content });
+      if (response.success) {
+        setGuestbooks(prev => [response.data, ...prev]);
+      }
+    } catch (error) {
+      console.error('방명록을 작성에 실패했습니다.', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const randomGuestbook = useMemo(() => {
+    if (guestbooks.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * guestbooks.length);
+    return guestbooks[randomIndex];
+  }, [guestbooks]);
 
   return (
     <>
@@ -75,7 +106,10 @@ export default function Record() {
               <RandomRecordLogo />
             )}
             <S.MainGuestbookContainer>
-              <GuestbookCard text="진짜 이제야 졸업하네 레전드" />
+              <GuestbookCard
+                text={randomGuestbook?.content || ''}
+                $backgroundColor={getRandomThemeColor(guestbookColors)}
+              />
             </S.MainGuestbookContainer>
             {isMobile && (
               <S.UnionWrapper>
@@ -97,13 +131,16 @@ export default function Record() {
         {isMobile && (
           <>
             <S.MainGuestbookContainerMobile>
-              <GuestbookCard text="진짜 이제야 졸업하네 레전드" />
+              <GuestbookCard
+                text={randomGuestbook?.content || '졸업 축하합니다!'}
+                $backgroundColor={getRandomThemeColor(guestbookColors)}
+              />
             </S.MainGuestbookContainerMobile>
           </>
         )}
-        <GuestbookGrid comments={mockComments} />
+        <GuestbookGrid comments={guestbooks.map(g => g.content)} />
         <S.GuestbookInputContainer>
-          <GuestbookInput onSubmit={() => {}} />
+          <GuestbookInput onSubmit={handleSubmit} />
         </S.GuestbookInputContainer>
 
         {!isMobile &&
