@@ -10,8 +10,13 @@ import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_intro.svg';
 import IntroImageTablet from '@/assets/icons/sub/tablet/introduce.png';
 import ExhibitUnion from '@/assets/icons/sub/Union.svg';
 import ButtonList from '@/components/buttonList/introduce/IntroduceButton';
-import FireworkBackground from '@/components/fireworkBackground/FireworkBackground';
 import Footer from '@/components/footer/Footer';
+import dynamic from 'next/dynamic';
+
+const FireworkBackground = dynamic(
+  () => import('@/components/fireworkBackground/FireworkBackground'),
+  { ssr: false },
+);
 import Header from '@/components/header/Header';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
