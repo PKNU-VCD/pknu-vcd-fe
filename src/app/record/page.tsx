@@ -8,8 +8,13 @@ import UnionIntro from '@/assets/icons/sub/mobile/Union_intro.svg';
 import RecordLogoBlue from '@/assets/icons/sub/record/main_blue.svg';
 import RecordLogoPink from '@/assets/icons/sub/record/main_pink.svg';
 import RecordLogoTablet from '@/assets/icons/sub/record/tablet/main_icon.svg';
-import FireworkBackground from '@/components/fireworkBackground/FireworkBackground';
 import FloatingDraggable from '@/components/floatingDraggable/FloatingDraggable';
+import dynamic from 'next/dynamic';
+
+const FireworkBackground = dynamic(
+  () => import('@/components/fireworkBackground/FireworkBackground'),
+  { ssr: false },
+);
 import Footer from '@/components/footer/Footer';
 import { GuestbookCard } from '@/components/guestbook/guestbookCard/GuestbookCard';
 import { GuestbookGrid } from '@/components/guestbook/guestbookGrid/GuestbookGrid';

@@ -5,13 +5,8 @@ export const global = css`
     box-sizing: border-box;
     font-family: inherit;
   }
-  @font-face {
-    font-family: 'SUIT';
-    src: url('/fonts/SUIT-Variable.woff2') format('woff2');
-    font-display: swap;
-  }
   body {
-    font-family: 'SUIT', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+    font-family: var(--font-suit, 'SUIT', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif);
     padding-top: 76px;
   }
   html {
