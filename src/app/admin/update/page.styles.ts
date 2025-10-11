@@ -36,6 +36,7 @@ export const SectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  /* max-width: 500px; */
 `;
 
 export const CategoryContainer = styled.div`
@@ -71,6 +72,7 @@ export const ResponsiveRowContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 40px;
+  justify-content: space-between;
 
   > * {
     flex: 1;
