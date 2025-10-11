@@ -5,7 +5,7 @@ import FloatingDraggable from '@/components/floatingDraggable/FloatingDraggable'
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { useEffect, useRef, useState } from 'react';
-import { OPENING_1, OPENING_2, OPENING_3, OPENING_4 } from '../splash/opening';
+import { OPENING_3, OPENING_4, OPENING_5 } from '../splash/opening';
 import DotFireworksBackground, { DotFireworksHandle } from './canvas/canvas';
 import { FIREWORK_SHAPE, FIREWORK_SHAPE_LARGE } from './canvas/Dot';
 import * as S from './page.styles';
@@ -15,16 +15,11 @@ export default function HomePage() {
   const mainRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<DotFireworksHandle>(null);
   const splashFireworkRef = useRef<DotFireworksHandle>(null);
+  const opening5Ref = useRef<DotFireworksHandle>(null);
 
   // 반응형 dotRadius 계산
   const [dotRadius, setDotRadius] = useState(8);
-  const [showSplashFirework, setShowSplashFirework] = useState(() => {
-    // Initialize from sessionStorage
-    if (typeof window !== 'undefined') {
-      return sessionStorage.getItem('splashComplete') === 'true';
-    }
-    return false;
-  });
+  const [showSplashFirework, setShowSplashFirework] = useState(true);
 
   useEffect(() => {
     const updateDotRadius = () => {
@@ -48,46 +43,53 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    // Only run once when component mounts
-    if (showSplashFirework && splashFireworkRef.current) {
-      sessionStorage.removeItem('splashComplete');
-
+    const renderOpeningFireworks = () => {
       const centerX = window.innerWidth / 2;
-      // Calculate Y position: center moved up by 70% = centerY - (0.7 * window.innerHeight)
-      const centerY = window.innerHeight / 2 - window.innerHeight * 0.7;
+      const centerY = window.innerHeight / 2;
+      const movedUpY = centerY - window.innerHeight * 0.7;
 
-      console.log('Restoring firework at', centerX, centerY);
+      // OPENING_1, 2, 3, 4 - 이동
+      if (splashFireworkRef.current) {
+        console.log('Rendering OPENING 1-4 fireworks at', centerX, movedUpY);
+        splashFireworkRef.current.triggerStampAtWindowPx(centerX, movedUpY, {
+          color: '#D2FFDE',
+          units: 'cells',
+          scaleCells: 1,
+          thicken: 0,
+          customCoords: OPENING_3,
+        });
+        splashFireworkRef.current.triggerStampAtWindowPx(centerX, movedUpY, {
+          color: '#FFFF85',
+          units: 'cells',
+          scaleCells: 1,
+          thicken: 0,
+          customCoords: OPENING_4,
+        });
+      }
 
-      splashFireworkRef.current.triggerStampAtWindowPx(centerX, centerY, {
-        color: '#00AEEF',
-        units: 'cells',
-        scaleCells: 1,
-        thicken: 0,
-        customCoords: OPENING_1,
-      });
-      splashFireworkRef.current.triggerStampAtWindowPx(centerX, centerY, {
-        color: '#00AEEF',
-        units: 'cells',
-        scaleCells: 1,
-        thicken: 0,
-        customCoords: OPENING_2,
-      });
-      splashFireworkRef.current.triggerStampAtWindowPx(centerX, centerY, {
-        color: '#00AEEF',
-        units: 'cells',
-        scaleCells: 1,
-        thicken: 0,
-        customCoords: OPENING_3,
-      });
-      splashFireworkRef.current.triggerStampAtWindowPx(centerX, centerY, {
-        color: '#FFFF85',
-        units: 'cells',
-        scaleCells: 1,
-        thicken: 0,
-        customCoords: OPENING_4,
-      });
-    }
-  }, [showSplashFirework]);
+      // OPENING_5 - stays in center
+      if (opening5Ref.current) {
+        console.log('Rendering OPENING 5 firework at center', centerX, centerY);
+
+        opening5Ref.current.triggerStampAtWindowPx(centerX, centerY, {
+          color: '#D2FFDE',
+          units: 'cells',
+          scaleCells: 1,
+          thicken: 0,
+          customCoords: OPENING_5,
+        });
+      }
+    };
+
+    const timer = setTimeout(renderOpeningFireworks, 150);
+
+    window.addEventListener('resize', renderOpeningFireworks);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', renderOpeningFireworks);
+    };
+  }, []);
 
   return (
     <>
@@ -100,14 +102,24 @@ export default function HomePage() {
         stampUnits="cells"
       />
       {showSplashFirework && (
-        <DotFireworksBackground
-          ref={splashFireworkRef}
-          dotRadius={dotRadius}
-          spacing={dotRadius * 2}
-          burstEvery={0}
-          decayPerSec={0}
-          baseColor="transparent"
-        />
+        <>
+          <DotFireworksBackground
+            ref={opening5Ref}
+            dotRadius={dotRadius}
+            spacing={dotRadius * 2}
+            burstEvery={0}
+            decayPerSec={0}
+            baseColor="transparent"
+          />
+          <DotFireworksBackground
+            ref={splashFireworkRef}
+            dotRadius={dotRadius}
+            spacing={dotRadius * 2}
+            burstEvery={0}
+            decayPerSec={0}
+            baseColor="transparent"
+          />
+        </>
       )}
       <S.Wrapper>
         <Header />
