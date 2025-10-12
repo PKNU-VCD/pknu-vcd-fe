@@ -1,7 +1,9 @@
+import Link from 'next/link';
 import { Thumbnail } from './thumbnail/Thumbnail';
 import * as S from './ThumbnailGrid.styles';
 
 interface Project {
+  id: string | number;
   title: string;
   designer: string;
   imageUrl: string;
@@ -17,12 +19,13 @@ export const ThumbnailGrid = ({ projects }: ThumbnailGridProps) => {
     <S.Wrapper>
       {projects.map((project, index) => (
         <S.ThumbnailContainer key={index}>
-          <Thumbnail
-            title={project.title}
-            designer={project.designer}
-            imageUrl={project.imageUrl}
-            onClick={() => {}}
-          />
+          <Link href={`/architect/${project.id}`} scroll={false}>
+            <Thumbnail
+              title={project.title}
+              designer={project.designer}
+              imageUrl={project.imageUrl}
+            />
+          </Link>
         </S.ThumbnailContainer>
       ))}
     </S.Wrapper>

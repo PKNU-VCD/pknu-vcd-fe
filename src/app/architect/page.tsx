@@ -67,6 +67,7 @@ export default function Architect() {
         <S.ThumbnailGridContainer>
           <ThumbnailGrid
             projects={projects.map(project => ({
+              id: project.projectId,
               title: project.projectNameKr,
               designer: project.designerNameKr,
               imageUrl: project.thumbnailUrl,
