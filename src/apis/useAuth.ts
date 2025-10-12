@@ -33,8 +33,11 @@ export function useAuth() {
       sessionStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
     } catch (error) {
       const err = error as HttpError;
-      if (err.status === 401) setError('아이디 또는 비밀번호가 올바르지 않습니다.');
-      else if (err.status === 409) setError('다른 기기의 세션이 종료되고 새로 로그인되었습니다.');
+      if (err.status === 401) {
+        setError('아이디 또는 비밀번호가 올바르지 않습니다.');
+        sessionStorage.removeItem(AUTH_STORAGE_KEY);
+        setMe(null);
+      } else if (err.status === 409) setError('다른 기기의 세션이 종료되고 새로 로그인되었습니다.');
       else setError('로그인에 실패했습니다. 잠시 후 다시 시도해주세요.');
       throw error;
     }
