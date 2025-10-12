@@ -28,6 +28,7 @@ async function request<T>(path: string, options: HttpOptions = {}): Promise<T> {
     if (res.status === 401) {
       // 세션 만료시 로그인 페이지로 리디렉션
       window.location.href = '/admin';
+      sessionStorage.removeItem('pknu-vcd-auth');
       return Promise.reject(
         new HttpError(res.status, '세션이 만료되었습니다. 다시 로그인해주세요.'),
       );
