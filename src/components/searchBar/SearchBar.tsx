@@ -2,7 +2,7 @@ import SearchIcon from '@/assets/icons/search.svg';
 import MobileSearchIcon from '@/assets/icons/sub/mobile/search.svg';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './SearchBar.styles';
 
 interface SearchBarProps {
@@ -15,6 +15,14 @@ export const SearchBar = ({ onSubmit, onSearchChange }: SearchBarProps) => {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
   const [searchValue, setSearchValue] = useState('');
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onSearchChange?.(searchValue);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [searchValue, onSearchChange]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit?.();
@@ -23,7 +31,6 @@ export const SearchBar = ({ onSubmit, onSearchChange }: SearchBarProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchValue(value);
-    onSearchChange?.(value);
   };
 
   return (
