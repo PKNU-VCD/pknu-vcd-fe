@@ -11,33 +11,13 @@ import { SearchBar } from '@/components/searchBar/SearchBar';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
-import { FileWithOrder } from '@/types/project';
+import { ProjectDetail } from '@/types/project';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import * as ArchitectStyles from '../architect/page.styles';
 import { CommonContainer } from '../introduce/common.styles';
 import * as S from './projectDetailModal.styles';
-
-interface ProjectDetail {
-  projectId: number;
-  categories: string[];
-  thumbnailUrl: string;
-  description: {
-    kr: string;
-    en: string;
-  };
-  designerName: {
-    kr: string;
-    en: string;
-  };
-  projectName: {
-    kr: string;
-    en: string;
-  };
-  designerEmail: string;
-  files: FileWithOrder[];
-}
 
 interface ProjectDetailModalProps {
   onClose: () => void;
