@@ -13,6 +13,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
 import { FileWithOrder } from '@/types/project';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import * as ArchitectStyles from '../architect/page.styles';
 import { CommonContainer } from '../introduce/common.styles';
@@ -44,6 +45,7 @@ interface ProjectDetailModalProps {
 }
 
 export default function ProjectDetailModal({ data, onClose }: ProjectDetailModalProps) {
+  const router = useRouter();
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
   const [isVisible, setIsVisible] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -68,6 +70,10 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
     setTimeout(() => onClose(), 300);
   };
 
+  const handleOverlayClick = () => {
+    router.back();
+  };
+
   const handleImageClick = () => {
     if (!data.files || data.files.length === 0) return;
     setCurrentImageIndex(prev => (prev + 1) % data.files.length);
@@ -81,7 +87,7 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
     <>
       <FireworkBackground color={theme.colors.lightGreen} />
       <Header headerType="main" />
-      <CommonContainer>
+      <CommonContainer onClick={handleOverlayClick}>
         <ArchitectStyles.DesignerContainer>
           <ArchitectStyles.Title>
             제 37회 2025 국립부경대학교
@@ -145,7 +151,7 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
             flexDirection: 'column',
           }}
         >
-          <S.ModalContainer>
+          <S.ModalContainer onClick={e => e.stopPropagation()}>
             <S.ModalHeader>
               <S.CloseButton onClick={handleClose}>
                 <S.CloseIcon>✕</S.CloseIcon>
@@ -206,7 +212,7 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
 
         <motion.div
           key="overlay"
-          onClick={handleClose}
+          onClick={handleOverlayClick}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
