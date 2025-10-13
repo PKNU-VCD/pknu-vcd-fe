@@ -1,22 +1,10 @@
 'use client';
-import IntroLogo from '@/assets/icons/sub/intro.svg';
-import MobileIntroLogo from '@/assets/icons/sub/mobile/intro.svg';
-import MobileDesignUnion from '@/assets/icons/sub/mobile/Union_design.svg';
-import DesignUnion from '@/assets/icons/sub/Union_design.svg';
 import { Button } from '@/components/Button/Button';
-import ArchitectButton from '@/components/buttonList/architect/ArchitectButton';
-import FireworkBackground from '@/components/fireworkBackground/FireworkBackground';
-import Header from '@/components/header/Header';
-import { SearchBar } from '@/components/searchBar/SearchBar';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { theme } from '@/styles/theme';
 import { ProjectDetail } from '@/types/project';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import * as ArchitectStyles from '../architect/page.styles';
-import { CommonContainer } from '../introduce/common.styles';
 import * as S from './projectDetailModal.styles';
 
 interface ProjectDetailModalProps {
@@ -26,7 +14,6 @@ interface ProjectDetailModalProps {
 
 export default function ProjectDetailModal({ data, onClose }: ProjectDetailModalProps) {
   const router = useRouter();
-  const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
   const [isVisible, setIsVisible] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -65,49 +52,12 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
 
   return (
     <>
-      <FireworkBackground color={theme.colors.lightGreen} />
-      <Header headerType="main" />
-      <CommonContainer onClick={handleOverlayClick}>
-        <ArchitectStyles.DesignerContainer>
-          <ArchitectStyles.Title>
-            제 37회 2025 국립부경대학교
-            {isMobile && <br />}
-            시각디자인전공 졸업전시회
-            {!isMobile && ' 디자인 프로젝트'}
-          </ArchitectStyles.Title>
-          <ArchitectStyles.LogoWrapper>
-            {isMobile ? <MobileIntroLogo /> : <IntroLogo />}
-            <ArchitectStyles.UnionWrapper>
-              {isMobile ? <MobileDesignUnion /> : <DesignUnion />}
-            </ArchitectStyles.UnionWrapper>
-          </ArchitectStyles.LogoWrapper>
-        </ArchitectStyles.DesignerContainer>
-        {isMobile ? (
-          <>
-            <ArchitectStyles.MenuListContainer>
-              <ArchitectButton />
-            </ArchitectStyles.MenuListContainer>
-            <ArchitectStyles.SearchContainer>
-              <SearchBar />
-            </ArchitectStyles.SearchContainer>
-          </>
-        ) : (
-          <>
-            <ArchitectStyles.SearchContainer>
-              <SearchBar />
-            </ArchitectStyles.SearchContainer>
-            <ArchitectStyles.MenuListContainer>
-              <ArchitectButton />
-            </ArchitectStyles.MenuListContainer>
-          </>
-        )}
-      </CommonContainer>
       <AnimatePresence mode="wait">
         <motion.div
           key="modal"
-          initial={{ y: '55vh', opacity: 0 }}
-          animate={isVisible ? { y: 0, opacity: 1 } : { y: '55vh', opacity: 0 }}
-          exit={{ y: '55vh', opacity: 0 }}
+          initial={{ y: '100%', opacity: 0 }}
+          animate={isVisible ? { y: 0, opacity: 1 } : { y: '100%', opacity: 0 }}
+          exit={{ y: '100%', opacity: 0 }}
           transition={{
             type: 'spring',
             stiffness: 300,
@@ -120,7 +70,7 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
             left: 0,
             right: 0,
             margin: '0 120px',
-            top: '45vh', // 헤더+제목+검색바+버튼 영역은 그대로 두고 썸네일 그리드부터 모달 시작
+            height: '55vh',
             zIndex: 50,
             backgroundColor: '#FFFFFF',
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
@@ -199,11 +149,11 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
           transition={{ duration: 0.3 }}
           style={{
             position: 'fixed',
-            top: '45vh', // 모달과 같은 영역만 덮음
+            top: 0,
             bottom: 0,
             left: 0,
             right: 0,
-            backgroundColor: 'white',
+            backgroundColor: 'transparent',
             zIndex: 40,
           }}
         />
