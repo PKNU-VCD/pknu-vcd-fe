@@ -116,6 +116,9 @@ const projects = [
 
 export const Default: Story = {
   args: {
-    projects: projects,
+    projects: projects.map((project, idx) => ({
+      ...project,
+      id: idx.toString(),
+    })),
   },
 };

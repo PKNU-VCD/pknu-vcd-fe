@@ -2,13 +2,20 @@ import { Button } from '@/components/Button/Button';
 import { useState } from 'react';
 import * as S from './ArchitectButton.styles';
 
-export default function ArchitectButton() {
+interface ArchitectButtonProps {
+  onCategoryChange?: (categories: string[]) => void;
+}
+
+export default function ArchitectButton({ onCategoryChange }: ArchitectButtonProps) {
   const [selectedButtons, setSelectedButtons] = useState<string[]>([]);
 
   const handleButtonClick = (label: string) => {
-    setSelectedButtons(prev =>
-      prev.includes(label) ? prev.filter(item => item !== label) : [...prev, label],
-    );
+    const newSelection = selectedButtons.includes(label)
+      ? selectedButtons.filter(item => item !== label)
+      : [...selectedButtons, label];
+
+    setSelectedButtons(newSelection);
+    onCategoryChange?.(newSelection);
   };
 
   return (

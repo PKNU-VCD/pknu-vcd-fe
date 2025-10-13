@@ -28,9 +28,30 @@ export interface ProjectBase {
 export interface Project extends ProjectBase {
   projectId: number;
   thumbnailUrl: string;
+  categories: string[];
   images: string[];
   createdAt: string;
   updatedAt: string;
   designerNameKr: string;
   projectNameKr: string;
+}
+
+export interface ProjectDetail {
+  projectId: number;
+  categories: string[];
+  thumbnailUrl: string;
+  description: {
+    kr: string;
+    en: string;
+  };
+  designerName: {
+    kr: string;
+    en: string;
+  };
+  projectName: {
+    kr: string;
+    en: string;
+  };
+  designerEmail: string;
+  files: FileWithOrder[];
 }
