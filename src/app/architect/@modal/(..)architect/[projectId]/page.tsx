@@ -6,15 +6,17 @@ import { Project } from '@/types/project';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function ProjectModal({ params }: { params: { projectId: string } }) {
+export default function ProjectModal({ params }: { params: Promise<{ projectId: string }> }) {
   const router = useRouter();
   const [data, setData] = useState<Project | null>(null);
 
   useEffect(() => {
-    getProject(Number(params.projectId))
-      .then(r => r.data)
-      .then(setData);
-  }, [params.projectId]);
+    params.then(resolvedParams => {
+      getProject(Number(resolvedParams.projectId))
+        .then(r => r.data)
+        .then(setData);
+    });
+  }, [params]);
 
   const handleClose = () => router.back();
 

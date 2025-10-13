@@ -3,20 +3,20 @@
 import { getProject } from '@/apis/project';
 import ProjectDetailModal from '@/app/components/projectDetailModal';
 import { Project } from '@/types/project';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function ProjectDetailPage() {
-  const params = useParams();
+export default function ProjectDetailPage({ params }: { params: Promise<{ projectId: string }> }) {
   const router = useRouter();
-  const projectId = Number(params.projectId);
   const [data, setData] = useState<Project | null>(null);
 
   useEffect(() => {
-    getProject(projectId)
-      .then(r => r.data)
-      .then(setData);
-  }, [projectId]);
+    params.then(resolvedParams => {
+      getProject(Number(resolvedParams.projectId))
+        .then(r => r.data)
+        .then(setData);
+    });
+  }, [params]);
 
   const handleClose = () => router.push('/architect');
 
