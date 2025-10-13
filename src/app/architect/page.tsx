@@ -21,12 +21,38 @@ import * as S from './page.styles';
 export default function Architect() {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
   const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     getProjects().then(res => {
       setProjects(res.data);
     });
   }, []);
+
+  const filteredProjects = projects.filter(project => {
+    const categoryMatch =
+      selectedCategories.length === 0 ||
+      selectedCategories.some(cat => {
+        const match = project.categories?.some(c => c.toUpperCase() === cat.toUpperCase());
+        return match;
+      });
+
+    const searchMatch =
+      searchTerm === '' ||
+      project.projectNameKr?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.designerNameKr?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return categoryMatch && searchMatch;
+  });
+
+  const handleCategoryChange = (categories: string[]) => {
+    setSelectedCategories(categories);
+  };
+
+  const handleSearchChange = (term: string) => {
+    setSearchTerm(term);
+  };
 
   return (
     <>
@@ -48,25 +74,25 @@ export default function Architect() {
         {isMobile ? (
           <>
             <S.MenuListContainer>
-              <ArchitectButton />
+              <ArchitectButton onCategoryChange={handleCategoryChange} />
             </S.MenuListContainer>
             <S.SearchContainer>
-              <SearchBar />
+              <SearchBar onSearchChange={handleSearchChange} />
             </S.SearchContainer>
           </>
         ) : (
           <>
             <S.SearchContainer>
-              <SearchBar />
+              <SearchBar onSearchChange={handleSearchChange} />
             </S.SearchContainer>
             <S.MenuListContainer>
-              <ArchitectButton />
+              <ArchitectButton onCategoryChange={handleCategoryChange} />
             </S.MenuListContainer>
           </>
         )}
         <S.ThumbnailGridContainer>
           <ThumbnailGrid
-            projects={projects.map(project => ({
+            projects={filteredProjects.map(project => ({
               id: project.projectId,
               title: project.projectNameKr,
               designer: project.designerNameKr,
