@@ -3,9 +3,11 @@ import { Button } from '@/components/Button/Button';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
 import { ProjectDetail } from '@/types/project';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import * as S from './projectDetailModal.styles';
+
+// 모듈 스코프로 hoist된 Motion 컴포넌트 (리렌더 시 재생성 방지)
+const MotionModalWrapper = motion.create(S.ModalWrapper);
 
 interface ProjectDetailModalProps {
   onClose: () => void;
@@ -13,13 +15,34 @@ interface ProjectDetailModalProps {
 }
 
 export default function ProjectDetailModal({ data, onClose }: ProjectDetailModalProps) {
-  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 10);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const { body } = document;
+    const prevOverflow = body.style.overflow;
+    const prevPosition = body.style.position;
+    const prevTop = body.style.top;
+    const prevWidth = body.style.width;
+
+    const scrollY = window.scrollY;
+    body.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+    body.style.top = `-${scrollY}px`;
+    body.style.width = '100%';
+
+    return () => {
+      body.style.overflow = prevOverflow;
+      body.style.position = prevPosition;
+      body.style.top = prevTop;
+      body.style.width = prevWidth;
+      window.scrollTo(0, scrollY);
+    };
   }, []);
 
   useEffect(() => {
@@ -37,10 +60,6 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
     setTimeout(() => onClose(), 300);
   };
 
-  const handleOverlayClick = () => {
-    router.back();
-  };
-
   const handleImageClick = () => {
     if (!data.files || data.files.length === 0) return;
     setCurrentImageIndex(prev => (prev + 1) % data.files.length);
@@ -50,10 +69,16 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
     setCurrentImageIndex(index);
   };
 
+  const handleWrapperClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget === e.target) {
+      handleClose();
+    }
+  };
+
   return (
     <>
-      <AnimatePresence mode="wait">
-        <motion.div
+      <AnimatePresence mode="sync">
+        <MotionModalWrapper
           key="modal"
           initial={{ y: '100%', opacity: 0 }}
           animate={isVisible ? { y: 0, opacity: 1 } : { y: '100%', opacity: 0 }}
@@ -64,22 +89,7 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
             damping: 30,
             opacity: { duration: 0.3 },
           }}
-          style={{
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            margin: '0 120px',
-            height: '55vh',
-            zIndex: 50,
-            backgroundColor: '#FFFFFF',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-            borderTopLeftRadius: '24px',
-            borderTopRightRadius: '24px',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
+          onClick={handleWrapperClick}
         >
           <S.ModalContainer onClick={e => e.stopPropagation()}>
             <S.ModalHeader>
@@ -104,7 +114,7 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
               </S.ProjectNameContainer>
 
               <S.NameEmailContainer>
-                <p>{data.designerName.kr}</p>
+                <p style={{ alignSelf: 'flex-start' }}>{data.designerName.kr}</p>
                 <S.EmailContainer>
                   <p>contact</p>
                   <p>{data.designerEmail}</p>
@@ -138,11 +148,11 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
               <TranslationPanel text={data.description.en} />
             </S.DescriptionContainer>
           </S.ModalContainer>
-        </motion.div>
+        </MotionModalWrapper>
 
         <motion.div
           key="overlay"
-          onClick={handleOverlayClick}
+          onClick={handleClose}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
