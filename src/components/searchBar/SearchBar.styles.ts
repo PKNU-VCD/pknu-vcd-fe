@@ -26,6 +26,7 @@ export const InputContainer = styled.input`
   font-weight: ${theme.typography.regular.fontWeight};
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
+  background-color: transparent;
 
   &:focus {
     outline: none;
