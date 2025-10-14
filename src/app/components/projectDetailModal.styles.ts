@@ -8,6 +8,27 @@ export const ModalOverlay = styled.div`
   z-index: 40;
 `;
 
+export const ModalWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 120px;
+  height: 91vh;
+  z-index: 50;
+  background-color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    margin: 0 auto;
+  }
+`;
+
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -15,22 +36,12 @@ export const ModalContainer = styled.div`
   overflow-y: auto;
   flex: 1;
 
-  /* 스크롤바 스타일링 */
-  &::-webkit-scrollbar {
-    width: 8px;
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 0 80px;
   }
 
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: ${theme.colors.lightGray};
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: ${theme.colors.darkGray};
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    padding: 0 28px;
   }
 `;
 
@@ -58,12 +69,22 @@ export const ButtonContainer = styled.div`
   justify-content: flex-start;
   margin-top: 30px;
   gap: 30px;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    gap: 20px;
+  }
 `;
 
 export const ProjectInfoContainer = styled.div`
   display: flex;
   align-items: flex-start;
   margin-top: 50px;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+  }
 `;
 
 export const ProjectNameContainer = styled.div`
@@ -72,6 +93,12 @@ export const ProjectNameContainer = styled.div`
   gap: 40px;
   align-items: flex-start;
   flex: 6;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    flex: unset;
+    gap: 20px;
+    width: 100%;
+  }
 `;
 
 export const EnglishName = styled.p`
@@ -96,6 +123,11 @@ export const NameEmailContainer = styled.div`
   align-items: flex-end;
   gap: 20px;
   flex: 4;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    flex: unset;
+    width: 100%;
+  }
 `;
 
 export const EmailContainer = styled.div`
@@ -114,9 +146,14 @@ export const CarouselContainer = styled.div`
 export const CarouselImageWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 900px;
+  height: auto;
   overflow: hidden;
   cursor: pointer;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
 `;
 
 export const CarouselImage = styled.img`
@@ -154,6 +191,7 @@ export const Dot = styled.button<{ active: boolean }>`
 `;
 
 export const DescriptionContainer = styled.div`
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   gap: 50px;
