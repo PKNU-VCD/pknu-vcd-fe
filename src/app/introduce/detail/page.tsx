@@ -11,7 +11,6 @@ import ButtonList from '@/components/buttonList/introduce/IntroduceButton';
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { NaverMap } from '@/components/naverMap/naverMap';
-import Progress from '@/components/progress/progress';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
 import * as S from './page.styles';
@@ -43,84 +42,26 @@ export default function Detail() {
           </S.DetailLogoContainer>
           <ButtonList />
         </S.DetailWrapper>
-        <S.DetailContainer>
-          <S.ExhibitionDateContainer>
-            <S.ExhibitionDate>
-              <S.ExhibitionDateText style={{ fontWeight: 700 }}>전시 일정</S.ExhibitionDateText>
-              {!isMobile && (
-                <S.ExhibitionDateText>
-                  2025.10.24.Fri, 2025.10.27.Mon. - 2025.10.28.Tue (10AM~6PM)
-                </S.ExhibitionDateText>
-              )}
-              {isMobile && (
-                <S.ExhibitionDateText>
-                  2025.10.24.Fri, 2025.10.27.Mon.
-                  <br /> - 2025.10.28.Tue (10AM~6PM)
-                </S.ExhibitionDateText>
-              )}
-            </S.ExhibitionDate>
-            <S.ExhibitionDateProgress>
-              <S.ExhibitionDateProgressText>
-                <S.ExhibitionDateProgressTextLeft>
-                  <p>2025.10.24.</p>
-                  <p>Fri</p>
-                </S.ExhibitionDateProgressTextLeft>
-                <p>10AM~8PM</p>
-              </S.ExhibitionDateProgressText>
-              <Progress
-                timeMarkers={[
-                  { time: 0.2, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 6, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 10.4, color: theme.colors.pink, labelColor: theme.colors.black },
-                  { time: 12.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 19.5, color: theme.colors.pink, labelColor: theme.colors.black },
-                  { time: 23.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                ]}
-              />
-            </S.ExhibitionDateProgress>
-            <S.ExhibitionDateProgress>
-              <S.ExhibitionDateProgressText>
-                <S.ExhibitionDateProgressTextLeft>
-                  <p>2025.10.25. - 2025.10.26.</p>
-                  <p>Sat - Sun</p>
-                </S.ExhibitionDateProgressTextLeft>
-                <p>휴관</p>
-              </S.ExhibitionDateProgressText>
-              <Progress
-                backgroundColor={theme.colors.mediumGray}
-                filledColor={theme.colors.mediumGray}
-                borderColor={theme.colors.mediumGray}
-                filledBorderColor={theme.colors.mediumGray}
-                timeMarkers={[
-                  { time: 0.2, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 6, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 12.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 19.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 23.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                ]}
-              />
-            </S.ExhibitionDateProgress>
-            <S.ExhibitionDateProgress>
-              <S.ExhibitionDateProgressText>
-                <S.ExhibitionDateProgressTextLeft>
-                  <p>2025.10.27. - 2025.10.28.</p>
-                  <p>Mon - Tue</p>
-                </S.ExhibitionDateProgressTextLeft>
-                <p>10AM~8PM</p>
-              </S.ExhibitionDateProgressText>
-              <Progress
-                timeMarkers={[
-                  { time: 0.2, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 6, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 10.4, color: theme.colors.pink, labelColor: theme.colors.black },
-                  { time: 12.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                  { time: 19.5, color: theme.colors.pink, labelColor: theme.colors.black },
-                  { time: 23.8, color: theme.colors.mediumGray, labelColor: theme.colors.mediumGray },
-                ]}
-              />
-            </S.ExhibitionDateProgress>
-          </S.ExhibitionDateContainer>
-        </S.DetailContainer>
+
+        <S.ExhibitionDateContainer>
+          <p>전시 일정</p>
+          <S.ExhibitionDateContentContainer>
+            <S.ContentContainer>
+              <p>오프닝</p>
+              <p>2025.10.24 (금) 16:00 - 17:00</p>
+            </S.ContentContainer>
+            <S.ContentContainer>
+              <p>전시</p>
+              <S.ExhibitionDate>
+                <p>2025.10.24 (금) 17:00 - 20:00</p>
+                <p>2025.10.25 (토) 9:00 - 18:00</p>
+                <p>2025.10.27 (월) 10:00 - 20:00</p>
+                <p>2025.10.28 (화) 10:00 - 20:00</p>
+              </S.ExhibitionDate>
+            </S.ContentContainer>
+          </S.ExhibitionDateContentContainer>
+        </S.ExhibitionDateContainer>
+
         <S.DetailContainer>
           <S.SubIntroductionContainer>
             <S.AddressContainer>
@@ -197,7 +138,7 @@ export default function Detail() {
                   <p>국립부경대학교 유료 주차장</p>
                   <S.IconTextContainer>
                     <CarIcon />
-                    <p>1시간 0,000원</p>
+                    <p>30분 1,500원</p>
                   </S.IconTextContainer>
                 </S.Vehicle>
                 <S.AddressContainer>
