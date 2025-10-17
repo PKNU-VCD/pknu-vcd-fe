@@ -45,32 +45,55 @@ export const DetailContainer = styled(Wrapper)`
   }
 `;
 
-export const ExhibitionDateContainer = styled.div`
-  width: 100%;
-  display: flex;
+export const ExhibitionDateContainer = styled(Wrapper)`
+  margin-top: 120px;
+  margin-bottom: 120px;
+  gap: 50px;
   flex-direction: column;
-  gap: 100px;
 
-  @media (max-width: ${theme.breakpoints.tablet}) {
-    align-items: center;
+  font-size: ${theme.typography.medium.fontSize};
+  font-weight: ${theme.typography.medium.fontWeight};
+  line-height: ${theme.typography.medium.lineHeight};
+  letter-spacing: ${theme.typography.medium.letterSpacing};
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    font-size: ${theme.typography.regular.fontSize};
+    font-weight: ${theme.typography.regular.fontWeight};
+    line-height: ${theme.typography.regular.lineHeight};
+    letter-spacing: ${theme.typography.regular.letterSpacing};
   }
 `;
 
-export const ExhibitionDate = styled.div`
+export const ExhibitionDateContentContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   gap: 30px;
 
-  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+  @media (max-width: ${theme.breakpoints.tablet}) {
     flex-direction: column;
-    align-items: flex-start;
-  }
-
-  @media (max-width: ${theme.breakpoints.mobileLarge}) {
-    align-self: flex-start;
   }
 `;
 
+export const ContentContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+`;
+
+export const ExhibitionDate = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;
+
+export const ContentTitle = styled.p`
+  font-size: ${theme.typography.medium.fontSize};
+  font-weight: ${theme.typography.medium.fontWeight};
+  line-height: ${theme.typography.medium.lineHeight};
+  letter-spacing: ${theme.typography.medium.letterSpacing};
+`;
 export const ExhibitionDateProgress = styled.div`
   width: 100%;
   display: flex;
