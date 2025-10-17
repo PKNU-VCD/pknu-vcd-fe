@@ -60,7 +60,7 @@ export const MainGuestbookContainerMobile = styled.div`
 export const UnionWrapper = styled.div`
   display: none;
   position: absolute;
-  top: 30%;
+  top: 50%;
   left: 14%;
   transform: translate(-50%, -50%);
 
