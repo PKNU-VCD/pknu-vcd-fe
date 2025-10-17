@@ -2,27 +2,25 @@
 
 import { CommonContainer } from '@/app/introduce/common.styles';
 import ExhibitAside from '@/assets/icons/sub/exhibit_aside.svg';
-import IntroImageMobile from '@/assets/icons/sub/exhibition_icon.png';
 import IntroLogo from '@/assets/icons/sub/intro.svg';
 import IntroImage from '@/assets/icons/sub/introduce.png';
 import IntroLogoMobile from '@/assets/icons/sub/mobile/intro.svg';
 import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_intro.svg';
-import IntroImageTablet from '@/assets/icons/sub/tablet/introduce.png';
 import ExhibitUnion from '@/assets/icons/sub/Union.svg';
 import ButtonList from '@/components/buttonList/introduce/IntroduceButton';
 import Footer from '@/components/footer/Footer';
+import Header from '@/components/header/Header';
+import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { theme } from '@/styles/theme';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import * as S from './page.styles';
 
 const FireworkBackground = dynamic(
   () => import('@/components/fireworkBackground/FireworkBackground'),
   { ssr: false },
 );
-import Header from '@/components/header/Header';
-import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { theme } from '@/styles/theme';
-import Image from 'next/image';
-import * as S from './page.styles';
 
 const INTRODUCTION_ENGLISH_TEXT = `The phrase “_합니다.” remains an unfinished sentence. In the blank, words like “graduate,” “challenge,” or “design” can freely take shape—each representing our own beginning and direction. As designers, we are still in the process of writing that sentence.\n
 This exhibition is conceived to capture a moment in which our potential and dreams are visually condensed. At the center of the poster, multicolored trajectories radiating outward symbolize the accumulation of time, thought, and creative energy built through our design journey—an explosion of possibilities yet to come. The irregular and diverse lines reveal our unique paths and identities, while at the same time pointing toward the limitless directions of our expanding potential.\n
@@ -95,7 +93,6 @@ const GRADUATION_COMMITTEE = [
 ];
 
 export default function Introduce() {
-  const isTablet = useMediaQuery(`(max-width: ${theme.breakpoints.tablet})`);
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
 
   return (
@@ -143,13 +140,7 @@ export default function Introduce() {
 
           <S.IntroductionSubContainer>
             <S.IntroImageContainer>
-              {isMobile ? (
-                <Image src={IntroImageMobile} alt="intro" />
-              ) : isTablet ? (
-                <Image src={IntroImageTablet} alt="intro" />
-              ) : (
-                <Image src={IntroImage} alt="intro" />
-              )}
+              <Image src={IntroImage} alt="intro" />
             </S.IntroImageContainer>
             <S.ContentContainer>
               {isMobile ? (
