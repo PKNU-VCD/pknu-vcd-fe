@@ -4,22 +4,23 @@ import { CommonContainer } from '@/app/introduce/common.styles';
 import ExhibitionAside from '@/assets/icons/sub/exhibit_aside.svg';
 import ExhibitionIcon from '@/assets/icons/sub/exhibition_icon.png';
 import ExhibitionLogo from '@/assets/icons/sub/intro.svg';
+import ExhibitionIconMobile from '@/assets/icons/sub/mobile/exhibition_icon.png';
 import ExhibitionLogoMobile from '@/assets/icons/sub/mobile/intro.svg';
 import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_exhibit.svg';
 import ExhibitUnion from '@/assets/icons/sub/Union_exhibit.svg';
 import Footer from '@/components/footer/Footer';
+import Header from '@/components/header/Header';
+import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { theme } from '@/styles/theme';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import * as S from './page.styles';
 
 const FireworkBackground = dynamic(
   () => import('@/components/fireworkBackground/FireworkBackground'),
   { ssr: false },
 );
-import Header from '@/components/header/Header';
-import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { theme } from '@/styles/theme';
-import Image from 'next/image';
-import * as S from './page.styles';
 
 const VideoData = {
   title: 'Video Title',
@@ -90,7 +91,7 @@ export default function Exhibition() {
           </S.ColumnWrapper>
         </S.VideoWrapper>
         <S.MobileBottomImageWrapper>
-          <Image src={ExhibitionIcon} alt="exhibition" />
+          <Image src={ExhibitionIconMobile} alt="exhibition" />
         </S.MobileBottomImageWrapper>
       </CommonContainer>
       <Footer footerType="sub" backgroundColor="white" />
