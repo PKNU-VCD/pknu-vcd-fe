@@ -40,7 +40,16 @@ const nextConfig: NextConfig = {
     return config;
   },
   images: {
-    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.pknuvcd2025.site',
+        pathname: '/**', // 모든 경로 허용
+      },
+    ],
+    deviceSizes: [320, 480, 768, 1024, 1200],
+    imageSizes: [256, 384, 640, 750, 828, 1080],
+    formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1년
   },
   // Production 빌드 최적화

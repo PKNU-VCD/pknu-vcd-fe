@@ -16,12 +16,12 @@ export const SlidesContainer = styled.div<{ $currentIndex: number; $isTransition
     $isTransitioning ? 'transform 0.4s ease-in-out' : 'none'};
 `;
 
-export const ImageContainer = styled.img`
+export const ImageWrapper = styled.div`
   flex: 0 0 100%;
   width: 100%;
   height: auto;
-  object-fit: cover;
   display: block;
+  position: relative;
 `;
 
 export const VideoContainer = styled.iframe`
@@ -42,7 +42,8 @@ export const DotContainer = styled.div<{ $isActive: boolean }>`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: ${({ $isActive, theme }) => ($isActive ? theme.colors.darkGray : theme.colors.carouselGray)};
+  background-color: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.darkGray : theme.colors.carouselGray};
   border: none;
   cursor: pointer;
 `;
