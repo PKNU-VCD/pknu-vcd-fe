@@ -20,11 +20,10 @@ export const Wrapper = styled.div<{ $isBlurred?: boolean }>`
   }
 `;
 
-export const ImageContainer = styled.img`
-  display: block;
+export const ImageContainer = styled.div`
+  position: relative;
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 100%;
 `;
 
 export const OverlayContainer = styled.div`
