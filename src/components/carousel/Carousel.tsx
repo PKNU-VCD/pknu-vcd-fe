@@ -1,4 +1,5 @@
 import { Slide } from '@/types/slide.type';
+import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import * as S from './Carousel.styles';
 
@@ -67,7 +68,18 @@ export const Carousel = ({ slides, pauseOnHover = true }: CarouselProps) => {
       <S.SlidesContainer $currentIndex={currentIndex} $isTransitioning={isTransitioning}>
         {extendedSlides.map((slide, index) =>
           slide.type === 'image' ? (
-            <S.ImageContainer key={index} src={slide.url} />
+            <S.ImageWrapper key={index}>
+              <Image
+                src={slide.url}
+                alt={`Slide ${index + 1}`}
+                width={1920}
+                height={0}
+                quality={75}
+                priority={index === 0}
+                sizes="100vw"
+                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+              />
+            </S.ImageWrapper>
           ) : (
             <S.VideoContainer
               key={index}
