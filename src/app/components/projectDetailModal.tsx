@@ -1,7 +1,9 @@
 'use client';
 import { Button } from '@/components/Button/Button';
+import { Carousel } from '@/components/carousel/Carousel';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
 import { ProjectDetail } from '@/types/project';
+import { Slide } from '@/types/slide.type';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import * as S from './projectDetailModal.styles';
@@ -16,7 +18,18 @@ interface ProjectDetailModalProps {
 
 export default function ProjectDetailModal({ data, onClose }: ProjectDetailModalProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const getFileType = (url: string): 'image' | 'video' => {
+    const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov'];
+    const lowerUrl = url.toLowerCase();
+    return videoExtensions.some(ext => lowerUrl.endsWith(ext)) ? 'video' : 'image';
+  };
+
+  const slides: Slide[] =
+    data.files?.map(file => ({
+      url: file.url,
+      type: getFileType(file.url),
+    })) || [];
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 10);
@@ -45,28 +58,9 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
     };
   }, []);
 
-  useEffect(() => {
-    if (!data.files || data.files.length === 0) return;
-
-    const autoSlideTimer = setInterval(() => {
-      setCurrentImageIndex(prev => (prev + 1) % data.files.length);
-    }, 15000);
-
-    return () => clearInterval(autoSlideTimer);
-  }, [data.files]);
-
   const handleClose = () => {
     setIsVisible(false);
     setTimeout(() => onClose(), 300);
-  };
-
-  const handleImageClick = () => {
-    if (!data.files || data.files.length === 0) return;
-    setCurrentImageIndex(prev => (prev + 1) % data.files.length);
-  };
-
-  const handleDotClick = (index: number) => {
-    setCurrentImageIndex(index);
   };
 
   const handleWrapperClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -122,24 +116,9 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
               </S.NameEmailContainer>
             </S.ProjectInfoContainer>
 
-            {data.files && data.files.length > 0 && (
+            {slides.length > 0 && (
               <S.CarouselContainer>
-                <S.CarouselImageWrapper onClick={handleImageClick}>
-                  <S.CarouselImage
-                    src={data.files[currentImageIndex].url}
-                    alt={`${data.projectName.kr} - ${currentImageIndex + 1}`}
-                  />
-                </S.CarouselImageWrapper>
-
-                <S.DotsContainer>
-                  {data.files.map((_, index) => (
-                    <S.Dot
-                      key={index}
-                      active={index === currentImageIndex}
-                      onClick={() => handleDotClick(index)}
-                    />
-                  ))}
-                </S.DotsContainer>
+                <Carousel slides={slides} pauseOnHover={true} />
               </S.CarouselContainer>
             )}
 
