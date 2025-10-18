@@ -264,20 +264,20 @@ export const FadedTextContainer = styled.div`
   }
 `;
 
-export const ScrollingWrapper = styled.div`
+export const ScrollingWrapper = styled.div<{ $speed?: number }>`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 50px;
   white-space: nowrap;
-  animation: ${scroll} 80s linear infinite;
+  animation: ${scroll} ${({ $speed }) => $speed || 80}s linear infinite;
   position: relative;
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
     flex-direction: column;
     align-items: flex-start;
     gap: 30px;
-    animation: ${scrollVertical} 80s linear infinite;
+    animation: ${scrollVertical} ${({ $speed }) => $speed || 80}s linear infinite;
   }
 `;
 

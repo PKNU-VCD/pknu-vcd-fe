@@ -15,6 +15,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 import * as S from './page.styles';
 
 const FireworkBackground = dynamic(
@@ -94,6 +95,40 @@ const GRADUATION_COMMITTEE = [
 
 export default function Introduce() {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
+  const designerRef = useRef<HTMLDivElement>(null);
+  const committeeRef = useRef<HTMLDivElement>(null);
+  const [designerSpeed, setDesignerSpeed] = useState(100);
+  const [committeeSpeed, setCommitteeSpeed] = useState(100);
+
+  useEffect(() => {
+    const calculateSpeed = () => {
+      const screenWidth = window.innerWidth;
+      let pixelsPerSecond = 100;
+
+      if (isMobile) {
+        pixelsPerSecond = 6;
+      } else if (screenWidth > 1280) {
+        pixelsPerSecond = 600;
+      }
+
+      if (designerRef.current) {
+        const width = designerRef.current.scrollWidth / 2;
+        const duration = width / pixelsPerSecond;
+        setDesignerSpeed(duration);
+      }
+
+      if (committeeRef.current) {
+        const width = committeeRef.current.scrollWidth / 2;
+        const duration = width / pixelsPerSecond;
+        setCommitteeSpeed(duration);
+      }
+    };
+
+    calculateSpeed();
+
+    window.addEventListener('resize', calculateSpeed);
+    return () => window.removeEventListener('resize', calculateSpeed);
+  }, [isMobile]);
 
   return (
     <>
@@ -182,7 +217,7 @@ export default function Introduce() {
             <S.ParticipantItem>
               <S.ParticipantType>디자이너 Designer</S.ParticipantType>
               <S.FadedTextContainer>
-                <S.ScrollingWrapper>
+                <S.ScrollingWrapper ref={designerRef} $speed={designerSpeed}>
                   {DESIGNERS.map((designer, index) => (
                     <S.FadedText key={index}>{designer}</S.FadedText>
                   ))}
@@ -195,7 +230,7 @@ export default function Introduce() {
             <S.ParticipantItem>
               <S.ParticipantType>졸업준비위원회 Graduation Committee</S.ParticipantType>
               <S.FadedTextContainer>
-                <S.ScrollingWrapper>
+                <S.ScrollingWrapper ref={committeeRef} $speed={committeeSpeed}>
                   {/* 속도 맞추기 위함 */}
                   {GRADUATION_COMMITTEE.map((person, index) => (
                     <S.FadedText key={index}>{person}</S.FadedText>

@@ -1,3 +1,4 @@
+import { theme } from '@/styles/theme';
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
@@ -24,8 +25,15 @@ export const ImageWrapper = styled.div`
   position: relative;
 `;
 
-export const VideoContainer = styled.iframe`
+export const VideoWrapper = styled.div`
   flex: 0 0 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+`;
+
+export const VideoElement = styled.video`
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -35,6 +43,7 @@ export const VideoContainer = styled.iframe`
 export const DotsContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 24px;
 `;
 
@@ -42,8 +51,14 @@ export const DotContainer = styled.div<{ $isActive: boolean }>`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: ${({ $isActive, theme }) =>
-    $isActive ? theme.colors.darkGray : theme.colors.carouselGray};
+  background-color: ${({ $isActive }) =>
+    $isActive ? theme.colors.darkGray : theme.colors.lightGray};
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+
+  &:hover {
+    background-color: ${theme.colors.darkGray};
+  }
 `;

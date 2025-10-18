@@ -143,53 +143,6 @@ export const CarouselContainer = styled.div`
   width: 100%;
 `;
 
-export const CarouselImageWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  cursor: pointer;
-
-  @media (max-width: ${theme.breakpoints.mobileLarge}) {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-  }
-`;
-
-export const CarouselImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.02);
-  }
-`;
-
-export const DotsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  margin-top: 30px;
-`;
-
-export const Dot = styled.button<{ active: boolean }>`
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: ${props => (props.active ? theme.colors.darkGray : theme.colors.lightGray)};
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-
-  &:hover {
-    background-color: ${theme.colors.darkGray};
-  }
-`;
-
 export const DescriptionContainer = styled.div`
   margin-bottom: 50px;
   display: flex;

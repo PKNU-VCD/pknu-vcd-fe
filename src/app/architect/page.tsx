@@ -8,20 +8,20 @@ import MobileDesignUnion from '@/assets/icons/sub/mobile/Union_design.svg';
 import DesignUnion from '@/assets/icons/sub/Union_design.svg';
 import ArchitectButton from '@/components/buttonList/architect/ArchitectButton';
 import Footer from '@/components/footer/Footer';
-import dynamic from 'next/dynamic';
-
-const FireworkBackground = dynamic(
-  () => import('@/components/fireworkBackground/FireworkBackground'),
-  { ssr: false },
-);
 import Header from '@/components/header/Header';
 import { SearchBar } from '@/components/searchBar/SearchBar';
 import { ThumbnailGrid } from '@/components/thumbnailGrid/ThumbnailGrid';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
 import { Project } from '@/types/project';
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import * as S from './page.styles';
+
+const FireworkBackground = dynamic(
+  () => import('@/components/fireworkBackground/FireworkBackground'),
+  { ssr: false },
+);
 
 export default function Architect() {
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
@@ -35,11 +35,20 @@ export default function Architect() {
     });
   }, []);
 
+  const normalizeCategory = (category: string): string => {
+    if (category === 'UI/UX') return 'UIUX';
+    if (category === 'UIUX') return 'UI/UX';
+    return category;
+  };
+
   const filteredProjects = projects.filter(project => {
     const categoryMatch =
       selectedCategories.length === 0 ||
       selectedCategories.some(cat => {
-        const match = project.categories?.some(c => c.toUpperCase() === cat.toUpperCase());
+        const normalizedCat = normalizeCategory(cat);
+        const match = project.categories?.some(
+          c => c.toUpperCase() === normalizedCat.toUpperCase(),
+        );
         return match;
       });
 

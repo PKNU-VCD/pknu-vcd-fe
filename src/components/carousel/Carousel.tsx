@@ -81,13 +81,12 @@ export const Carousel = ({ slides, pauseOnHover = true }: CarouselProps) => {
               />
             </S.ImageWrapper>
           ) : (
-            <S.VideoContainer
-              key={index}
-              src={slide.url}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-            />
+            <S.VideoWrapper key={index}>
+              <S.VideoElement controls autoPlay loop muted playsInline>
+                <source src={slide.url} type="video/mp4" />
+                영상을 지원하지 않는 브라우저입니다.
+              </S.VideoElement>
+            </S.VideoWrapper>
           ),
         )}
       </S.SlidesContainer>
