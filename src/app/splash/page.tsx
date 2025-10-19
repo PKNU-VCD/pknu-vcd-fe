@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import DotFireworksBackground, { DotFireworksHandle } from '../main/canvas/canvas';
-import { OPENING_1, OPENING_2, OPENING_3, OPENING_4, OPENING_5 } from './opening';
-import Header from '@/components/header/Header';
-import Footer from '@/components/footer/Footer';
 import { BlinkingLogo } from '@/components/blinkingLogo/BlinkingLogo';
 import FloatingDraggable from '@/components/floatingDraggable/FloatingDraggable';
+import Footer from '@/components/footer/Footer';
+import Header from '@/components/header/Header';
+import { useEffect, useRef, useState } from 'react';
+import DotFireworksBackground, { DotFireworksHandle } from '../main/canvas/canvas';
 import { FIREWORK_SHAPE, FIREWORK_SHAPE_LARGE } from '../main/canvas/Dot';
 import * as S from '../main/page.styles';
+import { OPENING_1, OPENING_2, OPENING_3, OPENING_4, OPENING_5 } from './opening';
 
 export default function SplashPage() {
   const bgRef = useRef<DotFireworksHandle>(null);
@@ -67,9 +67,9 @@ export default function SplashPage() {
         console.log('Rendering OPENING_5 at', centerX, centerY, 'with', OPENING_5.length, 'dots');
         redrawOpening5();
         setCurrentStep(1);
-      }, 0);
+      }, 100);
     } else if (currentStep === 1) {
-      // OPENING_1 immediately
+      // OPENING_1 with delay to avoid re-render clearing
       setTimeout(() => {
         fireworkRef.current?.triggerStampAtWindowPx(centerX, centerY, {
           color: '#00AEEF',
@@ -78,9 +78,10 @@ export default function SplashPage() {
           thicken: 0,
           customCoords: OPENING_1,
         });
-        redrawOpening5(); // Redraw to keep visible
+        // Redraw after render cycle completes
+        requestAnimationFrame(() => redrawOpening5());
         setCurrentStep(2);
-      }, 0);
+      }, 50);
     } else if (currentStep === 2) {
       // OPENING_2 after 100ms
       setTimeout(() => {
@@ -93,7 +94,7 @@ export default function SplashPage() {
         });
         redrawOpening5(); // Redraw to keep visible
         setCurrentStep(3);
-      }, 100);
+      }, 800);
     } else if (currentStep === 3) {
       // OPENING_3 after 100ms - on separate layer for opacity control
       setTimeout(() => {
@@ -108,7 +109,7 @@ export default function SplashPage() {
         setCurrentStep(4);
         // Start opacity animation from 0.5 to 1
         setTimeout(() => setOpening3Opacity(1), 50);
-      }, 100);
+      }, 800);
     } else if (currentStep === 4) {
       // OPENING_4 after 100ms
       setTimeout(() => {
@@ -121,7 +122,7 @@ export default function SplashPage() {
         });
         redrawOpening5(); // Redraw to keep visible
         setCurrentStep(5);
-      }, 100);
+      }, 800);
     } else if (currentStep === 5) {
       // Move up after all openings appear
       setTimeout(() => {
@@ -132,7 +133,7 @@ export default function SplashPage() {
       // After move animation completes, redraw fireworks at the new position to align with grid
       setTimeout(() => {
         // Calculate the new Y position after -70% transform
-        const newCenterY = centerY - (window.innerHeight * 0.7);
+        const newCenterY = centerY - window.innerHeight * 0.7;
 
         // Remove transform first
         setRemoveTransform(true);
@@ -226,7 +227,11 @@ export default function SplashPage() {
           width: '100vw',
           height: '100vh',
           transition: removeTransform ? 'none' : 'transform 1s ease-out',
-          transform: removeTransform ? 'translateY(0)' : (isMovingUp ? 'translateY(-70%)' : 'translateY(0)'),
+          transform: removeTransform
+            ? 'translateY(0)'
+            : isMovingUp
+              ? 'translateY(-70%)'
+              : 'translateY(0)',
           pointerEvents: 'none',
           zIndex: 2,
         }}
@@ -250,7 +255,11 @@ export default function SplashPage() {
           width: '100vw',
           height: '100vh',
           transition: removeTransform ? 'none' : 'transform 1s ease-out, opacity 2s ease-out',
-          transform: removeTransform ? 'translateY(0)' : (isMovingUp ? 'translateY(-70%)' : 'translateY(0)'),
+          transform: removeTransform
+            ? 'translateY(0)'
+            : isMovingUp
+              ? 'translateY(-70%)'
+              : 'translateY(0)',
           opacity: opening3Opacity,
           pointerEvents: 'none',
           zIndex: 3,

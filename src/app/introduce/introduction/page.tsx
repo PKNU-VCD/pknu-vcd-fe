@@ -175,7 +175,7 @@ export default function Introduce() {
 
           <S.IntroductionSubContainer>
             <S.IntroImageContainer>
-              <Image src={IntroImage} alt="intro" />
+              <Image src={IntroImage} alt="intro" quality={100} />
             </S.IntroImageContainer>
             <S.ContentContainer>
               {isMobile ? (

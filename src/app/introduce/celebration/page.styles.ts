@@ -41,7 +41,6 @@ export const CelebrationLogoText = styled(LogoText)`
 
 export const CelebrationInfoContainer = styled.div`
   margin-top: 100px;
-  margin-bottom: 100px;
   display: flex;
   flex-direction: row;
   gap: 100px;
@@ -50,7 +49,6 @@ export const CelebrationInfoContainer = styled.div`
 
   @media (max-width: ${theme.breakpoints.tablet}) {
     margin-top: 80px;
-    margin-bottom: 80px;
     flex-direction: column;
     gap: 60px;
   }
@@ -98,4 +96,26 @@ export const Content = styled.p`
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
   white-space: pre-line;
+`;
+
+export const DotsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+`;
+
+export const Dot = styled.div<{ $active: boolean }>`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: ${({ $active }) => ($active ? theme.colors.stroke : theme.colors.lightGray)};
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${theme.colors.darkGray};
+  }
 `;

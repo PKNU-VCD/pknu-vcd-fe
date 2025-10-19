@@ -84,9 +84,15 @@ export default function Exhibition() {
             <S.VideoTitle>{VideoData.subTitle}</S.VideoTitle>
             <S.VideoDescription>{VideoData.subDescription}</S.VideoDescription>
             <S.VideoImageWrapper>
-              <video width="100%" height="100%" controls>
-                <source src="/path/to/video.mp4" type="video/mp4" />
-              </video>
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/_W-uMEfTfqo"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
             </S.VideoImageWrapper>
           </S.ColumnWrapper>
         </S.VideoWrapper>

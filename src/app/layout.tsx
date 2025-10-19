@@ -3,10 +3,22 @@ import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 
 const suit = localFont({
-  src: '../../public/fonts/SUIT-Variable.woff2',
+  src: [
+    {
+      path: '../../public/fonts/SUITE-Variable.woff2',
+      weight: '100 900',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/SUITE-Variable.woff',
+      weight: '100 900',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
   variable: '--font-suit',
   preload: true,
+  fallback: ['Apple SD Gothic Neo', 'system-ui'],
 });
 
 export const metadata = {

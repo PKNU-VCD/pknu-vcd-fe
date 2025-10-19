@@ -89,7 +89,6 @@ export const AsideContainer = styled.div`
 `;
 
 export const IntroductionSubContainer = styled.div`
-  margin-bottom: 120px;
   display: flex;
   flex-direction: column;
   gap: 60px;

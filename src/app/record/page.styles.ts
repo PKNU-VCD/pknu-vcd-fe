@@ -2,6 +2,7 @@ import { theme } from '@/styles/theme';
 import styled from '@emotion/styled';
 
 export const RecordContainer = styled.div`
+  position: relative;
   margin-top: 100px;
   margin-bottom: 100px;
   display: flex;

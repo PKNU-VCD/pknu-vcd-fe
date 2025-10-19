@@ -32,6 +32,7 @@ export function useProjectForm(projectId?: string | null) {
     handleSingleImageUpload,
     moveImage,
     setImagePreviewsFromUrls,
+    removeImage,
   } = useImageManagement();
 
   // 기존 프로젝트 데이터 불러오기
@@ -181,6 +182,7 @@ export function useProjectForm(projectId?: string | null) {
       handleAdditionalImagesUpload,
       handleSingleImageUpload,
       moveImage,
+      removeImage,
     },
     actions: {
       isFormValid,
