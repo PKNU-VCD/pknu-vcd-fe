@@ -74,7 +74,7 @@ export const Carousel = ({ slides, pauseOnHover = true }: CarouselProps) => {
                 alt={`Slide ${index + 1}`}
                 width={1920}
                 height={0}
-                quality={75}
+                quality={80}
                 priority={index === 0}
                 sizes="100vw"
                 style={{ width: '100%', height: 'auto', objectFit: 'cover' }}

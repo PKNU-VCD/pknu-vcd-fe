@@ -24,7 +24,7 @@ export const Thumbnail = ({
           alt={title}
           width={600}
           height={0}
-          quality={75}
+          quality={80}
           sizes="(max-width: 768px) 100vw, 33vw"
           style={{ height: 'auto', width: '100%', objectFit: 'cover' }}
         />
