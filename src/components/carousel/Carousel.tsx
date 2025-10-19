@@ -42,6 +42,14 @@ export const Carousel = ({ slides, pauseOnHover = true }: CarouselProps) => {
     animateTo(index);
   };
 
+  const goToNext = () => {
+    if (currentIndex === lastIndex) {
+      resetIndexAndTransition();
+    } else {
+      animateTo(currentIndex + 1);
+    }
+  };
+
   const resetIndexAndTransition = useCallback(() => {
     setTimeout(() => {
       snapTo(0);
@@ -65,7 +73,12 @@ export const Carousel = ({ slides, pauseOnHover = true }: CarouselProps) => {
       onMouseEnter={() => pauseOnHover && setIsPaused(true)}
       onMouseLeave={() => pauseOnHover && setIsPaused(false)}
     >
-      <S.SlidesContainer $currentIndex={currentIndex} $isTransitioning={isTransitioning}>
+      <S.SlidesContainer
+        $currentIndex={currentIndex}
+        $isTransitioning={isTransitioning}
+        onClick={goToNext}
+        style={{ cursor: 'pointer' }}
+      >
         {extendedSlides.map((slide, index) =>
           slide.type === 'image' ? (
             <S.ImageWrapper key={index}>
