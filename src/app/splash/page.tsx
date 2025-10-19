@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import DotFireworksBackground, { DotFireworksHandle } from '../main/canvas/canvas';
 import { FIREWORK_SHAPE, FIREWORK_SHAPE_LARGE } from '../main/canvas/Dot';
 import * as S from '../main/page.styles';
-import { OPENING_1, OPENING_2, OPENING_3, OPENING_4, OPENING_5 } from './opening';
+import { OPENING_1, OPENING_2, OPENING_3, OPENING_4, OPENING_5, PINK_DOT } from './opening';
 import * as Splash from './page.styles';
 
 export default function SplashPage() {
@@ -16,6 +16,7 @@ export default function SplashPage() {
   const fireworkRef = useRef<DotFireworksHandle>(null);
   const opening3Ref = useRef<DotFireworksHandle>(null);
   const opening5Ref = useRef<DotFireworksHandle>(null);
+  const pinkDotRef = useRef<DotFireworksHandle>(null);
   const blinkRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +25,6 @@ export default function SplashPage() {
   const [showMain, setShowMain] = useState(false);
   const [dotRadius, setDotRadius] = useState(8);
   const [opening3Opacity, setOpening3Opacity] = useState(0.5);
-  const [opening3Color, setOpening3Color] = useState('#00AEEF');
   const [removeTransform, setRemoveTransform] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
   const [wordPositions, setWordPositions] = useState<{ x: number; y: number }[]>([]);
@@ -210,6 +210,23 @@ export default function SplashPage() {
     }
   }, [showQuestion, visibleWordsCount, questionTexts.length]);
 
+  // 각 단어가 나타날 때 캔버스에 핑크 dot 그리기
+  useEffect(() => {
+    if (visibleWordsCount > 0 && wordPositions.length > 0) {
+      const index = visibleWordsCount - 1;
+      const pos = wordPositions[index];
+      if (pos) {
+        pinkDotRef.current?.triggerStampAtWindowPx(pos.x, pos.y, {
+          color: '#FF74FF',
+          units: 'cells',
+          scaleCells: 1,
+          thicken: 0,
+          customCoords: PINK_DOT,
+        });
+      }
+    }
+  }, [visibleWordsCount, wordPositions]);
+
   useEffect(() => {
     if (visibleWordsCount === questionTexts.length && currentStep === 5) {
       const timer = setTimeout(() => {
@@ -233,6 +250,7 @@ export default function SplashPage() {
         dotRadius={dotRadius}
         spacing={dotRadius * 2}
         burstEvery={0}
+        decayPerSec={0}
         stampCoords={FIREWORK_SHAPE}
         stampUnits="cells"
       />
@@ -277,6 +295,20 @@ export default function SplashPage() {
           baseColor="transparent"
         />
       </Splash.CanvasLayer>
+
+      {/* Pink dot layer for question text */}
+      {showQuestion && (
+        <Splash.CanvasLayer zIndex={4} isMovingUp={isMovingUp} removeTransform={removeTransform}>
+          <DotFireworksBackground
+            ref={pinkDotRef}
+            dotRadius={dotRadius}
+            spacing={dotRadius * 2}
+            burstEvery={0}
+            decayPerSec={0}
+            baseColor="transparent"
+          />
+        </Splash.CanvasLayer>
+      )}
 
       {/* Main page content with fade-in */}
       {showMain && (
@@ -435,7 +467,7 @@ export default function SplashPage() {
         </Splash.MainContentWrapper>
       )}
 
-      {/* Question text with dots - each word at random position */}
+      {/* Question text - each word at random position (dots drawn on canvas) */}
       {showQuestion &&
         questionTexts.slice(0, visibleWordsCount).map((text, index) => (
           <Splash.QuestionWord
@@ -445,7 +477,6 @@ export default function SplashPage() {
             isMovingUp={isMovingUp}
             removeTransform={removeTransform}
           >
-            <Splash.PinkDot size={dotRadius * 2} />
             <Splash.QuestionText>{text}</Splash.QuestionText>
           </Splash.QuestionWord>
         ))}

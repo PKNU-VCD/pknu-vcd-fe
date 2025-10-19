@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
+import styled from '@emotion/styled';
 
 export const fadeInKeyframes = keyframes`
   from {
@@ -69,11 +69,10 @@ interface QuestionWordProps {
 
 export const QuestionWord = styled.div<QuestionWordProps>`
   position: fixed;
-  left: ${({ x }) => x}px;
-  top: ${({ y }) => y}px;
+  left: ${({ x }) => x + 20}px;
+  top: ${({ y }) => y - 10}px;
   display: flex;
   align-items: center;
-  gap: 8px;
   transition: ${({ removeTransform }) => (removeTransform ? 'none' : 'transform 1s ease-out')};
   transform: ${({ removeTransform, isMovingUp }) =>
     removeTransform ? 'translateY(0)' : isMovingUp ? 'translateY(-70vh)' : 'translateY(0)'};
