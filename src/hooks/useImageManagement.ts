@@ -94,6 +94,18 @@ export function useImageManagement() {
     setImagePreviews(newImagePreviews);
   }, []);
 
+  const removeImage = (index: number) => {
+    const newImages = [...images];
+    const newPreviews = [...imagePreviews];
+
+    revokeObjectUrl(newPreviews[index]);
+    newImages[index] = null;
+    newPreviews[index] = null;
+
+    setImages(newImages);
+    setImagePreviews(newPreviews);
+  };
+
   useEffect(() => {
     return () => {
       revokeObjectUrl(thumbnailPreview);
@@ -115,5 +127,6 @@ export function useImageManagement() {
     handleSingleImageUpload,
     moveImage,
     setImagePreviewsFromUrls,
+    removeImage,
   };
 }

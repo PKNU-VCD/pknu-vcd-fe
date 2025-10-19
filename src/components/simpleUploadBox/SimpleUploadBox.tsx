@@ -5,6 +5,7 @@ interface SimpleUploadBoxProps {
   index: number;
   uploadedImage?: string | null;
   onFileUpload?: (file: File, index: number) => void;
+  onRemove?: (index: number) => void;
   onDragStart?: (index: number) => void;
   onDragOver?: (index: number) => void;
   onDragEnd?: () => void;
@@ -15,6 +16,7 @@ export const SimpleUploadBox = ({
   index,
   uploadedImage,
   onFileUpload,
+  onRemove,
   onDragStart,
   onDragOver,
   onDragEnd,
@@ -42,6 +44,14 @@ export const SimpleUploadBox = ({
     onDragEnd?.();
   };
 
+  const handleImageClick = (e: React.MouseEvent) => {
+    if (uploadedImage && onRemove) {
+      e.preventDefault();
+      e.stopPropagation();
+      onRemove(index);
+    }
+  };
+
   const inputId = `simple-upload-${index}`;
 
   const isVideo = uploadedImage &&
@@ -62,7 +72,7 @@ export const SimpleUploadBox = ({
         onChange={handleFileChange}
         hidden
       />
-      <S.Label htmlFor={inputId}>
+      <S.Label htmlFor={uploadedImage ? undefined : inputId} onClick={handleImageClick}>
         {uploadedImage ? (
           isVideo ? (
             <S.UploadedVideo src={uploadedImage} muted loop autoPlay />

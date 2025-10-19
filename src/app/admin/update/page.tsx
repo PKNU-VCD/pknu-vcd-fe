@@ -136,6 +136,7 @@ function UpdatePageContent() {
                     index={index}
                     uploadedImage={media.imagePreviews[index]}
                     onFileUpload={media.handleSingleImageUpload}
+                    onRemove={media.removeImage}
                     onDragStart={handleDragStart}
                     onDragOver={handleDragOver}
                     onDragEnd={() => handleDragEnd(media.moveImage)}
