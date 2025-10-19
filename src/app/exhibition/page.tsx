@@ -4,7 +4,6 @@ import { CommonContainer } from '@/app/introduce/common.styles';
 import ExhibitionAside from '@/assets/icons/sub/exhibit_aside.svg';
 import ExhibitionIcon from '@/assets/icons/sub/exhibition_icon.png';
 import ExhibitionLogo from '@/assets/icons/sub/intro.svg';
-import ExhibitionIconMobile from '@/assets/icons/sub/mobile/exhibition_icon.png';
 import ExhibitionLogoMobile from '@/assets/icons/sub/mobile/intro.svg';
 import ExhibitUnionMobile from '@/assets/icons/sub/mobile/Union_exhibit.svg';
 import ExhibitUnion from '@/assets/icons/sub/Union_exhibit.svg';
@@ -96,9 +95,6 @@ export default function Exhibition() {
             </S.VideoImageWrapper>
           </S.ColumnWrapper>
         </S.VideoWrapper>
-        <S.MobileBottomImageWrapper>
-          <Image src={ExhibitionIconMobile} alt="exhibition" />
-        </S.MobileBottomImageWrapper>
       </CommonContainer>
       <Footer footerType="sub" backgroundColor="white" />
     </>
