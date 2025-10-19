@@ -10,7 +10,8 @@ export type ButtonVariant =
   | 'submit_sub'
   | 'exhibition'
   | 'confirm'
-  | 'cancel';
+  | 'cancel'
+  | 'modal';
 
 export const variantStyles = {
   primary: css`
@@ -98,6 +99,16 @@ export const variantStyles = {
     border: 3px solid var(--color-1-blue, #00aeef);
     background: #fff;
     color: var(--color-1-blue, #00aeef);
+  `,
+  modal: css`
+    padding: 10px 30px;
+    border: 1px solid var(--color-1-blue, #00aeef);
+    background: #fff;
+    color: var(--color-1-blue, #00aeef);
+    font-size: ${theme.typography.regular.fontSize};
+    font-weight: ${theme.typography.regular.fontWeight};
+    line-height: ${theme.typography.regular.lineHeight};
+    letter-spacing: ${theme.typography.regular.letterSpacing};
   `,
 } as const;
 
