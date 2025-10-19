@@ -134,7 +134,7 @@ export const EmailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 20px;
+  gap: 10px;
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
     gap: 10px;
