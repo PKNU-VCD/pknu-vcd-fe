@@ -8,13 +8,6 @@ import UnionIntro from '@/assets/icons/sub/mobile/Union_intro.svg';
 import RecordLogoBlue from '@/assets/icons/sub/record/main_blue.svg';
 import RecordLogoPink from '@/assets/icons/sub/record/main_pink.svg';
 import RecordLogoTablet from '@/assets/icons/sub/record/tablet/main_icon.svg';
-import FloatingDraggable from '@/components/floatingDraggable/FloatingDraggable';
-import dynamic from 'next/dynamic';
-
-const FireworkBackground = dynamic(
-  () => import('@/components/fireworkBackground/FireworkBackground'),
-  { ssr: false },
-);
 import Footer from '@/components/footer/Footer';
 import { GuestbookCard } from '@/components/guestbook/guestbookCard/GuestbookCard';
 import { GuestbookGrid } from '@/components/guestbook/guestbookGrid/GuestbookGrid';
@@ -23,10 +16,17 @@ import Header from '@/components/header/Header';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { theme } from '@/styles/theme';
 import { getRandomThemeColor } from '@/utils/randomColor';
+import dynamic from 'next/dynamic';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { CommonContainer } from '../introduce/common.styles';
 import * as MainStyles from '../main/page.styles';
 import * as S from './page.styles';
+import { FloatingIcon } from '@/components/floatingIcon/FloatingIcon';
+
+const FireworkBackground = dynamic(
+  () => import('@/components/fireworkBackground/FireworkBackground'),
+  { ssr: false },
+);
 
 const recordLogos = [RecordLogoPink, RecordLogoBlue];
 
@@ -51,13 +51,21 @@ export default function Record() {
   const isTablet = useMediaQuery(`(max-width: ${theme.breakpoints.tablet})`);
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
   const recordContainerRef = useRef<HTMLDivElement>(null);
-  const blinkRef = useRef<HTMLDivElement>(null);
   const guestbookColors = ['green', 'pink', 'yellow'] as const;
 
   const [guestbooks, setGuestbooks] = useState<Guestbook[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
 
   const RandomRecordLogo = recordLogos[Math.floor(Math.random() * recordLogos.length)];
+
+  const iconPositions = useMemo(
+    () =>
+      floatingIcons.map(() => ({
+        x: generateEdgeWeightedPosition(),
+        y: Math.random() * 30,
+      })),
+    [],
+  );
 
   useEffect(() => {
     const loadGuestbooks = async () => {
@@ -129,7 +137,7 @@ export default function Record() {
             </S.RecordTitle>
           ) : (
             <S.RecordTitle>
-              졸업을 축하하는 마음을 ‘_합니다.’ 의 빈칸과 함께 채워주세요.
+              졸업을 축하하는 마음을 ‘_합니다.‘ 의 빈칸과 함께 채워주세요.
             </S.RecordTitle>
           )}
         </S.RecordContainer>
@@ -147,22 +155,17 @@ export default function Record() {
         <S.GuestbookInputContainer>
           <GuestbookInput onSubmit={handleSubmit} />
         </S.GuestbookInputContainer>
-
-        {!isMobile &&
-          floatingIcons.map((item, index) => (
-            <FloatingDraggable
-              key={index}
-              icon={item.icon}
-              initialPercent={{
-                x: generateEdgeWeightedPosition(),
-                y: generateEdgeWeightedPosition(),
-              }}
-              dropRef={blinkRef}
-              containerRef={recordContainerRef}
-              label={`floating ${index + 1}`}
-            />
-          ))}
       </CommonContainer>
+
+      {!isMobile &&
+        floatingIcons.map((item, index) => (
+          <FloatingIcon
+            key={index}
+            icon={item.icon}
+            position={iconPositions[index]}
+          />
+        ))}
+
       <Footer footerType="sub" backgroundColor="white" />
     </>
   );
