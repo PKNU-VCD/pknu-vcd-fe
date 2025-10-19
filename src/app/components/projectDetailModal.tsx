@@ -125,7 +125,7 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
 
             <S.DescriptionContainer>
               {data.description.kr}
-              <TranslationPanel text={data.description.en} />
+              <TranslationPanel text={data.description.en} buttonColor="gray" iconVariant="outline" />
             </S.DescriptionContainer>
           </S.ModalContainer>
         </MotionModalWrapper>
