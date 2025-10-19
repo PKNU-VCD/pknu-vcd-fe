@@ -103,12 +103,12 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
 
             <S.ProjectInfoContainer>
               <S.ProjectNameContainer>
-                <S.EnglishName>{data.projectName.en}</S.EnglishName>
+                {data.projectName.en && <S.EnglishName>{data.projectName.en}</S.EnglishName>}
                 <S.KoreanName>{data.projectName.kr}</S.KoreanName>
               </S.ProjectNameContainer>
 
               <S.NameEmailContainer>
-                <p style={{ alignSelf: 'flex-start' }}>{data.designerName.kr}</p>
+                <p>{data.designerName.kr}</p>
                 <S.EmailContainer>
                   <p>contact</p>
                   <p>{data.designerEmail}</p>

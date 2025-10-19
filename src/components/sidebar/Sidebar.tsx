@@ -74,7 +74,6 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
           >
             기록합니다.
           </Button>
-          <S.AdminButton onClick={() => handleButtonClick('/admin')}>관리자</S.AdminButton>
         </S.SidebarMenu>
       </S.SidebarContainer>
     </S.SidebarOverlay>

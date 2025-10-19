@@ -71,7 +71,7 @@ const Header = ({ headerType = 'main' }: HeaderProps) => {
             기록합니다.
           </Button>
         </S.HeaderMenu>
-        <S.HeaderAdminTab onClick={() => handleButtonClick('/admin')}>관리자</S.HeaderAdminTab>
+        <S.HeaderAdminTab onClick={() => {}}></S.HeaderAdminTab>
         <S.HeaderUnion onClick={handleSidebarToggle}>
           <UnionIcon />
         </S.HeaderUnion>
