@@ -34,6 +34,7 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   padding: 0 100px;
   overflow-y: auto;
+  overflow-x: hidden;
   flex: 1;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
@@ -144,16 +145,18 @@ export const EmailContainer = styled.div`
 export const CarouselContainer = styled.div`
   margin-top: 80px;
   margin-bottom: 30px;
-  width: 100vw;
+  width: calc(100% + 200px);
   margin-left: -100px;
   margin-right: -100px;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
+    width: calc(100% + 160px);
     margin-left: -80px;
     margin-right: -80px;
   }
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    width: calc(100% + 56px);
     margin-left: -28px;
     margin-right: -28px;
   }
