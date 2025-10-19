@@ -144,11 +144,18 @@ export const EmailContainer = styled.div`
 export const CarouselContainer = styled.div`
   margin-top: 80px;
   margin-bottom: 30px;
-  width: 100%;
+  width: 100vw;
+  margin-left: -100px;
+  margin-right: -100px;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    margin-left: -80px;
+    margin-right: -80px;
+  }
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    margin-left: -28px;
+    margin-right: -28px;
   }
 `;
 
