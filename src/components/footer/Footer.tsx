@@ -32,7 +32,7 @@ export default function Footer({ footerType = 'main', backgroundColor = 'default
             <InstaIcon />
           </a>
           <a
-            href="https://www.youtube.com/@pkvcd1234"
+            href="https://www.youtube.com/watch?v=_W-uMEfTfqo"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="youtube"
