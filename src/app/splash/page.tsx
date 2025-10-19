@@ -9,6 +9,7 @@ import DotFireworksBackground, { DotFireworksHandle } from '../main/canvas/canva
 import { FIREWORK_SHAPE, FIREWORK_SHAPE_LARGE } from '../main/canvas/Dot';
 import * as S from '../main/page.styles';
 import { OPENING_1, OPENING_2, OPENING_3, OPENING_4, OPENING_5 } from './opening';
+import * as Splash from './page.styles';
 
 export default function SplashPage() {
   const bgRef = useRef<DotFireworksHandle>(null);
@@ -25,6 +26,10 @@ export default function SplashPage() {
   const [opening3Opacity, setOpening3Opacity] = useState(0.5);
   const [opening3Color, setOpening3Color] = useState('#00AEEF');
   const [removeTransform, setRemoveTransform] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(false);
+  const [wordPositions, setWordPositions] = useState<{ x: number; y: number }[]>([]);
+  const [visibleWordsCount, setVisibleWordsCount] = useState(0);
+  const questionTexts = ['당신은', '어떤', '가능성을', '꿈꾸고', '있나요?'];
 
   useEffect(() => {
     const updateDotRadius = () => {
@@ -124,12 +129,23 @@ export default function SplashPage() {
         setCurrentStep(5);
       }, 800);
     } else if (currentStep === 5) {
-      // Move up after all openings appear
+      // Generate random positions for each word and start showing them
+      setTimeout(() => {
+        const positions = questionTexts.map(() => ({
+          x: Math.random() * (window.innerWidth - 200),
+          y: Math.random() * (window.innerHeight - 100),
+        }));
+        setWordPositions(positions);
+        setShowQuestion(true);
+        // Don't move to step 6 yet - wait for all words to appear
+      }, 800);
+    } else if (currentStep === 6) {
+      // Move up after red dot appears
       setTimeout(() => {
         setIsMovingUp(true);
-        setCurrentStep(6);
+        setCurrentStep(7);
       }, 500);
-    } else if (currentStep === 6) {
+    } else if (currentStep === 7) {
       // After move animation completes, redraw fireworks at the new position to align with grid
       setTimeout(() => {
         // Calculate the new Y position after -70% transform
@@ -184,6 +200,31 @@ export default function SplashPage() {
     }
   }, [currentStep]);
 
+  // 단어별 애니메이션
+  useEffect(() => {
+    if (showQuestion && visibleWordsCount < questionTexts.length) {
+      const timer = setTimeout(() => {
+        setVisibleWordsCount(prev => prev + 1);
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [showQuestion, visibleWordsCount, questionTexts.length]);
+
+  useEffect(() => {
+    if (visibleWordsCount === questionTexts.length && currentStep === 5) {
+      const timer = setTimeout(() => {
+        setCurrentStep(6);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [visibleWordsCount, questionTexts.length, currentStep]);
+
+  useEffect(() => {
+    if (showMain) {
+      setShowQuestion(false);
+    }
+  }, [showMain]);
+
   return (
     <>
       {/* Static background canvas */}
@@ -197,17 +238,7 @@ export default function SplashPage() {
       />
 
       {/* OPENING_5 layer - stays fixed in center, does not move up, below other fireworks */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          pointerEvents: 'none',
-          zIndex: 1,
-        }}
-      >
+      <Splash.Opening5Layer>
         <DotFireworksBackground
           ref={opening5Ref}
           dotRadius={dotRadius}
@@ -216,26 +247,10 @@ export default function SplashPage() {
           decayPerSec={0}
           baseColor="transparent"
         />
-      </div>
+      </Splash.Opening5Layer>
 
       {/* Animated firework layer - OPENING_1, 2, 4 */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          transition: removeTransform ? 'none' : 'transform 1s ease-out',
-          transform: removeTransform
-            ? 'translateY(0)'
-            : isMovingUp
-              ? 'translateY(-70%)'
-              : 'translateY(0)',
-          pointerEvents: 'none',
-          zIndex: 2,
-        }}
-      >
+      <Splash.CanvasLayer zIndex={2} isMovingUp={isMovingUp} removeTransform={removeTransform}>
         <DotFireworksBackground
           ref={fireworkRef}
           dotRadius={dotRadius}
@@ -244,26 +259,14 @@ export default function SplashPage() {
           decayPerSec={0}
           baseColor="transparent"
         />
-      </div>
+      </Splash.CanvasLayer>
 
       {/* OPENING_3 layer with opacity animation */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          transition: removeTransform ? 'none' : 'transform 1s ease-out, opacity 2s ease-out',
-          transform: removeTransform
-            ? 'translateY(0)'
-            : isMovingUp
-              ? 'translateY(-70%)'
-              : 'translateY(0)',
-          opacity: opening3Opacity,
-          pointerEvents: 'none',
-          zIndex: 3,
-        }}
+      <Splash.CanvasLayer
+        zIndex={3}
+        isMovingUp={isMovingUp}
+        removeTransform={removeTransform}
+        opacity={opening3Opacity}
       >
         <DotFireworksBackground
           ref={opening3Ref}
@@ -273,18 +276,11 @@ export default function SplashPage() {
           decayPerSec={0}
           baseColor="transparent"
         />
-      </div>
+      </Splash.CanvasLayer>
 
       {/* Main page content with fade-in */}
       {showMain && (
-        <div
-          style={{
-            opacity: 0,
-            animation: 'fadeIn 0.5s ease-out forwards',
-            position: 'relative',
-            zIndex: 10,
-          }}
-        >
+        <Splash.MainContentWrapper>
           <S.Wrapper>
             <Header />
             <S.MainSection ref={mainRef}>
@@ -436,19 +432,23 @@ export default function SplashPage() {
               <Footer />
             </S.FooterSection>
           </S.Wrapper>
-        </div>
+        </Splash.MainContentWrapper>
       )}
 
-      <style jsx global>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
+      {/* Question text with dots - each word at random position */}
+      {showQuestion &&
+        questionTexts.slice(0, visibleWordsCount).map((text, index) => (
+          <Splash.QuestionWord
+            key={index}
+            x={wordPositions[index]?.x || 0}
+            y={wordPositions[index]?.y || 0}
+            isMovingUp={isMovingUp}
+            removeTransform={removeTransform}
+          >
+            <Splash.PinkDot size={dotRadius * 2} />
+            <Splash.QuestionText>{text}</Splash.QuestionText>
+          </Splash.QuestionWord>
+        ))}
     </>
   );
 }
