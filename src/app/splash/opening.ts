@@ -1825,3 +1825,5 @@ export const OPENING_5: DotCoord[] = [
   { dx: -25, dy: -29 },
   { dx: -25, dy: -31 },
 ];
+
+export const PINK_DOT: DotCoord[] = [{ dx: 0, dy: 0 }];

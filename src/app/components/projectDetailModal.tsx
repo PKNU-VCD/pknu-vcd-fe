@@ -1,4 +1,5 @@
 'use client';
+import CloseIcon from '@/assets/icons/sub/close.svg';
 import { Button } from '@/components/Button/Button';
 import { Carousel } from '@/components/carousel/Carousel';
 import { TranslationPanel } from '@/components/translationPanel/TranslationPanel';
@@ -88,7 +89,7 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
           <S.ModalContainer onClick={e => e.stopPropagation()}>
             <S.ModalHeader>
               <S.CloseButton onClick={handleClose}>
-                <S.CloseIcon>✕</S.CloseIcon>
+                <CloseIcon />
               </S.CloseButton>
             </S.ModalHeader>
 
@@ -124,7 +125,7 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
 
             <S.DescriptionContainer>
               {data.description.kr}
-              <TranslationPanel text={data.description.en} />
+              <TranslationPanel text={data.description.en} buttonColor="gray" iconVariant="outline" />
             </S.DescriptionContainer>
           </S.ModalContainer>
         </MotionModalWrapper>

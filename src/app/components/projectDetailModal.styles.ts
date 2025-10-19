@@ -14,7 +14,7 @@ export const ModalWrapper = styled.div`
   left: 0;
   right: 0;
   margin: 0 120px;
-  height: 91vh;
+  height: 86vh;
   z-index: 50;
   background-color: #ffffff;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -49,20 +49,18 @@ export const ModalContainer = styled.div`
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding: 30px;
 `;
 
 export const CloseButton = styled.button`
-  width: 2rem;
-  height: 2rem;
+  height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
 
-export const CloseIcon = styled.span`
-  color: ${theme.colors.darkGray};
-  font-size: 1.125rem;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 export const ButtonContainer = styled.div`

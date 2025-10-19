@@ -188,11 +188,20 @@ export const VideoWrapper = styled.div`
 `;
 
 export const VideoImageWrapper = styled.div`
+  display: flex;
   width: 100%;
   aspect-ratio: 1120/630.33;
+  overflow: hidden;
 
   @media (max-width: ${theme.breakpoints.mobileLarge}) {
-    display: none;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
