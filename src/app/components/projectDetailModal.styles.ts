@@ -135,12 +135,21 @@ export const EmailContainer = styled.div`
   flex-direction: column;
   align-items: flex-end;
   gap: 20px;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    gap: 10px;
+  }
 `;
 
 export const CarouselContainer = styled.div`
   margin-top: 80px;
   margin-bottom: 30px;
   width: 100%;
+
+  @media (max-width: ${theme.breakpoints.mobileLarge}) {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
 `;
 
 export const DescriptionContainer = styled.div`

@@ -95,8 +95,8 @@ export default function ProjectDetailModal({ data, onClose }: ProjectDetailModal
             <S.ButtonContainer>
               {data.categories &&
                 data.categories.map((category: string, index: number) => (
-                  <Button key={index} variant="primary">
-                    {category}
+                  <Button key={index} variant="modal">
+                    {category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
                   </Button>
                 ))}
             </S.ButtonContainer>
