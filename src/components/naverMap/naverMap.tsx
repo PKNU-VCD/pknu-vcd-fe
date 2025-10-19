@@ -1,5 +1,7 @@
 'use client';
 
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { theme } from '@/styles/theme';
 import { useEffect, useRef } from 'react';
 
 interface NaverMapProps {
@@ -10,6 +12,7 @@ interface NaverMapProps {
 
 export const NaverMap = ({ latitude, longitude, zoom = 15 }: NaverMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
 
   useEffect(() => {
     const initMap = () => {
@@ -36,5 +39,5 @@ export const NaverMap = ({ latitude, longitude, zoom = 15 }: NaverMapProps) => {
     }
   }, [latitude, longitude, zoom]);
 
-  return <div ref={mapRef} style={{ width: '100%' }} />;
+  return <div ref={mapRef} style={{ width: '100%', height: isMobile ? '310px' : '613px' }} />;
 };

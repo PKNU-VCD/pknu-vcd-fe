@@ -19,6 +19,7 @@ const InstagramUrl = 'https://www.instagram.com/pknu_vcd/';
 
 export default function Detail() {
   const isTablet = useMediaQuery(`(max-width: ${theme.breakpoints.tablet})`);
+  const is700px = useMediaQuery(`(max-width: 700px)`);
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.mobileLarge})`);
 
   return (
@@ -38,7 +39,7 @@ export default function Detail() {
               </S.DetailLogoText>
             )}
 
-            {isMobile ? <ExhibitDetailLogoMobile /> : <ExhibitDetailLogo />}
+            {is700px ? <ExhibitDetailLogoMobile /> : <ExhibitDetailLogo />}
           </S.DetailLogoContainer>
           <ButtonList />
         </S.DetailWrapper>
