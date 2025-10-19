@@ -91,7 +91,6 @@ export const ProjectInfoContainer = styled.div`
 export const ProjectNameContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
   align-items: flex-start;
   flex: 6;
 
@@ -108,6 +107,7 @@ export const EnglishName = styled.p`
   line-height: ${theme.typography.regular.lineHeight};
   letter-spacing: ${theme.typography.regular.letterSpacing};
   color: ${theme.colors.stroke};
+  margin-bottom: 20px;
 `;
 
 export const KoreanName = styled.p`
