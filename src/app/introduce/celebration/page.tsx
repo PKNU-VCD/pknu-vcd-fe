@@ -118,6 +118,15 @@ export default function Celebration() {
             <S.Content>{currentSpeech.comment}</S.Content>
           </S.ContentContainer>
         </S.CelebrationInfoContainer>
+        <S.DotsContainer>
+          {CONGRATULATION_SPEECH.map((_, index) => (
+            <S.Dot
+              key={index}
+              $active={index === currentIndex}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
+        </S.DotsContainer>
       </CommonContainer>
       <Footer footerType="sub" />
     </>
