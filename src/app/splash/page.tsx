@@ -142,6 +142,7 @@ export default function SplashPage() {
     } else if (currentStep === 6) {
       // Move up after red dot appears
       setTimeout(() => {
+        setOpening3Opacity(0);
         setIsMovingUp(true);
         setCurrentStep(7);
       }, 500);
@@ -150,6 +151,8 @@ export default function SplashPage() {
       setTimeout(() => {
         // Calculate the new Y position after -70% transform
         const newCenterY = centerY - window.innerHeight * 0.7;
+
+        setOpening3Opacity(0);
 
         // Remove transform first
         setRemoveTransform(true);
@@ -182,8 +185,7 @@ export default function SplashPage() {
             customCoords: OPENING_4,
           });
 
-          // Redraw OPENING_3 with new color at new position
-          opening3Ref.current?.triggerStampAtWindowPx(centerX, newCenterY, {
+          fireworkRef.current?.triggerStampAtWindowPx(centerX, newCenterY, {
             color: '#D2FFDE',
             units: 'cells',
             scaleCells: 1,
@@ -191,7 +193,6 @@ export default function SplashPage() {
             customCoords: OPENING_3,
           });
 
-          // Redraw OPENING_5 to keep visible
           redrawOpening5();
         }, 50);
 
