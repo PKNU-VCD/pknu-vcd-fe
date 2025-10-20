@@ -252,7 +252,6 @@ export default function SplashPage() {
         dotRadius={dotRadius}
         spacing={dotRadius * 2}
         burstEvery={0}
-        decayPerSec={0}
         stampCoords={FIREWORK_SHAPE}
         stampUnits="cells"
       />
