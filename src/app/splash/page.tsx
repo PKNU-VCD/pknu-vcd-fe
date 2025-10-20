@@ -131,9 +131,10 @@ export default function SplashPage() {
     } else if (currentStep === 5) {
       // Generate random positions for each word and start showing them
       setTimeout(() => {
+        const padding = 50;
         const positions = questionTexts.map(() => ({
-          x: Math.random() * (window.innerWidth - 200),
-          y: Math.random() * (window.innerHeight - 100),
+          x: padding + Math.random() * (window.innerWidth - padding * 2),
+          y: padding + Math.random() * (window.innerHeight - padding * 2),
         }));
         setWordPositions(positions);
         setShowQuestion(true);
